@@ -37,3 +37,16 @@ const yearElement = document.querySelector('[data-year]');
 if (yearElement) {
   yearElement.textContent = new Date().getFullYear();
 }
+
+
+// Hide broken logo images and show a text fallback where needed.
+document.querySelectorAll('[data-logo-img]').forEach((image) => {
+  const showFallback = () => {
+    image.classList.add('is-hidden');
+    const fallback = image.parentElement?.querySelector('[data-logo-fallback]');
+    if (fallback) fallback.classList.add('is-visible');
+  };
+
+  if (image.complete && image.naturalWidth === 0) showFallback();
+  image.addEventListener('error', showFallback);
+});
