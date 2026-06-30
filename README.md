@@ -1,18 +1,37 @@
-# KAZMA MEP Website
+# KAZMA MEP Website V3
 
-Static website for KAZMA MEP.
+This is the refined Version 3 static website for KAZMA MEP.
 
-## Files
+## Upload instructions
 
-- `index.html` — homepage
-- `services.html` — services page
-- `portfolio.html` — portfolio page
-- `about.html` — about page
-- `contact.html` — contact page
-- `style.css` — website styling
-- `script.js` — language switcher, mobile menu, year
-- `assets/` — logo files
+Upload the contents of this folder directly to the root of the GitHub repository.
 
-## Deployment
+Correct structure:
 
-Upload these files to the `kazma-website` GitHub repository. Cloudflare Pages will rebuild automatically.
+```
+index.html
+services.html
+portfolio.html
+about.html
+contact.html
+style.css
+script.js
+kazma-logo-full-tight.png
+kazma-mark-icon.png
+kazma-logo-full.png
+kazma-logo-mark.jpg
+robots.txt
+sitemap.xml
+```
+
+Important: `index.html` and the logo image files must be visible immediately when opening the repository root. Do not upload the outer folder only.
+
+## V3 changes
+
+- Header now uses only the cropped K mark.
+- Hero right-side information window removed.
+- Hero now shows the full KAZMA MEP logo directly.
+- Logo paths now use root files to avoid `/assets/` upload issues.
+- Project pills no longer have double borders.
+- Georgian headline sizes reduced for better proportions.
+- About page headline is smaller and more balanced.
