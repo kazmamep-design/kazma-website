@@ -1,37 +1,14 @@
-# KAZMA MEP Website V3
+# KAZMA MEP Website V4
 
-This is the refined Version 3 static website for KAZMA MEP.
+Refined static website for KAZMA MEP.
 
-## Upload instructions
+Changes in V4:
+- Added legal footer: Kazma Solutions LLC / შპს კაზმა სოლუშენსი.
+- Shortened homepage copy and reduced Georgian hero headline size.
+- Added BMS Automation service.
+- Changed Georgian BIM/Revit label to “პროექტირება”.
+- Improved navigation and services typography.
+- Replaced warning-style email box with confident consultation CTA.
+- Added transparent logo variants for better background blending.
 
-Upload the contents of this folder directly to the root of the GitHub repository.
-
-Correct structure:
-
-```
-index.html
-services.html
-portfolio.html
-about.html
-contact.html
-style.css
-script.js
-kazma-logo-full-tight.png
-kazma-mark-icon.png
-kazma-logo-full.png
-kazma-logo-mark.jpg
-robots.txt
-sitemap.xml
-```
-
-Important: `index.html` and the logo image files must be visible immediately when opening the repository root. Do not upload the outer folder only.
-
-## V3 changes
-
-- Header now uses only the cropped K mark.
-- Hero right-side information window removed.
-- Hero now shows the full KAZMA MEP logo directly.
-- Logo paths now use root files to avoid `/assets/` upload issues.
-- Project pills no longer have double borders.
-- Georgian headline sizes reduced for better proportions.
-- About page headline is smaller and more balanced.
+Upload all files in this folder to the GitHub repository root.
