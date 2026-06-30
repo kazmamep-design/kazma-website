@@ -1,230 +1,160 @@
 <!DOCTYPE html>
 <html lang="ka">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KAZMA MEP | Engineering Solutions</title>
-  <meta name="description" content="KAZMA MEP provides HVAC, electrical, plumbing, fire safety and MEP project management services in Georgia." />
-
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f0f0f;
-      color: #f5f5f5;
-    }
-
-    header {
-      padding: 24px 8%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #252525;
-    }
-
-    .logo {
-      font-size: 24px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      color: #ff7a00;
-    }
-
-    nav a {
-      color: #f5f5f5;
-      text-decoration: none;
-      margin-left: 24px;
-      font-size: 14px;
-    }
-
-    .hero {
-      padding: 90px 8%;
-      max-width: 1000px;
-    }
-
-    .eyebrow {
-      color: #ff7a00;
-      font-weight: bold;
-      margin-bottom: 16px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-size: 13px;
-    }
-
-    h1 {
-      font-size: clamp(40px, 7vw, 76px);
-      line-height: 1;
-      margin: 0 0 24px;
-    }
-
-    p {
-      font-size: 18px;
-      line-height: 1.7;
-      color: #cfcfcf;
-      max-width: 720px;
-    }
-
-    .buttons {
-      margin-top: 36px;
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 14px 22px;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .btn-primary {
-      background: #ff7a00;
-      color: #111;
-    }
-
-    .btn-secondary {
-      border: 1px solid #444;
-      color: #f5f5f5;
-    }
-
-    section {
-      padding: 60px 8%;
-      border-top: 1px solid #252525;
-    }
-
-    h2 {
-      font-size: 32px;
-      margin-bottom: 24px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-    }
-
-    .card {
-      background: #171717;
-      border: 1px solid #292929;
-      border-radius: 18px;
-      padding: 24px;
-    }
-
-    .card h3 {
-      margin-top: 0;
-      color: #ffffff;
-    }
-
-    .card p {
-      font-size: 15px;
-      color: #bdbdbd;
-    }
-
-    footer {
-      padding: 32px 8%;
-      color: #999;
-      border-top: 1px solid #252525;
-      font-size: 14px;
-    }
-
-    @media (max-width: 700px) {
-      header {
-        display: block;
-      }
-
-      nav {
-        margin-top: 16px;
-      }
-
-      nav a {
-        margin-left: 0;
-        margin-right: 16px;
-        display: inline-block;
-        margin-bottom: 8px;
-      }
-
-      .hero {
-        padding-top: 60px;
-      }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KAZMA MEP | MEP Engineering in Georgia</title>
+  <meta name="description" content="KAZMA MEP provides HVAC, electrical, plumbing, fire safety, BIM coordination and MEP project management services in Georgia.">
+  <meta name="theme-color" content="#070707">
+  <meta property="og:title" content="KAZMA MEP | MEP Engineering in Georgia">
+  <meta property="og:description" content="KAZMA MEP provides HVAC, electrical, plumbing, fire safety, BIM coordination and MEP project management services in Georgia.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/kazma-logo-full.png">
+  <link rel="icon" type="image/png" href="assets/kazma-logo-mark.jpg">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <header>
-    <div class="logo">KAZMA MEP</div>
-    <nav>
-      <a href="#services">Services</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#contact">Contact</a>
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="index.html" aria-label="KAZMA MEP home">
+      <img src="assets/kazma-logo-mark.jpg" alt="KAZMA MEP logo mark">
+      <span>KAZMA MEP</span>
+    </a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="active" href="index.html"><span class="ka">მთავარი</span><span class="en">Home</span></a><a href="services.html"><span class="ka">სერვისები</span><span class="en">Services</span></a><a href="portfolio.html"><span class="ka">პორტფოლიო</span><span class="en">Portfolio</span></a><a href="about.html"><span class="ka">ჩვენ შესახებ</span><span class="en">About</span></a><a href="contact.html"><span class="ka">კონტაქტი</span><span class="en">Contact</span></a>
     </nav>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="eyebrow">MEP Engineering in Georgia</div>
-      <h1>Engineering solutions for modern buildings.</h1>
-      <p>
-        KAZMA MEP provides HVAC, electrical, plumbing, fire safety and MEP project management services for commercial, residential and industrial projects in Georgia.
-      </p>
-
-      <div class="buttons">
-        <a class="btn btn-primary" href="tel:+995599529825">Call Us</a>
-        <a class="btn btn-secondary" href="mailto:kazma.mep@gmail.com">Send Email</a>
+    <div class="header-actions">
+      <div class="lang-toggle" aria-label="Language switcher">
+        <button type="button" data-lang="ka">ქარ</button>
+        <button type="button" data-lang="en">EN</button>
       </div>
-    </section>
+      <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+<main>
 
-    <section id="services">
-      <h2>Services</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>HVAC Systems</h3>
-          <p>Heating, ventilation and air conditioning solutions for modern buildings.</p>
-        </div>
-        <div class="card">
-          <h3>Electrical Systems</h3>
-          <p>Power distribution, lighting and technical electrical coordination.</p>
-        </div>
-        <div class="card">
-          <h3>Plumbing & Sanitary</h3>
-          <p>Water supply, drainage and sanitary engineering systems.</p>
-        </div>
-        <div class="card">
-          <h3>Fire Safety</h3>
-          <p>Fire protection, sprinkler systems and safety-related MEP coordination.</p>
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow"><span class="ka">MEP ინჟინერია საქართველოში</span><span class="en">MEP Engineering in Georgia</span></div>
+      <h1><span class="ka">საინჟინრო გადაწყვეტილებები თანამედროვე შენობებისთვის.</span><span class="en">Engineering solutions for modern buildings.</span></h1>
+      <p class="lead"><span class="ka">KAZMA MEP ქმნის და მართავს მექანიკურ, ელექტრო, სანტექნიკურ და სახანძრო უსაფრთხოების სისტემებთან დაკავშირებულ გადაწყვეტილებებს კომერციული, საცხოვრებელი და ინდუსტრიული ობიექტებისთვის.</span><span class="en">KAZMA MEP develops and coordinates mechanical, electrical, plumbing and fire safety engineering solutions for commercial, residential and industrial projects.</span></p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="contact.html"><span class="ka">დაგვიკავშირდით</span><span class="en">Contact us</span></a>
+        <a class="btn btn-secondary" href="portfolio.html"><span class="ka">ნახეთ პორტფოლიო</span><span class="en">View portfolio</span></a>
+      </div>
+    </div>
+    <div class="hero-panel">
+      <div class="logo-showcase"><img src="assets/kazma-logo-full.png" alt="KAZMA MEP full logo"></div>
+      <div class="panel-list">
+        <div class="panel-item"><span><span class="ka">მიმართულება</span><span class="en">Focus</span></span><strong>HVAC · MEP · Fire Safety</strong></div>
+        <div class="panel-item"><span><span class="ka">ლოკაცია</span><span class="en">Location</span></span><strong><span class="ka">თბილისი, საქართველო</span><span class="en">Tbilisi, Georgia</span></strong></div>
+        <div class="panel-item"><span><span class="ka">პირველი პროექტი</span><span class="en">First project</span></span><strong>Sameo Smash</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tight">
+  <div class="container split">
+    <div class="section-head" style="display:block;margin-bottom:0;">
+      <div class="eyebrow"><span class="ka">რას ვაკეთებთ</span><span class="en">What we do</span></div>
+      <h2><span class="ka">MEP სისტემები იდეიდან შესრულებამდე.</span><span class="en">MEP systems from concept to execution.</span></h2>
+    </div>
+    <p class="lead"><span class="ka">ჩვენი მიზანია, პროექტის საინჟინრო ნაწილი იყოს სწორად დაგეგმილი, კოორდინირებული და რეალურად შესრულებადი — არქიტექტურის, ბიუჯეტის, უსაფრთხოების და სამშენებლო პროცესის გათვალისწინებით.</span><span class="en">Our goal is to make the engineering part of each project practical, coordinated and buildable — aligned with architecture, budget, safety and site execution.</span></p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2><span class="ka">სერვისები</span><span class="en">Services</span></h2>
+      <p><span class="ka">პირველ ვერსიაში ფოკუსს ვაკეთებთ მთავარ MEP მიმართულებებზე, რომლებიც ყველაზე მეტად სჭირდება კომერციულ და საცხოვრებელ პროექტებს.</span><span class="en">The first version focuses on the core MEP disciplines needed most by commercial and residential projects.</span></p>
+    </div>
+    <div class="grid">
+      <article class="card"><div class="number">01</div><h3>HVAC</h3><p><span class="ka">გათბობა, ვენტილაცია, კონდიცირება და სისტემების კოორდინაცია.</span><span class="en">Heating, ventilation, air conditioning and system coordination.</span></p></article>
+      <article class="card"><div class="number">02</div><h3><span class="ka">ელექტრო სისტემები</span><span class="en">Electrical Systems</span></h3><p><span class="ka">ელექტრო მომარაგება, განათება, დატვირთვების და ტრასების კოორდინაცია.</span><span class="en">Power supply, lighting, load planning and routing coordination.</span></p></article>
+      <article class="card"><div class="number">03</div><h3><span class="ka">წყალმომარაგება და კანალიზაცია</span><span class="en">Plumbing & Sanitary</span></h3><p><span class="ka">წყლის, კანალიზაციის და სანიტარული სისტემების საინჟინრო გადაწყვეტები.</span><span class="en">Water supply, drainage and sanitary engineering solutions.</span></p></article>
+      <article class="card"><div class="number">04</div><h3><span class="ka">სახანძრო უსაფრთხოება</span><span class="en">Fire Safety</span></h3><p><span class="ka">სპრინკლერული სისტემები და სახანძრო უსაფრთხოების MEP კოორდინაცია.</span><span class="en">Sprinkler systems and fire safety related MEP coordination.</span></p></article>
+      <article class="card"><div class="number">05</div><h3>BIM / Revit</h3><p><span class="ka">MEP მოდელირება, ნახაზები და სისტემებს შორის კოლიზიების შემცირება.</span><span class="en">MEP modeling, drawings and reduction of clashes between systems.</span></p></article>
+      <article class="card"><div class="number">06</div><h3><span class="ka">პროექტის მართვა</span><span class="en">Project Management</span></h3><p><span class="ka">კოორდინაცია დამკვეთს, არქიტექტორს, მომწოდებელსა და ობიექტის გუნდს შორის.</span><span class="en">Coordination between client, architect, supplier and site teams.</span></p></article>
+    </div>
+    <div class="card-actions"><a class="btn btn-secondary" href="services.html"><span class="ka">ყველა სერვისი</span><span class="en">All services</span></a></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2><span class="ka">პროექტები და გამოცდილება</span><span class="en">Projects & experience</span></h2>
+      <p><span class="ka">KAZMA ახალი კომპანიაა, ამიტომ პორტფოლიოში ცალ-ცალკე ვაჩვენებთ KAZMA-ს პროექტებს და წამყვანი საინჟინრო გუნდის წინა გამოცდილებას.</span><span class="en">KAZMA is a new company, so the portfolio clearly separates KAZMA projects from the previous experience of the lead engineering team.</span></p>
+    </div>
+    <div class="grid-2">
+      <article class="project-card featured">
+        <div class="project-meta"><span>KAZMA Project</span><span><span class="ka">თბილისი</span><span class="en">Tbilisi</span></span><span><span class="ka">მიმდინარე</span><span class="en">Ongoing</span></span></div>
+        <h3>Sameo Smash</h3>
+        <p><span class="ka">KAZMA MEP-ის პირველი პროექტი — კომერციული რესტორნის ობიექტი, სადაც მიმდინარეობს HVAC და სახანძრო უსაფრთხოების, კერძოდ სპრინკლერული სისტემების, საინჟინრო სამუშაოები.</span><span class="en">The first KAZMA MEP project — a commercial restaurant project involving HVAC and fire safety works, specifically sprinkler systems.</span></p>
+        <div class="tag-row"><span class="tag">HVAC</span><span class="tag">Sprinklers</span><span class="tag">Commercial</span></div>
+      </article>
+      <article class="project-card">
+        <div class="project-meta"><span><span class="ka">გუნდის გამოცდილება</span><span class="en">Team experience</span></span></div>
+        <h3><span class="ka">წამყვანი ინჟინრის გამოცდილება</span><span class="en">Lead Engineer Experience</span></h3>
+        <p><span class="ka">სერიოზული პროექტების სია დაემატება დადასტურებული მონაცემებით. პირველ ეტაპზე: Lilo და Axis Avlabari.</span><span class="en">Major project references will be added with confirmed details. Initial entries: Lilo and Axis Avlabari.</span></p>
+        <div class="tag-row"><span class="tag">Lilo</span><span class="tag">Axis Avlabari</span></div>
+      </article>
+    </div>
+    <div class="card-actions"><a class="btn btn-secondary" href="portfolio.html"><span class="ka">სრული პორტფოლიო</span><span class="en">Full portfolio</span></a></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container cta">
+    <h2><span class="ka">გაქვთ პროექტი, რომელსაც სჭირდება სწორი MEP გადაწყვეტა?</span><span class="en">Have a project that needs proper MEP coordination?</span></h2>
+    <p><span class="ka">მოგვწერეთ ან დაგვირეკეთ — განვიხილავთ ობიექტის საჭიროებებს, სისტემებს, ვადებს და შემდეგ ნაბიჯებს.</span><span class="en">Message or call us — we can discuss the project needs, systems, timeline and next steps.</span></p>
+    <div class="cta-actions">
+      <a class="btn btn-primary" href="tel:+995599529825">+995 599 52 98 25</a>
+      <a class="btn btn-secondary" href="https://wa.me/995599529825" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn btn-secondary" href="https://mail.google.com/mail/?view=cm&fs=1&to=kazma.mep@gmail.com&su=Project%20Inquiry%20-%20KAZMA%20MEP" target="_blank" rel="noopener">Gmail</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo"><img src="assets/kazma-logo-mark.jpg" alt="KAZMA MEP logo mark"><span>KAZMA MEP</span></div>
+        <p><span class="ka">MEP საინჟინრო გადაწყვეტილებები კომერციული, საცხოვრებელი და ინდუსტრიული ობიექტებისთვის საქართველოში.</span><span class="en">MEP engineering solutions for commercial, residential and industrial projects in Georgia.</span></p>
+      </div>
+      <div>
+        <h3><span class="ka">მენიუ</span><span class="en">Menu</span></h3>
+        <div class="footer-links">
+          <a href="services.html"><span class="ka">სერვისები</span><span class="en">Services</span></a>
+          <a href="portfolio.html"><span class="ka">პორტფოლიო</span><span class="en">Portfolio</span></a>
+          <a href="about.html"><span class="ka">ჩვენ შესახებ</span><span class="en">About</span></a>
+          <a href="contact.html"><span class="ka">კონტაქტი</span><span class="en">Contact</span></a>
         </div>
       </div>
-    </section>
-
-    <section id="portfolio">
-      <h2>Portfolio</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Sameo Smash</h3>
-          <p>First KAZMA MEP project. Commercial restaurant project in Tbilisi. Details and photos coming soon.</p>
-        </div>
-        <div class="card">
-          <h3>Lead Engineer Experience</h3>
-          <p>Selected previous engineering experience, including projects such as Lilo and Axis Avlabari. Full portfolio coming soon.</p>
+      <div>
+        <h3><span class="ka">კონტაქტი</span><span class="en">Contact</span></h3>
+        <div class="footer-links">
+          <a href="tel:+995599529825">+995 599 52 98 25</a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kazma.mep@gmail.com&su=Project%20Inquiry%20-%20KAZMA%20MEP" target="_blank" rel="noopener">kazma.mep@gmail.com</a>
+          <a href="https://www.facebook.com/KAZMAMEP" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.instagram.com/kazmamep/" target="_blank" rel="noopener">Instagram</a>
         </div>
       </div>
-    </section>
-
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>
-        Phone: <a style="color:#ff7a00;" href="tel:+995599529825">+995 599 52 98 25</a><br>
-        Email: <a style="color:#ff7a00;" href="mailto:kazma.mep@gmail.com">kazma.mep@gmail.com</a><br>
-        Facebook: <a style="color:#ff7a00;" href="https://www.facebook.com/KAZMAMEP">KAZMA MEP</a><br>
-        Instagram: <a style="color:#ff7a00;" href="https://www.instagram.com/kazmamep/">@kazmamep</a>
-      </p>
-    </section>
-  </main>
-
-  <footer>
-    © 2026 KAZMA MEP. All rights reserved.
-  </footer>
+    </div>
+    <div class="copyright">© <span data-year></span> KAZMA MEP. <span class="ka">ყველა უფლება დაცულია.</span><span class="en">All rights reserved.</span></div>
+  </div>
+</footer>
+<script src="script.js"></script>
 
 </body>
 </html>
