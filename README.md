@@ -12,6 +12,3 @@ Changes in V4:
 - Added transparent logo variants for better background blending.
 
 Upload all files in this folder to the GitHub repository root.
-
-
-V6: clearer homepage system visual and About page diagram/principles grid.
