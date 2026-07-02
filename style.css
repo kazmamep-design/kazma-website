@@ -1120,3 +1120,123 @@ body:not(.lang-en) .principle-card p {
     margin-bottom: 22px;
   }
 }
+
+
+/* V4.2 — About page process timeline only. */
+.workflow-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.workflow-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(circle at 50% 40%, black, transparent 70%);
+  pointer-events: none;
+}
+
+.workflow-track {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.workflow-track::before {
+  content: "";
+  position: absolute;
+  left: 7%;
+  right: 7%;
+  top: 38px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 106, 0, 0.15), rgba(255, 106, 0, 0.65), rgba(255, 106, 0, 0.15));
+  pointer-events: none;
+}
+
+.workflow-step {
+  position: relative;
+  z-index: 1;
+  min-height: 230px;
+  padding: 24px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background:
+    radial-gradient(circle at top left, rgba(255, 106, 0, 0.10), transparent 10rem),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.054), rgba(255, 255, 255, 0.024));
+}
+
+.workflow-step-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 34px;
+}
+
+.workflow-number {
+  color: var(--orange);
+  font-size: 1.05rem;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+}
+
+.workflow-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: var(--orange);
+  box-shadow: 0 0 0 8px rgba(255, 106, 0, 0.10);
+  flex: 0 0 auto;
+}
+
+.workflow-step h3 {
+  margin-bottom: 12px;
+  font-size: 1.22rem;
+  line-height: 1.25;
+}
+
+.workflow-step p {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.96rem;
+  line-height: 1.65;
+}
+
+body:not(.lang-en) .workflow-step h3 {
+  font-size: 1.14rem;
+  line-height: 1.35;
+}
+
+body:not(.lang-en) .workflow-step p {
+  font-size: 0.94rem;
+  line-height: 1.75;
+}
+
+@media (max-width: 1000px) {
+  .workflow-track {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .workflow-track::before {
+    display: none;
+  }
+}
+
+@media (max-width: 620px) {
+  .workflow-track {
+    grid-template-columns: 1fr;
+  }
+
+  .workflow-step {
+    min-height: auto;
+  }
+
+  .workflow-step-head {
+    margin-bottom: 22px;
+  }
+}
