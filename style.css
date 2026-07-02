@@ -1371,3 +1371,207 @@ body:not(.lang-en) .discipline-item p {
     min-height: auto;
   }
 }
+
+
+/* V4.4 — About page visual polish. */
+.discipline-section {
+  padding-top: 58px;
+  padding-bottom: 58px;
+}
+
+.discipline-section .section-head {
+  margin-bottom: 26px;
+}
+
+.discipline-board {
+  padding: 18px;
+  border-radius: 24px;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    radial-gradient(circle at 12% 10%, rgba(255, 106, 0, 0.12), transparent 18rem),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.052), rgba(255, 255, 255, 0.018));
+  background-size: 42px 42px, 42px 42px, auto, auto;
+}
+
+.discipline-board-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 0 4px 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  color: var(--muted-2);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.discipline-board-head span:first-child {
+  color: var(--orange);
+}
+
+.discipline-map {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.discipline-node {
+  position: relative;
+  min-height: 122px;
+  padding: 18px 18px 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background:
+    radial-gradient(circle at top right, rgba(255, 106, 0, 0.065), transparent 7rem),
+    rgba(255, 255, 255, 0.026);
+  overflow: hidden;
+}
+
+.discipline-node::before {
+  content: "";
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--orange);
+  box-shadow: 0 0 0 8px rgba(255, 106, 0, 0.08);
+}
+
+.discipline-node::after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 0;
+  height: 2px;
+  border-radius: 999px 999px 0 0;
+  background: linear-gradient(90deg, rgba(255, 106, 0, 0.75), transparent);
+}
+
+.node-index {
+  display: block;
+  margin-bottom: 22px;
+  color: var(--orange);
+  font-size: 0.78rem;
+  font-weight: 950;
+  letter-spacing: 0.14em;
+}
+
+.discipline-node h3 {
+  margin: 0 0 6px;
+  font-size: 1.06rem;
+  line-height: 1.25;
+}
+
+.discipline-node p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+body:not(.lang-en) .discipline-node h3 {
+  font-size: 1.02rem;
+  line-height: 1.35;
+}
+
+body:not(.lang-en) .discipline-node p {
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+/* Make the process and principles feel less repetitive after adding the visual board. */
+.workflow-section {
+  padding-top: 58px;
+}
+
+.workflow-track {
+  gap: 14px;
+}
+
+.workflow-step {
+  min-height: 178px;
+}
+
+.workflow-step h3 {
+  font-size: 1.08rem;
+}
+
+.workflow-step p {
+  font-size: 0.92rem;
+}
+
+.principles-section {
+  padding-top: 58px;
+}
+
+.principles-grid {
+  gap: 14px;
+}
+
+.principle-card {
+  min-height: 200px;
+  padding: 22px;
+  border-radius: 18px;
+}
+
+.principle-top {
+  margin-bottom: 26px;
+}
+
+.principle-card h3 {
+  font-size: 1.12rem;
+}
+
+.principle-card p {
+  font-size: 0.92rem;
+}
+
+body:not(.lang-en) .principle-card h3 {
+  font-size: 1.08rem;
+}
+
+body:not(.lang-en) .principle-card p {
+  font-size: 0.91rem;
+}
+
+@media (max-width: 1000px) {
+  .discipline-map {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .workflow-track,
+  .principles-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .discipline-board {
+    padding: 14px;
+  }
+
+  .discipline-board-head {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .discipline-map,
+  .workflow-track,
+  .principles-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .discipline-node,
+  .workflow-step,
+  .principle-card {
+    min-height: auto;
+  }
+}
