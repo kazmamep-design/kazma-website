@@ -1012,3 +1012,111 @@ body:not(.lang-en) .copyright {
     width: min(100%, 260px);
   }
 }
+
+
+/* V4.1 — About page principles grid only. */
+.principles-section {
+  position: relative;
+}
+
+.principles-section::before {
+  content: "";
+  position: absolute;
+  inset: 22px 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 106, 0, 0.25), transparent);
+  pointer-events: none;
+}
+
+.principles-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.principle-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 238px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(circle at top right, rgba(255, 106, 0, 0.10), transparent 9rem),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.058), rgba(255, 255, 255, 0.026));
+}
+
+.principle-card::after {
+  content: "";
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 0;
+  height: 3px;
+  border-radius: 999px 999px 0 0;
+  background: rgba(255, 106, 0, 0.75);
+}
+
+.principle-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 34px;
+}
+
+.principle-number {
+  color: var(--orange);
+  font-weight: 950;
+  font-size: 1.18rem;
+  letter-spacing: 0.10em;
+  line-height: 1;
+}
+
+.principle-line {
+  height: 1px;
+  flex: 1;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.principle-card h3 {
+  margin-bottom: 12px;
+  font-size: 1.24rem;
+  line-height: 1.25;
+}
+
+.principle-card p {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.97rem;
+  line-height: 1.65;
+}
+
+body:not(.lang-en) .principle-card h3 {
+  font-size: 1.18rem;
+  line-height: 1.35;
+}
+
+body:not(.lang-en) .principle-card p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+@media (max-width: 1000px) {
+  .principles-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .principles-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .principle-card {
+    min-height: auto;
+  }
+
+  .principle-top {
+    margin-bottom: 22px;
+  }
+}
