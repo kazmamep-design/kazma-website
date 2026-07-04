@@ -117,9 +117,29 @@
     </div>
 
     <article class="home-featured-project home-featured-project-with-image">
-      <a class="home-project-image" href="portfolio.html" aria-label="View Sameo Smash project">
-        <img src="sameo-hvac-01.webp" alt="Sameo Smash HVAC ductwork and sprinkler installation" loading="lazy">
-      </a>
+      <div class="home-project-media" data-project-slideshow>
+        <a class="home-project-image" href="portfolio.html" aria-label="View Sameo Smash project">
+          <span class="home-project-slide is-active">
+            <img src="sameo-site-branding.webp" alt="Sameo Smash coming soon branding" loading="eager">
+          </span>
+          <span class="home-project-slide">
+            <img src="sameo-hvac-01.webp" alt="Sameo Smash HVAC ductwork installation" loading="lazy">
+          </span>
+          <span class="home-project-slide">
+            <img src="sameo-hvac-02.webp" alt="Sameo Smash HVAC installation in progress" loading="lazy">
+          </span>
+          <span class="home-project-slide">
+            <img src="sameo-sprinkler-installation.webp" alt="Sameo Smash sprinkler installation in progress" loading="lazy">
+          </span>
+        </a>
+
+        <div class="home-project-slide-controls" aria-label="Sameo Smash project images">
+          <button class="is-active" type="button" aria-label="Show Sameo branding image" aria-current="true"></button>
+          <button type="button" aria-label="Show HVAC installation image"></button>
+          <button type="button" aria-label="Show second HVAC installation image"></button>
+          <button type="button" aria-label="Show sprinkler installation image"></button>
+        </div>
+      </div>
       <div class="home-project-content">
         <div class="home-project-kicker">
           <span><span class="ka">KAZMA-ს პროექტი</span><span class="en">KAZMA Project</span></span>

@@ -50,3 +50,62 @@ document.querySelectorAll('[data-logo-img]').forEach((image) => {
   if (image.complete && image.naturalWidth === 0) showFallback();
   image.addEventListener('error', showFallback);
 });
+
+
+// Homepage Sameo project slideshow.
+document.querySelectorAll('[data-project-slideshow]').forEach((slideshow) => {
+  const slides = Array.from(slideshow.querySelectorAll('.home-project-slide'));
+  const controls = Array.from(slideshow.querySelectorAll('.home-project-slide-controls button'));
+
+  if (slides.length < 2) return;
+
+  let currentIndex = 0;
+  let timer = null;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const showSlide = (nextIndex) => {
+    currentIndex = (nextIndex + slides.length) % slides.length;
+
+    slides.forEach((slide, index) => {
+      slide.classList.toggle('is-active', index === currentIndex);
+    });
+
+    controls.forEach((control, index) => {
+      const active = index === currentIndex;
+      control.classList.toggle('is-active', active);
+      if (active) {
+        control.setAttribute('aria-current', 'true');
+      } else {
+        control.removeAttribute('aria-current');
+      }
+    });
+  };
+
+  const stop = () => {
+    if (timer) {
+      window.clearInterval(timer);
+      timer = null;
+    }
+  };
+
+  const start = () => {
+    if (reduceMotion || timer) return;
+    timer = window.setInterval(() => showSlide(currentIndex + 1), 4500);
+  };
+
+  controls.forEach((control, index) => {
+    control.addEventListener('click', () => {
+      showSlide(index);
+      stop();
+      start();
+    });
+  });
+
+  slideshow.addEventListener('mouseenter', stop);
+  slideshow.addEventListener('mouseleave', start);
+  slideshow.addEventListener('focusin', stop);
+  slideshow.addEventListener('focusout', start);
+
+  showSlide(0);
+  start();
+});
