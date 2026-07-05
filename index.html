@@ -13,7 +13,7 @@
   <link rel="icon" type="image/png" href="kazma-mark-icon-transparent.png">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="home-page">
 
 <header class="site-header">
   <div class="container nav-wrap">
@@ -40,7 +40,7 @@
 
 <section class="hero">
   <div class="container hero-grid">
-    <div>
+    <div class="hero-copy">
       <div class="eyebrow"><span class="ka">MEP ინჟინერია საქართველოში</span><span class="en">MEP Engineering in Georgia</span></div>
       <h1><span class="ka">MEP გადაწყვეტილებები თანამედროვე შენობებისთვის</span><span class="en">MEP solutions for modern buildings</span></h1>
       <p class="lead"><span class="ka">HVAC, სახანძრო უსაფრთხოება, პროექტირება და MEP კოორდინაცია კომერციული, საცხოვრებელი და ინდუსტრიული ობიექტებისთვის.</span><span class="en">HVAC, fire safety, design and MEP coordination for commercial, residential and industrial projects.</span></p>
@@ -49,74 +49,74 @@
         <a class="btn btn-secondary" href="portfolio.html"><span class="ka">ნახეთ პორტფოლიო</span><span class="en">View portfolio</span></a>
       </div>
     </div>
-    <div class="hero-visual" aria-label="KAZMA MEP logo">
+    <div class="hero-visual hero-brand-visual" aria-label="KAZMA MEP logo">
       <img class="hero-logo" src="kazma-logo-full-transparent.png" alt="KAZMA MEP full logo" data-logo-img>
       <div class="logo-fallback hero-logo-fallback" data-logo-fallback><strong>KAZMA</strong><span>MEP</span></div>
     </div>
   </div>
 </section>
 
-<section class="section section-tight">
-  <div class="container split">
-    <div class="section-head" style="display:block;margin-bottom:0;">
-      <div class="eyebrow"><span class="ka">რას ვაკეთებთ</span><span class="en">What we do</span></div>
-      <h2><span class="ka">MEP სისტემები იდეიდან შესრულებამდე</span><span class="en">MEP systems from concept to execution</span></h2>
-    </div>
-    <p class="lead"><span class="ka">ვგეგმავთ და ვაკოორდინირებთ სისტემებს ისე, რომ პროექტი იყოს პრაქტიკული, უსაფრთხო და რეალურად შესრულებადი.</span><span class="en">We plan and coordinate systems so each project is practical, safe and buildable.</span></p>
-  </div>
-</section>
+
 
 <section class="section home-services-section">
   <div class="container">
-    <div class="section-head home-services-head">
-      <h2><span class="ka">ძირითადი მიმართულებები</span><span class="en">Core services</span></h2>
-      <p><span class="ka">მთავარ გვერდზე ნაჩვენებია ის მიმართულებები, რომლებიც ყველაზე ხშირად განსაზღვრავს პროექტის საინჟინრო ხარისხს.</span><span class="en">The homepage highlights the disciplines that most often define the engineering quality of a project.</span></p>
+    <div class="section-head home-services-head" data-reveal>
+      <div>
+        <div class="eyebrow"><span class="ka">რას ვაკეთებთ</span><span class="en">What we do</span></div>
+        <h2><span class="ka">MEP სისტემები იდეიდან შესრულებამდე</span><span class="en">MEP systems from concept to execution</span></h2>
+      </div>
+      <p><span class="ka">ვგეგმავთ და ვაკოორდინირებთ სისტემებს ისე, რომ პროექტი იყოს პრაქტიკული, უსაფრთხო და რეალურად შესრულებადი.</span><span class="en">We plan and coordinate systems so each project is practical, safe and buildable.</span></p>
     </div>
 
     <div class="home-services-list">
-      <article class="home-service-row">
+      <a class="home-service-row" href="services.html" data-reveal style="--reveal-delay: 0ms;">
         <span class="home-service-number">01</span>
         <h3>HVAC</h3>
         <p><span class="ka">გათბობა, ვენტილაცია და კონდიცირება</span><span class="en">Heating, ventilation and air conditioning</span></p>
-      </article>
+        <span class="home-service-arrow" aria-hidden="true">↗</span>
+      </a>
 
-      <article class="home-service-row">
+      <a class="home-service-row" href="services.html" data-reveal style="--reveal-delay: 70ms;">
         <span class="home-service-number">02</span>
         <h3><span class="ka">სახანძრო უსაფრთხოება</span><span class="en">Fire Safety</span></h3>
         <p><span class="ka">სპრინკლერები და სახანძრო სისტემების კოორდინაცია</span><span class="en">Sprinklers and fire safety coordination</span></p>
-      </article>
+        <span class="home-service-arrow" aria-hidden="true">↗</span>
+      </a>
 
-      <article class="home-service-row">
+      <a class="home-service-row" href="services.html" data-reveal style="--reveal-delay: 140ms;">
         <span class="home-service-number">03</span>
-        <h3><span class="ka">ელექტრო და BMS</span><span class="en">Electrical & BMS</span></h3>
+        <h3><span class="ka">ელექტრო და BMS</span><span class="en">Electrical &amp; BMS</span></h3>
         <p><span class="ka">ელექტრო სისტემები, მონიტორინგი და ავტომატიზაცია</span><span class="en">Electrical systems, monitoring and automation</span></p>
-      </article>
+        <span class="home-service-arrow" aria-hidden="true">↗</span>
+      </a>
 
-      <article class="home-service-row">
+      <a class="home-service-row" href="services.html" data-reveal style="--reveal-delay: 210ms;">
         <span class="home-service-number">04</span>
-        <h3><span class="ka">სანტექნიკა</span><span class="en">Plumbing & Sanitary</span></h3>
+        <h3><span class="ka">სანტექნიკა</span><span class="en">Plumbing &amp; Sanitary</span></h3>
         <p><span class="ka">წყალმომარაგება, კანალიზაცია და სანიტარული სისტემები</span><span class="en">Water supply, drainage and sanitary systems</span></p>
-      </article>
+        <span class="home-service-arrow" aria-hidden="true">↗</span>
+      </a>
 
-      <article class="home-service-row">
+      <a class="home-service-row" href="services.html" data-reveal style="--reveal-delay: 280ms;">
         <span class="home-service-number">05</span>
-        <h3><span class="ka">პროექტირება და კოორდინაცია</span><span class="en">Design & Coordination</span></h3>
+        <h3><span class="ka">პროექტირება და კოორდინაცია</span><span class="en">Design &amp; Coordination</span></h3>
         <p><span class="ka">ნახაზები, მოდელები და სისტემების შეთანხმება ობიექტთან</span><span class="en">Drawings, models and coordination with the real site</span></p>
-      </article>
+        <span class="home-service-arrow" aria-hidden="true">↗</span>
+      </a>
     </div>
 
-    <div class="card-actions home-services-actions"><a class="btn btn-secondary" href="services.html"><span class="ka">ყველა სერვისი</span><span class="en">All services</span></a></div>
+    <div class="card-actions home-services-actions" data-reveal><a class="btn btn-secondary" href="services.html"><span class="ka">ყველა სერვისი</span><span class="en">All services</span><span aria-hidden="true">→</span></a></div>
   </div>
 </section>
 
 <section class="section home-projects-section">
   <div class="container">
-    <div class="section-head home-projects-head">
+    <div class="section-head home-projects-head" data-reveal>
       <h2><span class="ka">გამოცდილება</span><span class="en">Experience</span></h2>
       <p><span class="ka">ჩვენი პირველი მიმდინარე პროექტი — რეალური სამუშაო პროცესით და ეტაპობრივად განახლებადი პორტფოლიოთი.</span><span class="en">Our first active project — shown through real site work and a portfolio that will grow with each stage.</span></p>
     </div>
 
-    <article class="home-featured-project home-featured-project-with-image">
+    <article class="home-featured-project home-featured-project-with-image" data-reveal>
       <div class="home-project-media" data-project-slideshow>
         <a class="home-project-image" href="portfolio.html" aria-label="View Sameo Smash project">
           <span class="home-project-slide is-active">
@@ -133,7 +133,7 @@
           </span>
         </a>
 
-        <div class="home-project-slide-controls" aria-label="Sameo Smash project images">
+        <div class="home-project-slide-controls" aria-label="Sameo Smash project images" style="--slide-duration: 4500ms;">
           <button class="is-active" type="button" aria-label="Show Sameo branding image" aria-current="true"></button>
           <button type="button" aria-label="Show HVAC installation image"></button>
           <button type="button" aria-label="Show second HVAC installation image"></button>
@@ -156,7 +156,7 @@
       </div>
     </article>
 
-    <div class="portfolio-update-note">
+    <div class="portfolio-update-note" data-reveal>
       <span class="portfolio-update-line"></span>
       <p><span class="ka">ახალი ფოტოები და სამუშაო ეტაპები პორტფოლიოს შესრულების პროცესთან ერთად დაემატება.</span><span class="en">New photos and work stages will be added as the project progresses.</span></p>
       <a href="portfolio.html"><span class="ka">სრული პორტფოლიო</span><span class="en">Full portfolio</span> →</a>
@@ -164,8 +164,8 @@
   </div>
 </section>
 
-<section class="section">
-  <div class="container cta">
+<section class="section home-cta-section">
+  <div class="container cta home-cta" data-reveal>
     <h2><span class="ka">გაქვთ პროექტი დაგეგმვის ან მშენებლობის ეტაპზე?</span><span class="en">Have a project in planning or construction?</span></h2>
     <p><span class="ka">დაგვიკავშირდით და საინჟინრო ნაწილი თავიდანვე სწორად დავგეგმოთ.</span><span class="en">Contact us and let’s coordinate the engineering side from the beginning.</span></p>
     <div class="cta-actions">

@@ -1,3 +1,4 @@
+document.documentElement.classList.add('js-enabled');
 const savedLanguage = localStorage.getItem('kazmaLanguage') || 'ka';
 const body = document.body;
 
@@ -82,6 +83,7 @@ document.querySelectorAll('[data-project-slideshow]').forEach((slideshow) => {
   };
 
   const stop = () => {
+    slideshow.classList.add('is-paused');
     if (timer) {
       window.clearInterval(timer);
       timer = null;
@@ -89,6 +91,7 @@ document.querySelectorAll('[data-project-slideshow]').forEach((slideshow) => {
   };
 
   const start = () => {
+    slideshow.classList.remove('is-paused');
     if (reduceMotion || timer) return;
     timer = window.setInterval(() => showSlide(currentIndex + 1), 4500);
   };
@@ -109,3 +112,33 @@ document.querySelectorAll('[data-project-slideshow]').forEach((slideshow) => {
   showSlide(0);
   start();
 });
+
+
+// Homepage entrance and scroll reveal motion.
+if (document.body.classList.contains('home-page')) {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => document.body.classList.add('page-ready'));
+  });
+
+  const revealItems = Array.from(document.querySelectorAll('[data-reveal]'));
+  revealItems.forEach((item) => item.classList.add('reveal-on-scroll'));
+
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    revealItems.forEach((item) => item.classList.add('is-visible'));
+  } else {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -8% 0px'
+    });
+
+    revealItems.forEach((item) => revealObserver.observe(item));
+  }
+}
