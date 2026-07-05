@@ -5296,3 +5296,119 @@ body:not(.lang-en).services-page .services-cta h2 {
     animation: none !important;
   }
 }
+/* ==========================================================================
+   V6.1 — Services desktop polish
+   ========================================================================== */
+
+.services-flow-card {
+  min-height: 324px;
+  padding: 28px 30px 26px;
+}
+
+.services-flow {
+  margin: 66px 0 28px;
+}
+
+.services-flow-kicker {
+  max-width: 235px;
+  font-size: 0.79rem;
+  color: #ff8f3f;
+}
+
+.services-flow-mark {
+  color: rgba(255,255,255,0.22);
+  font-size: 0.82rem;
+}
+
+.services-flow-step strong {
+  font-size: 0.92rem;
+}
+
+.services-core-section,
+.services-support-section,
+.services-process-section {
+  padding: 80px 0;
+}
+
+.services-cta-section {
+  padding-top: 14px;
+  padding-bottom: 88px;
+}
+
+.services-section-head,
+.services-process-head {
+  gap: 68px;
+  margin-bottom: 40px;
+}
+
+.service-panel-toggle {
+  padding: 27px 4px;
+}
+
+.service-panel-title small {
+  color: #b7b7b7;
+  font-size: 0.80rem;
+}
+
+.service-panel-summary {
+  color: #b6b6b6;
+  font-size: 0.94rem;
+  line-height: 1.68;
+}
+
+.service-panel:hover .service-panel-summary,
+.service-panel.is-open .service-panel-summary {
+  color: #dddddd;
+}
+
+.service-panel-content-inner p {
+  color: #cecece;
+}
+
+.support-service p,
+.services-section-head > p,
+.services-process-head > p,
+.services-support-intro > p,
+.services-cta > div > p {
+  color: #c5c5c5;
+}
+
+.services-cta {
+  gap: 58px;
+  padding: 42px 46px;
+}
+
+.services-cta h2 {
+  max-width: 690px;
+  font-size: clamp(1.9rem, 3.0vw, 2.75rem);
+  line-height: 1.16;
+}
+
+body:not(.lang-en).services-page .services-cta h2 {
+  line-height: 1.18;
+}
+
+@media (max-width: 760px) {
+  .services-core-section,
+  .services-support-section,
+  .services-process-section {
+    padding: 62px 0;
+  }
+
+  .services-cta-section {
+    padding: 6px 0 72px;
+  }
+
+  .services-flow-card {
+    min-height: auto;
+    padding: 23px 20px;
+  }
+
+  .services-flow {
+    margin: 34px 0 8px;
+  }
+
+  .services-cta {
+    padding: 28px 20px;
+  }
+}

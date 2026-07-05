@@ -240,8 +240,8 @@ if (document.body.classList.contains('services-page')) {
         observer.unobserve(entry.target);
       });
     }, {
-      threshold: 0.11,
-      rootMargin: '0px 0px -7% 0px'
+      threshold: 0.06,
+      rootMargin: '0px 0px 10% 0px'
     });
 
     revealItems.forEach((item) => servicesObserver.observe(item));
