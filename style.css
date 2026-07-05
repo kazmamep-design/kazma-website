@@ -3741,3 +3741,134 @@ body:not(.lang-en).home-page .home-cta p {
     transform: scaleX(1);
   }
 }
+/* V5.1 — CTA premium interaction and Sameo cinematic zoom refinement. */
+
+/* The active project image now slowly moves forward instead of zooming out. */
+.home-page .home-project-slide {
+  transform: scale(1);
+  transition:
+    opacity 0.75s ease,
+    visibility 0.75s ease,
+    transform 4.8s cubic-bezier(.2,.6,.25,1);
+  will-change: opacity, transform;
+}
+
+.home-page .home-project-slide.is-active {
+  transform: scale(1.025);
+}
+
+/* Premium CTA buttons: restrained sweep, border response and label/arrow motion. */
+.home-page .home-cta .cta-motion-btn {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  gap: 9px;
+  transform: translateY(0);
+  transition:
+    transform 0.24s cubic-bezier(.2,.7,.2,1),
+    background-color 0.24s ease,
+    border-color 0.24s ease,
+    color 0.24s ease,
+    box-shadow 0.24s ease;
+}
+
+.home-page .home-cta .cta-motion-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.3s cubic-bezier(.2,.7,.2,1);
+}
+
+.home-page .home-cta .cta-motion-btn.btn-primary::before {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.04),
+    rgba(255,255,255,0.20)
+  );
+}
+
+.home-page .home-cta .cta-motion-btn.btn-secondary::before {
+  background: linear-gradient(
+    90deg,
+    rgba(255,106,0,0.05),
+    rgba(255,106,0,0.15)
+  );
+}
+
+.home-page .home-cta .cta-motion-label,
+.home-page .home-cta .cta-motion-arrow {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  transition:
+    transform 0.24s cubic-bezier(.2,.7,.2,1),
+    opacity 0.24s ease;
+}
+
+.home-page .home-cta .cta-motion-arrow {
+  font-size: 1rem;
+  line-height: 1;
+  opacity: 0.72;
+}
+
+.home-page .home-cta .cta-motion-btn:hover,
+.home-page .home-cta .cta-motion-btn:focus-visible {
+  transform: translateY(-3px);
+}
+
+.home-page .home-cta .cta-motion-btn:hover::before,
+.home-page .home-cta .cta-motion-btn:focus-visible::before {
+  transform: scaleX(1);
+}
+
+.home-page .home-cta .cta-motion-btn:hover .cta-motion-label,
+.home-page .home-cta .cta-motion-btn:focus-visible .cta-motion-label {
+  transform: translateX(2px);
+}
+
+.home-page .home-cta .cta-motion-btn:hover .cta-motion-arrow,
+.home-page .home-cta .cta-motion-btn:focus-visible .cta-motion-arrow {
+  transform: translateX(4px);
+  opacity: 1;
+}
+
+.home-page .home-cta .cta-motion-btn.btn-primary:hover,
+.home-page .home-cta .cta-motion-btn.btn-primary:focus-visible {
+  background: #ff7614;
+  box-shadow: 0 12px 28px rgba(255,106,0,0.18);
+}
+
+.home-page .home-cta .cta-motion-btn.btn-secondary:hover,
+.home-page .home-cta .cta-motion-btn.btn-secondary:focus-visible {
+  border-color: rgba(255,106,0,0.78);
+  background: rgba(255,106,0,0.08);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+}
+
+.home-page .home-cta .cta-motion-btn:focus-visible {
+  outline: 2px solid rgba(255,106,0,0.95);
+  outline-offset: 3px;
+}
+
+@media (hover: none) {
+  .home-page .home-cta .cta-motion-btn:active {
+    transform: translateY(-1px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-page .home-project-slide,
+  .home-page .home-project-slide.is-active,
+  .home-page .home-cta .cta-motion-btn,
+  .home-page .home-cta .cta-motion-btn::before,
+  .home-page .home-cta .cta-motion-label,
+  .home-page .home-cta .cta-motion-arrow {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+}
