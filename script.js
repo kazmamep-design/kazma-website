@@ -22,16 +22,60 @@ document.querySelectorAll('[data-lang]').forEach((button) => {
 const menuButton = document.querySelector('.menu-btn');
 const navigation = document.querySelector('.nav');
 
+function updateMenuLabel() {
+  if (!menuButton) return;
+  const expanded = menuButton.getAttribute('aria-expanded') === 'true';
+  const english = document.body.classList.contains('lang-en');
+  menuButton.setAttribute(
+    'aria-label',
+    expanded
+      ? (english ? 'Close menu' : 'მენიუს დახურვა')
+      : (english ? 'Open menu' : 'მენიუს გახსნა')
+  );
+}
+
+function setMenuState(open, returnFocus = false) {
+  if (!menuButton || !navigation) return;
+  navigation.classList.toggle('open', open);
+  document.body.classList.toggle('menu-open', open);
+  menuButton.setAttribute('aria-expanded', open ? 'true' : 'false');
+  updateMenuLabel();
+  if (!open && returnFocus) menuButton.focus();
+}
+
 if (menuButton && navigation) {
+  updateMenuLabel();
+
   menuButton.addEventListener('click', () => {
-    navigation.classList.toggle('open');
-    const expanded = navigation.classList.contains('open');
-    menuButton.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    const open = menuButton.getAttribute('aria-expanded') !== 'true';
+    setMenuState(open);
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!navigation.classList.contains('open')) return;
+    if (navigation.contains(event.target) || menuButton.contains(event.target)) return;
+    setMenuState(false);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && navigation.classList.contains('open')) {
+      setMenuState(false, true);
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 720 && navigation.classList.contains('open')) {
+      setMenuState(false);
+    }
   });
 }
 
+document.querySelectorAll('[data-lang]').forEach((button) => {
+  button.addEventListener('click', updateMenuLabel);
+});
+
 document.querySelectorAll('.nav a').forEach((link) => {
-  link.addEventListener('click', () => navigation?.classList.remove('open'));
+  link.addEventListener('click', () => setMenuState(false));
 });
 
 const yearElement = document.querySelector('[data-year]');

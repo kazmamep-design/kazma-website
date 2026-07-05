@@ -3872,3 +3872,285 @@ body:not(.lang-en).home-page .home-cta p {
     transform: none !important;
   }
 }
+
+/* V5.2 — Mobile homepage UX polish. */
+
+@media (max-width: 760px) {
+  /* Shorter hero: preserve the brand mark without delaying the content below. */
+  .home-page .hero {
+    padding-top: 38px;
+    padding-bottom: 24px;
+  }
+
+  .home-page .hero-grid {
+    gap: 10px;
+  }
+
+  .home-page .hero-actions {
+    margin-top: 24px;
+    gap: 10px;
+  }
+
+  .home-page .hero-visual {
+    min-height: 158px;
+    padding: 0;
+    margin-top: 2px;
+  }
+
+  .home-page .hero-logo {
+    width: min(100%, 218px);
+    max-height: 190px;
+  }
+
+  .home-page .hero-visual::before {
+    width: 58%;
+    filter: blur(42px);
+  }
+
+  /* CTA: consistent full-width mobile actions. */
+  .home-page .home-cta {
+    padding: 26px 20px;
+  }
+
+  .home-page .home-cta h2,
+  body:not(.lang-en).home-page .home-cta h2 {
+    max-width: 100%;
+    font-size: clamp(1.42rem, 6.8vw, 1.82rem);
+    line-height: 1.24;
+    letter-spacing: -0.018em;
+    margin-bottom: 12px;
+  }
+
+  .home-page .home-cta p,
+  body:not(.lang-en).home-page .home-cta p {
+    font-size: 0.95rem;
+    line-height: 1.72;
+    margin-bottom: 18px;
+  }
+
+  .home-page .home-cta .cta-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .home-page .home-cta .cta-motion-btn {
+    width: 100%;
+    min-height: 54px;
+    justify-content: space-between;
+    padding: 14px 18px;
+  }
+
+  /* Touch feedback replaces desktop hover behaviour. */
+  .home-page .home-service-row {
+    -webkit-tap-highlight-color: transparent;
+    transform-origin: center;
+  }
+
+  .home-page .home-service-row:active {
+    transform: scale(0.992);
+    background: linear-gradient(90deg, rgba(255, 106, 0, 0.10), transparent 72%);
+  }
+
+  .home-page .home-service-row:active::before {
+    width: 100%;
+  }
+
+  .home-page .home-service-row:active .home-service-number,
+  .home-page .home-service-row:active h3,
+  .home-page .home-service-row:active .home-service-arrow {
+    color: var(--orange);
+  }
+
+  .home-page .home-service-row:active .home-service-arrow {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+
+  .home-page .home-cta .cta-motion-btn {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .home-page .home-cta .cta-motion-btn:active {
+    transform: scale(0.985);
+  }
+
+  .home-page .home-cta .cta-motion-btn:active::before {
+    transform: scaleX(1);
+  }
+
+  .home-page .home-cta .cta-motion-btn:active .cta-motion-arrow {
+    transform: translateX(3px);
+    opacity: 1;
+  }
+
+  /* Compact footer: brand full width, navigation and contact side by side. */
+  .home-page .site-footer {
+    padding-top: 40px;
+    padding-bottom: calc(34px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .home-page .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px 22px;
+  }
+
+  .home-page .footer-grid > div:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .home-page .footer-grid > div:first-child p {
+    max-width: 34rem;
+    margin-bottom: 0;
+  }
+
+  .home-page .footer-links a {
+    overflow-wrap: anywhere;
+  }
+
+  .home-page .copyright {
+    margin-top: 30px;
+    padding-bottom: 2px;
+  }
+}
+
+/* Refined mobile navigation panel and hamburger state. */
+@media (max-width: 720px) {
+  body.menu-open {
+    overflow: hidden;
+  }
+
+  body.menu-open::before {
+    content: "";
+    position: fixed;
+    inset: 72px 0 0;
+    z-index: 40;
+    background: rgba(0, 0, 0, 0.58);
+    backdrop-filter: blur(4px);
+  }
+
+  .site-header .nav {
+    position: fixed;
+    left: 14px;
+    right: 14px;
+    top: 80px;
+    z-index: 51;
+    display: flex;
+    max-height: calc(100dvh - 96px);
+    overflow-y: auto;
+    padding: 10px;
+    gap: 2px;
+    border-color: rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    background: rgba(10, 10, 10, 0.97);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.52);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-10px) scale(0.985);
+    transform-origin: top center;
+    transition:
+      opacity 0.22s ease,
+      visibility 0.22s ease,
+      transform 0.22s cubic-bezier(.2,.7,.2,1);
+  }
+
+  .site-header .nav.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+  }
+
+  .home-page .nav a {
+    min-height: 50px;
+    padding: 14px 15px;
+    border-radius: 12px;
+  }
+
+  .home-page .nav a:hover,
+  .home-page .nav a:focus-visible,
+  .home-page .nav a.active {
+    background: rgba(255, 106, 0, 0.08);
+    outline: none;
+  }
+
+  .home-page .nav a::after {
+    left: 15px;
+    right: auto;
+    bottom: 8px;
+    width: 28px;
+  }
+
+  .menu-btn {
+    position: relative;
+    z-index: 52;
+    padding: 0;
+    transition:
+      border-color 0.2s ease,
+      background-color 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .menu-btn span {
+    transition:
+      transform 0.22s cubic-bezier(.2,.7,.2,1),
+      opacity 0.18s ease;
+  }
+
+  .menu-btn[aria-expanded="true"] {
+    border-color: rgba(255, 106, 0, 0.65);
+    background: rgba(255, 106, 0, 0.10);
+  }
+
+  .menu-btn[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .menu-btn[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-btn[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .menu-btn:active {
+    transform: scale(0.96);
+  }
+}
+
+@media (max-width: 420px) {
+  .home-page .hero {
+    padding-top: 34px;
+    padding-bottom: 20px;
+  }
+
+  .home-page .hero-visual {
+    min-height: 142px;
+  }
+
+  .home-page .hero-logo {
+    width: min(100%, 198px);
+  }
+
+  .home-page .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .home-page .footer-grid > div:first-child {
+    grid-column: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header .nav,
+  .menu-btn,
+  .menu-btn span,
+  .home-page .home-service-row,
+  .home-page .home-cta .cta-motion-btn {
+    transition: none !important;
+  }
+}
