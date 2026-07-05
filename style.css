@@ -4154,3 +4154,76 @@ body:not(.lang-en).home-page .home-cta p {
     transition: none !important;
   }
 }
+
+/* V5.3 — Final mobile navigation consistency and footer compaction. */
+
+@media (max-width: 760px) {
+  /* Apply the compact footer treatment across every page, not only Home. */
+  .site-footer {
+    padding-top: 40px;
+    padding-bottom: calc(34px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .site-footer .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px 20px;
+  }
+
+  .site-footer .footer-grid > div:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .site-footer .footer-grid > div:first-child p {
+    max-width: 34rem;
+    margin-bottom: 0;
+  }
+
+  .site-footer .footer-links a {
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  .site-footer .copyright {
+    margin-top: 30px;
+    padding-bottom: 2px;
+  }
+}
+
+@media (max-width: 720px) {
+  /* Keep the active menu item visually consistent on every internal page. */
+  .site-header .nav a {
+    min-height: 50px;
+    padding: 14px 15px;
+    border-radius: 12px;
+  }
+
+  .site-header .nav a:hover,
+  .site-header .nav a:focus-visible,
+  .site-header .nav a.active {
+    background: rgba(255, 106, 0, 0.08);
+    outline: none;
+  }
+
+  .site-header .nav a::after {
+    left: 15px;
+    right: auto;
+    bottom: 8px;
+    width: 28px;
+  }
+
+  .site-header .nav a.active::after {
+    transform: scaleX(1);
+  }
+}
+
+/* Only very narrow phones fall back to a single-column footer. */
+@media (max-width: 340px) {
+  .site-footer .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .site-footer .footer-grid > div:first-child {
+    grid-column: auto;
+  }
+}
