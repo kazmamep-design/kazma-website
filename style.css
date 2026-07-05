@@ -5412,3 +5412,238 @@ body:not(.lang-en).services-page .services-cta h2 {
     padding: 28px 20px;
   }
 }
+
+/* ==========================================================================
+   V6.2 — Services hero process-card redesign
+   ========================================================================== */
+
+.services-page .services-flow-card {
+  min-height: 334px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px;
+}
+
+.services-page .services-flow-diagram {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin: 54px 0 34px;
+}
+
+.services-page .services-flow-rail {
+  position: absolute;
+  left: 16.666%;
+  right: 16.666%;
+  top: 22px;
+  height: 1px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.services-page .services-flow-rail::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--orange);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.services-page.services-ready .services-flow-rail::after {
+  animation: servicesRailDraw 0.95s 0.44s cubic-bezier(.2,.7,.2,1) forwards;
+}
+
+@keyframes servicesRailDraw {
+  to { transform: scaleX(1); }
+}
+
+.services-page .services-flow-stage {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  min-width: 0;
+  text-align: center;
+}
+
+.services-page .services-flow-node {
+  width: 45px;
+  height: 45px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 106, 0, 0.68);
+  border-radius: 50%;
+  background: #16120f;
+  box-shadow: 0 0 0 7px rgba(16, 16, 16, 0.96);
+}
+
+.services-page .services-flow-node span {
+  color: var(--orange);
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.services-page .services-flow-copy {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+}
+
+.services-page .services-flow-copy strong {
+  color: var(--white);
+  font-size: 0.98rem;
+  font-weight: 780;
+  line-height: 1.45;
+}
+
+.services-page .services-flow-copy small {
+  color: #aaa;
+  font-size: 0.74rem;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.services-page .services-flow-caption {
+  position: relative;
+  z-index: 1;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.10);
+  color: #9f9f9f;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.075em;
+  line-height: 1.55;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* Staged entrance inside the card. */
+.js-enabled .services-page .services-flow-stage,
+.js-enabled .services-page .services-flow-caption {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 0.48s ease,
+    transform 0.48s cubic-bezier(.2,.7,.2,1);
+}
+
+.js-enabled .services-page.services-ready .services-flow-stage,
+.js-enabled .services-page.services-ready .services-flow-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.js-enabled .services-page.services-ready .services-flow-stage:nth-of-type(2) {
+  transition-delay: 0.34s;
+}
+
+.js-enabled .services-page.services-ready .services-flow-stage:nth-of-type(3) {
+  transition-delay: 0.46s;
+}
+
+.js-enabled .services-page.services-ready .services-flow-stage:nth-of-type(4) {
+  transition-delay: 0.58s;
+}
+
+.js-enabled .services-page.services-ready .services-flow-caption {
+  transition-delay: 0.69s;
+}
+
+@media (max-width: 760px) {
+  .services-page .services-flow-card {
+    min-height: auto;
+    padding: 24px 20px 22px;
+  }
+
+  .services-page .services-flow-diagram {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin: 30px 0 22px;
+  }
+
+  .services-page .services-flow-rail {
+    left: 22px;
+    right: auto;
+    top: 22px;
+    bottom: 22px;
+    width: 1px;
+    height: auto;
+  }
+
+  .services-page .services-flow-rail::after {
+    width: 100%;
+    height: 100%;
+    transform: scaleY(0);
+    transform-origin: top center;
+  }
+
+  .services-page.services-ready .services-flow-rail::after {
+    animation-name: servicesRailDrawVertical;
+  }
+
+  @keyframes servicesRailDrawVertical {
+    to { transform: scaleY(1); }
+  }
+
+  .services-page .services-flow-stage {
+    grid-template-columns: 45px minmax(0, 1fr);
+    justify-items: stretch;
+    align-items: center;
+    gap: 17px;
+    min-height: 78px;
+    text-align: left;
+  }
+
+  .services-page .services-flow-node {
+    box-shadow: 0 0 0 6px rgba(16, 16, 16, 0.97);
+  }
+
+  .services-page .services-flow-copy {
+    gap: 4px;
+  }
+
+  .services-page .services-flow-copy strong {
+    font-size: 0.98rem;
+  }
+
+  .services-page .services-flow-copy small {
+    font-size: 0.76rem;
+  }
+
+  .services-page .services-flow-caption {
+    padding-top: 17px;
+    font-size: 0.67rem;
+    letter-spacing: 0.045em;
+    text-align: left;
+  }
+}
+
+@media (max-width: 390px) {
+  .services-page .services-flow-kicker {
+    max-width: 190px;
+  }
+
+  .services-page .services-flow-caption {
+    font-size: 0.64rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .services-page .services-flow-rail::after {
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .js-enabled .services-page .services-flow-stage,
+  .js-enabled .services-page .services-flow-caption {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
