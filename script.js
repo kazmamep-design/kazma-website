@@ -186,3 +186,64 @@ if (document.body.classList.contains('home-page')) {
     revealItems.forEach((item) => revealObserver.observe(item));
   }
 }
+
+// Services page accordion, entrance motion and scroll reveal.
+if (document.body.classList.contains('services-page')) {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const panels = Array.from(document.querySelectorAll('[data-service-panel]'));
+
+  const setPanelState = (panel, open) => {
+    const toggle = panel.querySelector('[data-service-toggle]');
+    const content = panel.querySelector('[data-service-content]');
+    panel.classList.toggle('is-open', open);
+    toggle?.setAttribute('aria-expanded', open ? 'true' : 'false');
+    content?.setAttribute('aria-hidden', open ? 'false' : 'true');
+  };
+
+  const openPanel = (selectedPanel) => {
+    panels.forEach((panel) => setPanelState(panel, panel === selectedPanel));
+  };
+
+  panels.forEach((panel) => {
+    const toggle = panel.querySelector('[data-service-toggle]');
+    toggle?.addEventListener('click', () => {
+      const currentlyOpen = panel.classList.contains('is-open');
+      if (currentlyOpen) {
+        setPanelState(panel, false);
+      } else {
+        openPanel(panel);
+      }
+    });
+  });
+
+  const hashTarget = window.location.hash
+    ? document.querySelector(window.location.hash)
+    : null;
+
+  if (hashTarget?.matches('[data-service-panel]')) {
+    openPanel(hashTarget);
+  }
+
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => document.body.classList.add('services-ready'));
+  });
+
+  const revealItems = Array.from(document.querySelectorAll('[data-services-reveal]'));
+
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    revealItems.forEach((item) => item.classList.add('is-visible'));
+  } else {
+    const servicesObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      });
+    }, {
+      threshold: 0.11,
+      rootMargin: '0px 0px -7% 0px'
+    });
+
+    revealItems.forEach((item) => servicesObserver.observe(item));
+  }
+}
