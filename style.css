@@ -7012,3 +7012,289 @@ body.lightbox-open {
     transition: none !important;
   }
 }
+
+/* ==========================================================================
+   V7.1 — Portfolio hero, hierarchy and readability polish
+   ========================================================================== */
+
+/* 1–4: concise, one-column editorial hero with controlled typography. */
+.portfolio-page .portfolio-hero {
+  padding: 76px 0 58px;
+}
+
+.portfolio-page .portfolio-hero-editorial {
+  max-width: 1010px;
+}
+
+.portfolio-page .portfolio-hero-editorial h1 {
+  max-width: 930px;
+  margin-bottom: 22px;
+  font-size: clamp(2.8rem, 4vw, 3.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.042em;
+}
+
+body:not(.lang-en).portfolio-page .portfolio-hero-editorial h1 {
+  max-width: 980px;
+  font-size: clamp(2.65rem, 3.85vw, 3.62rem);
+  line-height: 1.13;
+  letter-spacing: -0.025em;
+}
+
+.portfolio-page .portfolio-hero-editorial .lead {
+  max-width: 760px;
+  margin-bottom: 0;
+  color: #c9c9c9;
+  font-size: 1rem;
+  line-height: 1.82;
+}
+
+/* 5: full-width featured-project bar replacing the previous bulky card. */
+.portfolio-page .portfolio-featured-bar {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(145px, 0.7fr) minmax(210px, 1fr) minmax(210px, 0.9fr) auto;
+  gap: 28px;
+  align-items: center;
+  margin-top: 48px;
+  padding: 22px 0;
+  border-top: 1px solid rgba(255,255,255,0.14);
+  border-bottom: 1px solid rgba(255,255,255,0.14);
+  color: inherit;
+  overflow: hidden;
+}
+
+.portfolio-page .portfolio-featured-bar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 2px;
+  background: var(--orange);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.portfolio-page.portfolio-ready .portfolio-featured-bar::after {
+  animation: portfolioFeaturedLine 0.82s 0.46s cubic-bezier(.2,.7,.2,1) forwards;
+}
+
+@keyframes portfolioFeaturedLine {
+  to { transform: scaleX(1); }
+}
+
+.portfolio-page .portfolio-featured-label {
+  color: var(--orange);
+  font-size: 0.73rem;
+  font-weight: 850;
+  letter-spacing: 0.105em;
+  text-transform: uppercase;
+}
+
+.portfolio-page .portfolio-featured-bar > strong {
+  font-size: 1.25rem;
+  line-height: 1.25;
+}
+
+.portfolio-page .portfolio-featured-meta,
+.portfolio-page .portfolio-featured-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.portfolio-page .portfolio-featured-meta {
+  color: #bcbcbc;
+  font-size: 0.84rem;
+}
+
+.portfolio-page .portfolio-featured-action {
+  justify-self: end;
+  color: var(--white);
+  font-size: 0.82rem;
+  font-weight: 760;
+  white-space: nowrap;
+}
+
+.portfolio-page .portfolio-featured-action > span:last-child {
+  color: var(--orange);
+  transition: transform 0.22s ease;
+}
+
+.portfolio-page .portfolio-featured-bar:hover .portfolio-featured-action > span:last-child,
+.portfolio-page .portfolio-featured-bar:focus-visible .portfolio-featured-action > span:last-child {
+  transform: translateX(5px);
+}
+
+/* 6: the project status now appears once in the Featured bar; case header is leaner. */
+.portfolio-page .portfolio-case-header {
+  margin-bottom: 30px;
+}
+
+.portfolio-page .portfolio-case-number {
+  align-self: flex-end;
+  color: rgba(255,255,255,0.24);
+  font-size: 0.84rem;
+  font-weight: 850;
+  letter-spacing: 0.13em;
+}
+
+/* 7: slightly shorter cover to bring project information into view sooner. */
+.portfolio-page .portfolio-cover {
+  height: min(61vw, 640px);
+  min-height: 440px;
+}
+
+/* 8: stronger fact-label contrast and readability. */
+.portfolio-page .portfolio-facts span {
+  color: #b2b2b2;
+  font-size: 0.71rem;
+}
+
+.portfolio-page .portfolio-facts strong {
+  color: #eeeeee;
+}
+
+/* Status pulse stays intentionally restrained. */
+.portfolio-page .portfolio-status-dot {
+  width: 8px;
+  height: 8px;
+  box-shadow: 0 0 0 5px rgba(255,106,0,0.07);
+  animation: portfolioStatusPulseSubtle 2.8s ease-in-out infinite;
+}
+
+@keyframes portfolioStatusPulseSubtle {
+  50% { box-shadow: 0 0 0 8px rgba(255,106,0,0.012); }
+}
+
+/* 10: updated hero entrance and featured-bar reveal. */
+.js-enabled .portfolio-page .portfolio-hero-editorial > *,
+.js-enabled .portfolio-page .portfolio-featured-bar {
+  opacity: 0;
+  transform: translateY(17px);
+  transition:
+    opacity 0.58s ease,
+    transform 0.58s cubic-bezier(.2,.7,.2,1);
+}
+
+.js-enabled .portfolio-page.portfolio-ready .portfolio-hero-editorial > *,
+.js-enabled .portfolio-page.portfolio-ready .portfolio-featured-bar {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.js-enabled .portfolio-page.portfolio-ready .portfolio-hero-editorial > h1 {
+  transition-delay: 70ms;
+}
+
+.js-enabled .portfolio-page.portfolio-ready .portfolio-hero-editorial > .lead {
+  transition-delay: 135ms;
+}
+
+.js-enabled .portfolio-page.portfolio-ready .portfolio-featured-bar {
+  transition-delay: 205ms;
+}
+
+/* Remove the old hero-card entrance selectors from influencing layout. */
+.js-enabled .portfolio-page .portfolio-hero-index,
+.js-enabled .portfolio-page.portfolio-ready .portfolio-hero-index {
+  opacity: 1;
+  transform: none;
+}
+
+/* 9: cohesive tablet and mobile behavior. */
+@media (max-width: 900px) {
+  .portfolio-page .portfolio-featured-bar {
+    grid-template-columns: minmax(130px, 0.75fr) minmax(180px, 1fr) minmax(185px, 0.9fr);
+  }
+
+  .portfolio-page .portfolio-featured-action {
+    grid-column: 1 / -1;
+    justify-self: start;
+    padding-top: 2px;
+  }
+}
+
+@media (max-width: 760px) {
+  .portfolio-page .portfolio-hero {
+    padding: 48px 0 38px;
+  }
+
+  .portfolio-page .portfolio-hero-editorial h1,
+  body:not(.lang-en).portfolio-page .portfolio-hero-editorial h1 {
+    max-width: 100%;
+    margin-bottom: 18px;
+    font-size: clamp(2rem, 9vw, 2.55rem);
+    line-height: 1.16;
+    letter-spacing: -0.025em;
+  }
+
+  .portfolio-page .portfolio-hero-editorial .lead {
+    font-size: 0.94rem;
+    line-height: 1.78;
+  }
+
+  .portfolio-page .portfolio-featured-bar {
+    grid-template-columns: 1fr;
+    gap: 9px;
+    margin-top: 32px;
+    padding: 19px 0;
+  }
+
+  .portfolio-page .portfolio-featured-bar > strong {
+    font-size: 1.2rem;
+  }
+
+  .portfolio-page .portfolio-featured-meta {
+    font-size: 0.82rem;
+  }
+
+  .portfolio-page .portfolio-featured-action {
+    grid-column: auto;
+    justify-self: stretch;
+    justify-content: space-between;
+    margin-top: 7px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.09);
+  }
+
+  .portfolio-page .portfolio-case-number {
+    align-self: flex-start;
+  }
+
+  .portfolio-page .portfolio-cover {
+    height: 55vh;
+    min-height: 380px;
+    max-height: 560px;
+  }
+
+  .portfolio-page .portfolio-facts span {
+    font-size: 0.70rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .portfolio-page .portfolio-hero-editorial h1,
+  body:not(.lang-en).portfolio-page .portfolio-hero-editorial h1 {
+    font-size: 1.92rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-page .portfolio-featured-bar::after {
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .portfolio-page .portfolio-status-dot {
+    animation: none !important;
+  }
+
+  .js-enabled .portfolio-page .portfolio-hero-editorial > *,
+  .js-enabled .portfolio-page .portfolio-featured-bar {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
