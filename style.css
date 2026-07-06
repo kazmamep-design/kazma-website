@@ -5647,3 +5647,134 @@ body:not(.lang-en).services-page .services-cta h2 {
     transition: none !important;
   }
 }
+
+/* ==========================================================================
+   V6.3 — Services mobile final polish
+   ========================================================================== */
+
+@media (max-width: 760px) {
+  /* Keep the process card informative without letting it dominate the hero. */
+  .services-page .services-flow-card {
+    padding: 23px 20px 20px;
+  }
+
+  .services-page .services-flow-diagram {
+    margin: 26px 0 17px;
+  }
+
+  .services-page .services-flow-stage {
+    min-height: 72px;
+    gap: 15px;
+  }
+
+  .services-page .services-flow-copy strong {
+    font-size: 0.96rem;
+    line-height: 1.42;
+  }
+
+  .services-page .services-flow-copy small {
+    color: #b7b7b7;
+    font-size: 0.76rem;
+    line-height: 1.48;
+  }
+
+  .services-page .services-flow-caption {
+    padding-top: 15px;
+    color: #b7b7b7;
+    font-size: 0.71rem;
+    font-weight: 650;
+    letter-spacing: 0.018em;
+    line-height: 1.55;
+    text-align: center;
+    text-transform: none;
+  }
+
+  /* CTA: shorter message, calmer type scale and tighter vertical rhythm. */
+  .services-page .services-cta {
+    gap: 22px;
+    padding: 26px 20px;
+  }
+
+  .services-page .services-cta h2,
+  body:not(.lang-en).services-page .services-cta h2 {
+    max-width: 100%;
+    margin-bottom: 13px;
+    font-size: clamp(1.45rem, 7vw, 1.78rem);
+    line-height: 1.24;
+    letter-spacing: -0.022em;
+  }
+
+  .services-page .services-cta > div > p,
+  body:not(.lang-en).services-page .services-cta > div > p {
+    font-size: 0.91rem;
+    line-height: 1.72;
+  }
+
+  .services-page .services-cta-actions {
+    gap: 9px;
+  }
+
+  /* A slightly clearer pressed state for the compact supporting rows. */
+  .services-page .support-service {
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+    transition:
+      background-color 0.18s ease,
+      transform 0.18s ease;
+  }
+
+  .services-page .support-service:active {
+    transform: scale(0.994);
+    background: linear-gradient(90deg, rgba(255,106,0,0.075), transparent 84%);
+  }
+
+  /* Give the contact column enough width so the email does not break awkwardly. */
+  .services-page .site-footer .footer-grid {
+    grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+    gap: 28px 15px;
+  }
+
+  .services-page .site-footer .footer-grid > div:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .services-page .site-footer .footer-grid > div:nth-child(3) .footer-links {
+    font-size: 0.76rem;
+  }
+
+  .services-page .site-footer .footer-links a[href*="kazma.mep"] {
+    font-size: 0.70rem;
+    letter-spacing: -0.015em;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .services-page .site-footer .footer-links a[href^="tel:"] {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 360px) {
+  .services-page .services-cta h2,
+  body:not(.lang-en).services-page .services-cta h2 {
+    font-size: 1.38rem;
+  }
+
+  .services-page .services-flow-caption {
+    font-size: 0.67rem;
+  }
+
+  .services-page .site-footer .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .services-page .site-footer .footer-grid > div:first-child {
+    grid-column: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .services-page .support-service {
+    transition: none !important;
+  }
+}
