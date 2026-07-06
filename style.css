@@ -5778,3 +5778,51 @@ body:not(.lang-en).services-page .services-cta h2 {
     transition: none !important;
   }
 }
+
+/* ==========================================================================
+   V6.4 — Global CTA heading typography
+   Keeps CTA titles strong without letting them read like a second hero.
+   ========================================================================== */
+
+.cta h2,
+.home-page .home-cta h2,
+.services-page .services-cta h2 {
+  max-width: 760px;
+  margin-bottom: 14px;
+  font-size: clamp(1.62rem, 2.45vw, 2.35rem);
+  line-height: 1.18;
+  letter-spacing: -0.028em;
+}
+
+body:not(.lang-en) .cta h2,
+body:not(.lang-en).home-page .home-cta h2,
+body:not(.lang-en).services-page .services-cta h2 {
+  line-height: 1.24;
+  letter-spacing: -0.012em;
+}
+
+@media (max-width: 760px) {
+  .cta h2,
+  .home-page .home-cta h2,
+  .services-page .services-cta h2,
+  body:not(.lang-en) .cta h2,
+  body:not(.lang-en).home-page .home-cta h2,
+  body:not(.lang-en).services-page .services-cta h2 {
+    max-width: 100%;
+    margin-bottom: 12px;
+    font-size: clamp(1.24rem, 5.5vw, 1.50rem);
+    line-height: 1.28;
+    letter-spacing: -0.014em;
+  }
+}
+
+@media (max-width: 360px) {
+  .cta h2,
+  .home-page .home-cta h2,
+  .services-page .services-cta h2,
+  body:not(.lang-en) .cta h2,
+  body:not(.lang-en).home-page .home-cta h2,
+  body:not(.lang-en).services-page .services-cta h2 {
+    font-size: 1.20rem;
+  }
+}
