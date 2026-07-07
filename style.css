@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Georgian:wght@400;500;600;700;800;900&display=swap');
+500;600;700;800;900&family=Noto+Sans+Georgian:wght@400;500;600;700;800;900&display=swap');
 
 :root {
   --bg: #070707;
@@ -9448,5 +9448,127 @@ body:not(.lang-en).contact-page .contact-v9-action-panel h2 {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+  }
+}
+
+/* ==========================================================================
+   V10 — Final system polish: accessibility, stability and site-wide finish
+   ========================================================================== */
+
+html {
+  scrollbar-gutter: stable;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+a,
+button {
+  touch-action: manipulation;
+}
+
+main[id],
+section[id],
+article[id] {
+  scroll-margin-top: 104px;
+}
+
+.skip-link {
+  position: fixed;
+  left: 16px;
+  top: 12px;
+  z-index: 1000;
+  padding: 11px 15px;
+  border: 1px solid rgba(255,106,0,0.78);
+  border-radius: 10px;
+  background: #111;
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 750;
+  transform: translateY(-150%);
+  transition: transform 0.18s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid rgba(255,106,0,0.96) !important;
+  outline-offset: 3px !important;
+}
+
+.lang-toggle button[aria-pressed="true"] {
+  color: #080808;
+  background: var(--orange);
+}
+
+.lang-toggle button[aria-pressed="false"] {
+  color: #c7c7c7;
+}
+
+.site-footer .copyright {
+  color: #949494;
+  font-size: 0.80rem;
+  line-height: 1.65;
+}
+
+.site-footer .footer-links a {
+  transition: color 0.18s ease, transform 0.18s ease;
+}
+
+.site-footer .footer-links a:hover,
+.site-footer .footer-links a:focus-visible {
+  color: var(--orange);
+  transform: translateX(2px);
+}
+
+.site-footer a[href^="mailto:"] {
+  overflow-wrap: anywhere;
+}
+
+.portfolio-lightbox.is-loading figure::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 28px;
+  height: 28px;
+  margin: -14px 0 0 -14px;
+  border: 2px solid rgba(255,255,255,0.18);
+  border-top-color: var(--orange);
+  border-radius: 50%;
+  animation: kazmaSpin 0.72s linear infinite;
+}
+
+@keyframes kazmaSpin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 720px) {
+  main[id],
+  section[id],
+  article[id] {
+    scroll-margin-top: 86px;
+  }
+
+  .site-footer .copyright {
+    font-size: 0.76rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skip-link,
+  .site-footer .footer-links a {
+    transition: none !important;
+  }
+
+  .portfolio-lightbox.is-loading figure::after {
+    animation: none !important;
   }
 }

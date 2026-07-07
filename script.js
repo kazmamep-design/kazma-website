@@ -3,14 +3,31 @@ const savedLanguage = localStorage.getItem('kazmaLanguage') || 'ka';
 const body = document.body;
 
 function setLanguage(language) {
-  if (language === 'en') {
-    body.classList.add('lang-en');
-    document.documentElement.setAttribute('lang', 'en');
-  } else {
-    body.classList.remove('lang-en');
-    document.documentElement.setAttribute('lang', 'ka');
-  }
-  localStorage.setItem('kazmaLanguage', language);
+  const english = language === 'en';
+
+  body.classList.toggle('lang-en', english);
+  document.documentElement.setAttribute('lang', english ? 'en' : 'ka');
+  localStorage.setItem('kazmaLanguage', english ? 'en' : 'ka');
+
+  document.querySelectorAll('[data-lang]').forEach((button) => {
+    button.setAttribute(
+      'aria-pressed',
+      button.dataset.lang === (english ? 'en' : 'ka') ? 'true' : 'false'
+    );
+  });
+
+  document.querySelectorAll('[data-aria-ka][data-aria-en]').forEach((element) => {
+    element.setAttribute(
+      'aria-label',
+      english ? element.dataset.ariaEn : element.dataset.ariaKa
+    );
+  });
+
+  const localizedTitle = english
+    ? body.dataset.pageTitleEn
+    : body.dataset.pageTitleKa;
+
+  if (localizedTitle) document.title = localizedTitle;
 }
 
 setLanguage(savedLanguage);
@@ -78,10 +95,9 @@ document.querySelectorAll('.nav a').forEach((link) => {
   link.addEventListener('click', () => setMenuState(false));
 });
 
-const yearElement = document.querySelector('[data-year]');
-if (yearElement) {
+document.querySelectorAll('[data-year]').forEach((yearElement) => {
   yearElement.textContent = new Date().getFullYear();
-}
+});
 
 
 // Hide broken logo images and show a text fallback where needed.
@@ -152,6 +168,11 @@ document.querySelectorAll('[data-project-slideshow]').forEach((slideshow) => {
   slideshow.addEventListener('mouseleave', start);
   slideshow.addEventListener('focusin', stop);
   slideshow.addEventListener('focusout', start);
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stop();
+    else start();
+  });
 
   showSlide(0);
   start();
@@ -303,8 +324,11 @@ if (document.body.classList.contains('portfolio-page')) {
     const item = galleryItems[currentIndex];
     if (!item || !modalImage || !modalCaption || !modalCounter) return;
 
+    modal?.classList.add('is-loading');
     modalImage.src = item.getAttribute('href');
     modalImage.alt = item.querySelector('img')?.alt || '';
+    modalImage.onload = () => modal?.classList.remove('is-loading');
+    modalImage.onerror = () => modal?.classList.remove('is-loading');
     modalCaption.textContent = getCaption(item) || '';
     modalCounter.textContent = `${String(currentIndex + 1).padStart(2, '0')} / ${String(galleryItems.length).padStart(2, '0')}`;
   };
