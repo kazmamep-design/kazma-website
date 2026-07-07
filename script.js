@@ -421,3 +421,65 @@ if (document.body.classList.contains('about-page')) {
     revealItems.forEach((item) => aboutObserver.observe(item));
   }
 }
+
+// Contact page entrance, scroll reveal and copy-email interaction.
+if (document.body.classList.contains('contact-page')) {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => document.body.classList.add('contact-ready'));
+  });
+
+  const revealItems = Array.from(document.querySelectorAll('[data-contact-reveal]'));
+
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    revealItems.forEach((item) => item.classList.add('is-visible'));
+  } else {
+    const contactObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      });
+    }, {
+      threshold: 0.07,
+      rootMargin: '0px 0px 8% 0px'
+    });
+
+    revealItems.forEach((item) => contactObserver.observe(item));
+  }
+
+  const copyButton = document.querySelector('[data-copy-email]');
+  const copyToast = document.querySelector('[data-copy-toast]');
+  let copyToastTimer = null;
+
+  const showCopyToast = () => {
+    if (!copyToast) return;
+    copyToast.classList.add('is-visible');
+    window.clearTimeout(copyToastTimer);
+    copyToastTimer = window.setTimeout(() => {
+      copyToast.classList.remove('is-visible');
+    }, 2200);
+  };
+
+  copyButton?.addEventListener('click', async () => {
+    const value = copyButton.dataset.copyValue || '';
+    if (!value) return;
+
+    try {
+      await navigator.clipboard.writeText(value);
+      showCopyToast();
+    } catch {
+      const temporaryInput = document.createElement('textarea');
+      temporaryInput.value = value;
+      temporaryInput.setAttribute('readonly', '');
+      temporaryInput.style.position = 'fixed';
+      temporaryInput.style.opacity = '0';
+      document.body.appendChild(temporaryInput);
+      temporaryInput.select();
+      document.execCommand('copy');
+      temporaryInput.remove();
+      showCopyToast();
+    }
+  });
+}
