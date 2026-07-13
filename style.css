@@ -9206,51 +9206,6 @@ body:not(.lang-en).contact-page .contact-v9-action-panel h2 {
   justify-content: space-between;
 }
 
-.contact-v9-copy-button {
-  min-height: 45px;
-  border: 0;
-  background: transparent;
-  color: #a7a7a7;
-  font: inherit;
-  font-size: 0.77rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.contact-v9-copy-button:hover,
-.contact-v9-copy-button:focus-visible {
-  color: var(--orange);
-}
-
-.contact-v9-toast {
-  position: fixed;
-  left: 50%;
-  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
-  z-index: 250;
-  padding: 11px 16px;
-  border: 1px solid rgba(255,106,0,0.50);
-  border-radius: 999px;
-  background: rgba(12,12,12,0.94);
-  color: #fff;
-  font-size: 0.78rem;
-  font-weight: 730;
-  box-shadow: 0 16px 44px rgba(0,0,0,0.36);
-  opacity: 0;
-  visibility: hidden;
-  transform: translate(-50%, 10px);
-  transition:
-    opacity 0.22s ease,
-    visibility 0.22s ease,
-    transform 0.22s ease;
-}
-
-.contact-v9-toast.is-visible {
-  opacity: 1;
-  visibility: visible;
-  transform: translate(-50%, 0);
-}
-
 /* Entrance and scroll reveal */
 .js-enabled .contact-page .contact-v9-hero-copy > *,
 .js-enabled .contact-page .contact-v9-direct-panel {
@@ -9315,9 +9270,6 @@ body:not(.lang-en).contact-page .contact-v9-action-panel h2 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .contact-v9-copy-button {
-    grid-column: 1 / -1;
-  }
 }
 
 @media (max-width: 760px) {
@@ -9414,9 +9366,6 @@ body:not(.lang-en).contact-page .contact-v9-action-panel h2 {
     min-height: 54px;
   }
 
-  .contact-v9-copy-button {
-    grid-column: auto;
-  }
 }
 
 @media (max-width: 380px) {
@@ -9434,8 +9383,7 @@ body:not(.lang-en).contact-page .contact-v9-action-panel h2 {
   .contact-v9-motion-btn > span:last-child,
   .contact-v9-channel-list > a,
   .contact-v9-channel-list > a > span:last-child,
-  .contact-v9-process-image img,
-  .contact-v9-toast {
+  .contact-v9-process-image img {
     transition: none !important;
     transform: none !important;
   }

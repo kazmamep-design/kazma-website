@@ -473,37 +473,4 @@ if (document.body.classList.contains('contact-page')) {
     revealItems.forEach((item) => contactObserver.observe(item));
   }
 
-  const copyButton = document.querySelector('[data-copy-email]');
-  const copyToast = document.querySelector('[data-copy-toast]');
-  let copyToastTimer = null;
-
-  const showCopyToast = () => {
-    if (!copyToast) return;
-    copyToast.classList.add('is-visible');
-    window.clearTimeout(copyToastTimer);
-    copyToastTimer = window.setTimeout(() => {
-      copyToast.classList.remove('is-visible');
-    }, 2200);
-  };
-
-  copyButton?.addEventListener('click', async () => {
-    const value = copyButton.dataset.copyValue || '';
-    if (!value) return;
-
-    try {
-      await navigator.clipboard.writeText(value);
-      showCopyToast();
-    } catch {
-      const temporaryInput = document.createElement('textarea');
-      temporaryInput.value = value;
-      temporaryInput.setAttribute('readonly', '');
-      temporaryInput.style.position = 'fixed';
-      temporaryInput.style.opacity = '0';
-      document.body.appendChild(temporaryInput);
-      temporaryInput.select();
-      document.execCommand('copy');
-      temporaryInput.remove();
-      showCopyToast();
-    }
-  });
 }
