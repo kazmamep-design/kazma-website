@@ -1,14 +1,5 @@
-# KAZMA MEP Website V4
+# KAZMA MEP Website
 
-Refined static website for KAZMA MEP.
+Static bilingual Georgian/English website for KAZMA MEP, hosted on Cloudflare from this GitHub repository.
 
-Changes in V4:
-- Added legal footer: Kazma Solutions LLC / შპს კაზმა სოლუშენსი.
-- Shortened homepage copy and reduced Georgian hero headline size.
-- Added BMS Automation service.
-- Changed Georgian BIM/Revit label to “პროექტირება”.
-- Improved navigation and services typography.
-- Replaced warning-style email box with confident consultation CTA.
-- Added transparent logo variants for better background blending.
-
-Upload all files in this folder to the GitHub repository root.
+The website presents KAZMA MEP services, portfolio, company information, and contact details. Its legal entity is Kazma Group LLC / შპს კაზმა გრუპი.
