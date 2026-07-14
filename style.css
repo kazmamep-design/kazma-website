@@ -9779,6 +9779,10 @@ body:not(.lang-en).about-s2-page .about-s2-hero-copy h1 {
     padding: 42px 0 46px;
   }
 
+  body:not(.lang-en).about-s2-page .eyebrow {
+    letter-spacing: 0.07em;
+  }
+
   .about-s2-page .about-s2-hero-copy h1,
   .about-s2-page.lang-en .about-s2-hero-copy h1 {
     max-width: 340px;
@@ -9877,6 +9881,21 @@ body:not(.lang-en).about-s2-page .about-s2-hero-copy h1 {
 
   .about-s2-page .about-s2-cta .btn {
     width: 100%;
+  }
+
+  .about-s2-page .site-footer .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .about-s2-page .site-footer .footer-grid > div:first-child {
+    grid-column: auto;
+  }
+
+  .about-s2-page .site-footer a[href^="mailto:"] {
+    overflow-wrap: normal;
+    word-break: normal;
+    white-space: nowrap;
   }
 }
 
