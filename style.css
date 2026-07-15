@@ -10042,3 +10042,148 @@ body:not(.lang-en).about-s2-page .about-s2-hero-copy h1 {
     height: 380px;
   }
 }
+
+/* ==========================================================================
+   Stage 4 — Portfolio mobile and cover polish
+   ========================================================================== */
+
+.portfolio-page .portfolio-featured-bar,
+.portfolio-page .portfolio-featured-bar:hover,
+.portfolio-page .portfolio-featured-bar:focus-visible,
+.portfolio-page .portfolio-featured-bar * {
+  text-decoration: none;
+}
+
+.portfolio-page .portfolio-featured-bar:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 5px;
+}
+
+.portfolio-page .portfolio-cover img {
+  object-position: center 38%;
+}
+
+.portfolio-page .portfolio-gallery-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 15px;
+  color: var(--orange);
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.portfolio-page .portfolio-gallery-hint > span:last-child {
+  font-size: 0.94rem;
+}
+
+@media (max-width: 760px) {
+  .portfolio-page .site-header {
+    background: rgba(7, 7, 7, 0.97);
+    backdrop-filter: blur(12px);
+  }
+
+  .portfolio-page .site-header .nav-wrap {
+    min-height: 62px;
+  }
+
+  .portfolio-page .site-header .brand img,
+  .portfolio-page .site-header .brand-fallback {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+  }
+
+  .portfolio-page .site-header .menu-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+  }
+
+  .portfolio-page .site-header .lang-toggle button {
+    padding: 7px 9px;
+  }
+
+  .portfolio-page .site-header .nav {
+    top: 68px;
+    max-height: calc(100dvh - 82px);
+  }
+
+  body.portfolio-page.menu-open::before {
+    inset: 62px 0 0;
+  }
+
+  .portfolio-page main > section,
+  .portfolio-page #sameo-case {
+    scroll-margin-top: 76px;
+  }
+
+  .portfolio-page .portfolio-hero {
+    padding-top: 38px;
+  }
+
+  .portfolio-page .portfolio-featured-bar {
+    padding: 18px 12px;
+    border-radius: 10px 10px 0 0;
+    background: linear-gradient(100deg, rgba(255, 106, 0, 0.055), transparent 68%);
+  }
+
+  .portfolio-page .portfolio-hero-editorial .lead,
+  .portfolio-page .portfolio-case-intro-copy p,
+  .portfolio-page .portfolio-section-head > p,
+  .portfolio-page .portfolio-cta > div:first-child > p {
+    font-size: 0.9rem;
+    line-height: 1.72;
+  }
+
+  body:not(.lang-en).portfolio-page .portfolio-hero-editorial .lead,
+  body:not(.lang-en).portfolio-page .portfolio-case-intro-copy p,
+  body:not(.lang-en).portfolio-page .portfolio-section-head > p,
+  body:not(.lang-en).portfolio-page .portfolio-cta > div:first-child > p {
+    font-size: 0.875rem;
+    line-height: 1.76;
+  }
+
+  .portfolio-page .portfolio-scope-grid p {
+    font-size: 0.86rem;
+    line-height: 1.72;
+  }
+
+  body:not(.lang-en).portfolio-page .portfolio-scope-grid p {
+    font-size: 0.85rem;
+    line-height: 1.76;
+  }
+
+  .portfolio-page .portfolio-cover {
+    height: 52vh;
+    min-height: 360px;
+    max-height: 510px;
+  }
+
+  .portfolio-page .portfolio-cover img {
+    object-position: center 36%;
+  }
+
+  .portfolio-page .portfolio-gallery-hint {
+    margin-top: 12px;
+    font-size: 0.68rem;
+    letter-spacing: 0.065em;
+  }
+
+  .portfolio-page .portfolio-gallery-caption {
+    left: 16px;
+    right: 16px;
+    bottom: 15px;
+    font-size: 0.78rem;
+    font-weight: 650;
+    line-height: 1.38;
+  }
+}
+
+@media (max-width: 380px) {
+  .portfolio-page .portfolio-gallery-caption {
+    font-size: 0.76rem;
+  }
+}
