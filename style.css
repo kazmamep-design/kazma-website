@@ -9974,3 +9974,58 @@ body:not(.lang-en).about-s2-page .about-s2-hero-copy h1 {
     width: 100%;
   }
 }
+
+/* ==========================================================================
+   Stage 3 — Sameo rooftop portfolio gallery
+   ========================================================================== */
+
+.portfolio-page .portfolio-gallery-rooftop {
+  grid-template-columns: minmax(0, 1.05fr) repeat(2, minmax(0, 0.72fr));
+  grid-template-rows: repeat(2, 300px);
+}
+
+.portfolio-page .portfolio-gallery-rooftop-lead {
+  grid-column: 1;
+  grid-row: 1 / 3;
+}
+
+.portfolio-page .portfolio-gallery-rooftop-wide {
+  grid-column: 2 / 4;
+  grid-row: 1;
+}
+
+.portfolio-page .portfolio-gallery-rooftop-tile {
+  grid-row: 2;
+}
+
+.portfolio-page .portfolio-gallery-rooftop img {
+  object-position: center 38%;
+}
+
+@media (max-width: 1000px) {
+  .portfolio-page .portfolio-gallery-rooftop {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, 360px);
+  }
+
+  .portfolio-page .portfolio-gallery-rooftop > .portfolio-gallery-item {
+    grid-column: auto;
+    grid-row: auto;
+    height: auto;
+  }
+}
+
+@media (max-width: 760px) {
+  .portfolio-page .portfolio-gallery-rooftop {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+  }
+
+  .portfolio-page .portfolio-gallery-rooftop > .portfolio-gallery-item {
+    height: 310px;
+  }
+
+  .portfolio-page .portfolio-gallery-rooftop > .portfolio-gallery-rooftop-lead {
+    height: 410px;
+  }
+}
