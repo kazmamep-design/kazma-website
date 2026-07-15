@@ -10187,3 +10187,233 @@ body:not(.lang-en).about-s2-page .about-s2-hero-copy h1 {
     font-size: 0.76rem;
   }
 }
+
+/* ==========================================================================
+   Stage 5 — Portfolio mobile visual polish
+   ========================================================================== */
+
+.portfolio-page .portfolio-featured-bar:link,
+.portfolio-page .portfolio-featured-bar:visited,
+.portfolio-page .portfolio-featured-bar:hover,
+.portfolio-page .portfolio-featured-bar:active {
+  color: inherit;
+  text-decoration: none !important;
+}
+
+.portfolio-page .portfolio-gallery-shell {
+  position: relative;
+}
+
+@media (max-width: 760px) {
+  .portfolio-page .site-header {
+    position: relative;
+    top: auto;
+    background: rgba(7, 7, 7, 0.985);
+    border-bottom-color: rgba(255, 255, 255, 0.065);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+  }
+
+  .portfolio-page .site-header .nav-wrap {
+    min-height: 58px;
+  }
+
+  .portfolio-page .site-header .brand img,
+  .portfolio-page .site-header .brand-fallback {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+  }
+
+  .portfolio-page .site-header .menu-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+  }
+
+  .portfolio-page .site-header .lang-toggle {
+    padding: 3px;
+  }
+
+  .portfolio-page .site-header .lang-toggle button {
+    padding: 6px 8px;
+    font-size: 0.72rem;
+  }
+
+  .portfolio-page .site-header .nav {
+    top: 64px;
+    max-height: calc(100dvh - 78px);
+  }
+
+  body.portfolio-page.menu-open::before {
+    inset: 58px 0 0;
+  }
+
+  .portfolio-page main > section,
+  .portfolio-page #sameo-case,
+  .portfolio-page #sameo-gallery {
+    scroll-margin-top: 24px;
+  }
+
+  .portfolio-page .portfolio-hero {
+    padding-top: 34px;
+  }
+
+  .portfolio-page .portfolio-featured-bar {
+    gap: 8px;
+    margin-top: 28px;
+    padding: 19px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.105);
+    border-left: 2px solid var(--orange);
+    border-radius: 14px;
+    background:
+      linear-gradient(115deg, rgba(255, 106, 0, 0.085), transparent 62%),
+      rgba(255, 255, 255, 0.018);
+  }
+
+  .portfolio-page .portfolio-featured-bar::after {
+    display: none;
+  }
+
+  .portfolio-page .portfolio-featured-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.09em;
+  }
+
+  body:not(.lang-en).portfolio-page .portfolio-featured-label {
+    letter-spacing: 0.055em;
+  }
+
+  .portfolio-page .portfolio-featured-bar > strong {
+    margin-top: 2px;
+    font-size: 1.14rem;
+  }
+
+  .portfolio-page .portfolio-featured-meta {
+    color: #b8b8b8;
+    font-size: 0.78rem;
+  }
+
+  .portfolio-page .portfolio-featured-action {
+    width: auto;
+    justify-self: start;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 9px;
+    padding: 9px 13px;
+    border: 1px solid rgba(255, 106, 0, 0.28);
+    border-radius: 999px;
+    background: rgba(255, 106, 0, 0.075);
+    color: #f4f4f4;
+    font-size: 0.76rem;
+  }
+
+  .portfolio-page .portfolio-hero-editorial .lead,
+  .portfolio-page .portfolio-case-intro-copy p,
+  .portfolio-page .portfolio-section-head > p,
+  .portfolio-page .portfolio-cta > div:first-child > p {
+    font-size: 0.875rem;
+    line-height: 1.68;
+  }
+
+  body:not(.lang-en).portfolio-page .portfolio-hero-editorial .lead,
+  body:not(.lang-en).portfolio-page .portfolio-case-intro-copy p,
+  body:not(.lang-en).portfolio-page .portfolio-section-head > p,
+  body:not(.lang-en).portfolio-page .portfolio-cta > div:first-child > p {
+    font-size: 0.85rem;
+    line-height: 1.72;
+  }
+
+  .portfolio-page .portfolio-scope-grid p {
+    font-size: 0.84rem;
+    line-height: 1.68;
+  }
+
+  body:not(.lang-en).portfolio-page .portfolio-scope-grid p {
+    font-size: 0.825rem;
+    line-height: 1.72;
+  }
+
+  .portfolio-page .portfolio-cover {
+    height: clamp(390px, 108vw, 480px);
+    min-height: 0;
+    max-height: none;
+  }
+
+  .portfolio-page .portfolio-cover::after {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.02) 28%,
+      rgba(0, 0, 0, 0.44) 62%,
+      rgba(0, 0, 0, 0.9) 100%
+    );
+  }
+
+  .portfolio-page .portfolio-cover img {
+    object-position: center 35%;
+  }
+
+  .portfolio-page .portfolio-cover-overlay {
+    gap: 10px;
+    padding: 18px;
+  }
+
+  .portfolio-page .portfolio-cover-overlay p,
+  .portfolio-page .portfolio-cover-location span {
+    font-size: 0.76rem;
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.8);
+  }
+
+  .portfolio-page .portfolio-cover-location strong {
+    font-size: 1.22rem;
+    text-shadow: 0 1px 16px rgba(0, 0, 0, 0.9);
+  }
+
+  .portfolio-page .portfolio-gallery-hint {
+    gap: 9px;
+    margin-top: 11px;
+    padding: 5px 9px;
+    border: 1px solid rgba(255, 106, 0, 0.2);
+    border-radius: 999px;
+    background: rgba(255, 106, 0, 0.045);
+    font-size: 0.65rem;
+    letter-spacing: 0.055em;
+  }
+
+  .portfolio-page .portfolio-gallery-shell::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 20px;
+    z-index: 3;
+    width: 34px;
+    border-radius: 0 18px 18px 0;
+    background: linear-gradient(90deg, transparent, rgba(8, 8, 8, 0.74));
+    pointer-events: none;
+  }
+
+  .portfolio-page .portfolio-gallery-caption {
+    left: 15px;
+    right: 15px;
+    bottom: 14px;
+    font-size: 0.74rem;
+    font-weight: 600;
+    line-height: 1.34;
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.86);
+  }
+
+  body:not(.lang-en).portfolio-page .portfolio-gallery-caption {
+    font-size: 0.73rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .portfolio-page .portfolio-cover {
+    height: 400px;
+  }
+
+  .portfolio-page .portfolio-gallery-caption,
+  body:not(.lang-en).portfolio-page .portfolio-gallery-caption {
+    font-size: 0.71rem;
+  }
+}
