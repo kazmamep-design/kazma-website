@@ -11135,7 +11135,7 @@ body:not(.lang-en).services-page .services-process-system-head h2 {
   }
 
   .services-page .services-hero-grid {
-    gap: 40px;
+    gap: 32px;
   }
 
   .services-page .services-hero-copy h1,
@@ -11263,9 +11263,9 @@ body:not(.lang-en).services-page .services-process-system-head h2 {
   .services-page .service-panel-toggle {
     grid-template-columns: 42px minmax(0, 1fr) 34px;
     grid-template-rows: auto auto;
-    gap: 8px 13px;
+    gap: 7px 13px;
     min-height: 0;
-    padding: 20px 0;
+    padding: 17px 0;
   }
 
   .services-page .service-panel-number {
@@ -11314,19 +11314,19 @@ body:not(.lang-en).services-page .services-process-system-head h2 {
 
   .services-page .service-panel-content-inner {
     grid-template-columns: 1fr;
-    gap: 17px;
+    gap: 14px;
     margin-left: 0;
-    padding: 0 8px 24px 42px;
+    padding: 0 8px 19px 42px;
   }
 
   .services-page .service-panel-content-inner p {
     font-size: 0.78rem;
-    line-height: 1.68;
+    line-height: 1.64;
   }
 
   body:not(.lang-en).services-page .service-panel-content-inner p {
     font-size: 0.76rem;
-    line-height: 1.72;
+    line-height: 1.68;
   }
 
   .services-page .service-panel-content-inner ul {
@@ -11375,7 +11375,7 @@ body:not(.lang-en).services-page .services-process-system-head h2 {
   }
 
   .services-page .services-process-system-head {
-    margin-bottom: 40px;
+    margin-bottom: 34px;
   }
 
   .services-page .services-process-system-head h2,
@@ -11407,8 +11407,8 @@ body:not(.lang-en).services-page .services-process-system-head h2 {
 
   .services-page .services-process-track li {
     grid-template-columns: 45px minmax(0, 1fr);
-    gap: 17px;
-    padding: 0 0 32px;
+    gap: 14px;
+    padding: 0 0 26px;
   }
 
   .services-page .services-process-track li:last-child {
@@ -11417,14 +11417,14 @@ body:not(.lang-en).services-page .services-process-system-head h2 {
 
   .services-page .services-process-track h3 {
     margin-top: 3px;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
     font-size: 0.93rem;
   }
 
   .services-page .services-process-track p {
     max-width: 290px;
     font-size: 0.76rem;
-    line-height: 1.62;
+    line-height: 1.58;
   }
 }
 
