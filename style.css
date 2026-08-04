@@ -11462,12 +11462,12 @@ body:not(.lang-en).services-page .services-process-system-head h2 {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding: 112px 0 118px;
+  padding: 96px 0 100px;
   border-top: 1px solid rgba(255, 106, 0, 0.34);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   background:
-    linear-gradient(90deg, rgba(255, 106, 0, 0.045) 1px, transparent 1px) 0 0 / 96px 100%,
-    radial-gradient(circle at 82% 12%, rgba(255, 106, 0, 0.10), transparent 29%),
+    linear-gradient(90deg, rgba(255, 106, 0, 0.032) 1px, transparent 1px) 0 0 / 104px 100%,
+    radial-gradient(circle at 82% 12%, rgba(255, 106, 0, 0.075), transparent 29%),
     #070707;
 }
 
@@ -11514,13 +11514,13 @@ body:not(.lang-en).services-page .services-process-system-head h2 {
 .portfolio-page .portfolio-team-experience-head h2 {
   max-width: 760px;
   margin: 0;
-  font-size: clamp(2.1rem, 3.8vw, 4rem);
-  line-height: 1.08;
-  letter-spacing: -0.042em;
+  font-size: clamp(1.95rem, 3vw, 3.15rem);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
 }
 
 body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
-  font-size: clamp(1.94rem, 3.3vw, 3.5rem);
+  font-size: clamp(1.85rem, 2.8vw, 3rem);
   line-height: 1.18;
   letter-spacing: -0.024em;
 }
@@ -11548,8 +11548,8 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
   grid-template-columns: auto minmax(0, 1fr);
   gap: 22px;
   align-items: center;
-  margin-bottom: 42px;
-  padding: 17px 20px;
+  margin-bottom: 34px;
+  padding: 14px 18px;
   border: 1px solid rgba(255, 106, 0, 0.36);
   border-left: 3px solid var(--orange);
   background: rgba(255, 106, 0, 0.055);
@@ -11613,18 +11613,20 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
 }
 
 .portfolio-page .portfolio-experience-card-featured .portfolio-experience-media {
-  aspect-ratio: 4 / 3;
+  height: 220px;
+  aspect-ratio: auto;
 }
 
 .portfolio-page .portfolio-team-experience-featured > article:first-child .portfolio-experience-media {
-  aspect-ratio: 16 / 11;
+  height: 236px;
+  aspect-ratio: auto;
 }
 
 .portfolio-page .portfolio-experience-media::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.78));
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.12) 8%, rgba(0, 0, 0, 0.36) 52%, rgba(0, 0, 0, 0.90));
   pointer-events: none;
 }
 
@@ -11632,13 +11634,13 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: saturate(0.82) contrast(1.03);
+  filter: saturate(0.72) brightness(0.82) contrast(1.08);
   transition: transform 450ms ease, filter 450ms ease;
 }
 
 .portfolio-page .portfolio-experience-card:hover .portfolio-experience-media img {
-  transform: scale(1.025);
-  filter: saturate(0.96) contrast(1.04);
+  transform: scale(1.015);
+  filter: saturate(0.82) brightness(0.88) contrast(1.08);
 }
 
 .portfolio-page .portfolio-experience-media figcaption {
@@ -11648,7 +11650,7 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
   right: 16px;
   bottom: 14px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 16px;
   align-items: flex-end;
   color: #fff;
@@ -11660,7 +11662,7 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
 
 .portfolio-page .portfolio-experience-media figcaption > span:first-child {
   color: var(--orange);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
 }
 
 .portfolio-page .portfolio-experience-media figcaption > span:last-child {
@@ -11671,7 +11673,7 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: 24px;
+  padding: 22px;
 }
 
 .portfolio-page .portfolio-experience-meta {
@@ -11724,7 +11726,7 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
 .portfolio-page .portfolio-experience-card-compact {
   display: grid;
   grid-template-columns: 150px minmax(0, 1fr);
-  min-height: 202px;
+  min-height: 184px;
 }
 
 .portfolio-page .portfolio-experience-card-compact .portfolio-experience-media {
@@ -11754,7 +11756,7 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
 
 @media (max-width: 1000px) {
   .portfolio-page .portfolio-team-experience {
-    padding: 88px 0 94px;
+    padding: 80px 0 86px;
   }
 
   .portfolio-page .portfolio-team-experience-head {
@@ -11775,7 +11777,8 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
   }
 
   .portfolio-page .portfolio-team-experience-featured > article:first-child .portfolio-experience-media {
-    aspect-ratio: 16 / 7;
+    height: 226px;
+    aspect-ratio: auto;
   }
 
   .portfolio-page .portfolio-team-experience-supporting {
@@ -11785,10 +11788,10 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
 
 @media (max-width: 650px) {
   .portfolio-page .portfolio-team-experience {
-    padding: 70px 0 74px;
+    padding: 60px 0 64px;
     background:
-      linear-gradient(90deg, rgba(255, 106, 0, 0.04) 1px, transparent 1px) 0 0 / 72px 100%,
-      radial-gradient(circle at 100% 4%, rgba(255, 106, 0, 0.09), transparent 24%),
+      linear-gradient(90deg, rgba(255, 106, 0, 0.03) 1px, transparent 1px) 0 0 / 78px 100%,
+      radial-gradient(circle at 100% 4%, rgba(255, 106, 0, 0.065), transparent 24%),
       #070707;
   }
 
@@ -11839,7 +11842,8 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
 
   .portfolio-page .portfolio-experience-card-featured .portfolio-experience-media,
   .portfolio-page .portfolio-team-experience-featured > article:first-child .portfolio-experience-media {
-    aspect-ratio: 16 / 9;
+    height: 168px;
+    aspect-ratio: auto;
   }
 
   .portfolio-page .portfolio-experience-content {
@@ -11861,7 +11865,7 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
 
   .portfolio-page .portfolio-experience-card-compact {
     grid-template-columns: 96px minmax(0, 1fr);
-    min-height: 190px;
+    min-height: 176px;
   }
 
   .portfolio-page .portfolio-experience-card-compact .portfolio-experience-content {
