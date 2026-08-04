@@ -11462,7 +11462,7 @@ body:not(.lang-en).services-page .services-process-system-head h2 {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding: 96px 0 100px;
+  padding: 82px 0 86px;
   border-top: 1px solid rgba(255, 106, 0, 0.34);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   background:
@@ -11514,13 +11514,13 @@ body:not(.lang-en).services-page .services-process-system-head h2 {
 .portfolio-page .portfolio-team-experience-head h2 {
   max-width: 760px;
   margin: 0;
-  font-size: clamp(1.95rem, 3vw, 3.15rem);
+  font-size: clamp(1.82rem, 2.7vw, 2.75rem);
   line-height: 1.12;
   letter-spacing: -0.035em;
 }
 
 body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
-  font-size: clamp(1.85rem, 2.8vw, 3rem);
+  font-size: clamp(1.72rem, 2.5vw, 2.62rem);
   line-height: 1.18;
   letter-spacing: -0.024em;
 }
@@ -11548,11 +11548,11 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
   grid-template-columns: auto minmax(0, 1fr);
   gap: 22px;
   align-items: center;
-  margin-bottom: 34px;
-  padding: 14px 18px;
-  border: 1px solid rgba(255, 106, 0, 0.36);
-  border-left: 3px solid var(--orange);
-  background: rgba(255, 106, 0, 0.055);
+  margin-bottom: 26px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 106, 0, 0.22);
+  border-left: 2px solid rgba(255, 106, 0, 0.72);
+  background: rgba(255, 106, 0, 0.028);
 }
 
 .portfolio-page .portfolio-team-experience-note > span {
@@ -11613,12 +11613,12 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
 }
 
 .portfolio-page .portfolio-experience-card-featured .portfolio-experience-media {
-  height: 220px;
+  height: 196px;
   aspect-ratio: auto;
 }
 
 .portfolio-page .portfolio-team-experience-featured > article:first-child .portfolio-experience-media {
-  height: 236px;
+  height: 210px;
   aspect-ratio: auto;
 }
 
@@ -11673,7 +11673,7 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: 22px;
+  padding: 19px;
 }
 
 .portfolio-page .portfolio-experience-meta {
@@ -11725,8 +11725,8 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
 
 .portfolio-page .portfolio-experience-card-compact {
   display: grid;
-  grid-template-columns: 150px minmax(0, 1fr);
-  min-height: 184px;
+  grid-template-columns: 124px minmax(0, 1fr);
+  min-height: 160px;
 }
 
 .portfolio-page .portfolio-experience-card-compact .portfolio-experience-media {
@@ -11739,7 +11739,8 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
 }
 
 .portfolio-page .portfolio-experience-card-compact .portfolio-experience-content {
-  padding: 20px 22px;
+  display: block;
+  padding: 16px 18px;
 }
 
 .portfolio-page .portfolio-experience-card-compact .portfolio-experience-content h3 {
@@ -11747,7 +11748,8 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
 }
 
 .portfolio-page .portfolio-experience-card-compact .portfolio-experience-scope {
-  padding-top: 16px;
+  margin-top: 13px;
+  padding-top: 0;
 }
 
 .portfolio-page .portfolio-cta-section {
@@ -11756,7 +11758,7 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
 
 @media (max-width: 1000px) {
   .portfolio-page .portfolio-team-experience {
-    padding: 80px 0 86px;
+    padding: 72px 0 76px;
   }
 
   .portfolio-page .portfolio-team-experience-head {
@@ -11777,7 +11779,7 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
   }
 
   .portfolio-page .portfolio-team-experience-featured > article:first-child .portfolio-experience-media {
-    height: 226px;
+    height: 202px;
     aspect-ratio: auto;
   }
 
@@ -11788,7 +11790,7 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
 
 @media (max-width: 650px) {
   .portfolio-page .portfolio-team-experience {
-    padding: 60px 0 64px;
+    padding: 52px 0 56px;
     background:
       linear-gradient(90deg, rgba(255, 106, 0, 0.03) 1px, transparent 1px) 0 0 / 78px 100%,
       radial-gradient(circle at 100% 4%, rgba(255, 106, 0, 0.065), transparent 24%),
@@ -11806,7 +11808,7 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
   .portfolio-page .portfolio-team-experience-head h2,
   body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
     max-width: 360px;
-    font-size: clamp(1.62rem, 7.4vw, 2rem);
+    font-size: clamp(1.5rem, 6.7vw, 1.78rem);
     line-height: 1.25;
     letter-spacing: -0.02em;
   }
@@ -11822,9 +11824,9 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
 
   .portfolio-page .portfolio-team-experience-note {
     grid-template-columns: 1fr;
-    gap: 8px;
-    margin-bottom: 30px;
-    padding: 15px 16px;
+    gap: 6px;
+    margin-bottom: 22px;
+    padding: 11px 13px;
   }
 
   .portfolio-page .portfolio-team-experience-note p {
@@ -11842,12 +11844,12 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
 
   .portfolio-page .portfolio-experience-card-featured .portfolio-experience-media,
   .portfolio-page .portfolio-team-experience-featured > article:first-child .portfolio-experience-media {
-    height: 168px;
+    height: 146px;
     aspect-ratio: auto;
   }
 
   .portfolio-page .portfolio-experience-content {
-    padding: 20px;
+    padding: 17px;
   }
 
   .portfolio-page .portfolio-experience-content h3 {
@@ -11864,12 +11866,12 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
   }
 
   .portfolio-page .portfolio-experience-card-compact {
-    grid-template-columns: 96px minmax(0, 1fr);
-    min-height: 176px;
+    grid-template-columns: 82px minmax(0, 1fr);
+    min-height: 156px;
   }
 
   .portfolio-page .portfolio-experience-card-compact .portfolio-experience-content {
-    padding: 16px;
+    padding: 13px 14px;
   }
 
   .portfolio-page .portfolio-experience-card-compact .portfolio-experience-content h3 {
@@ -11882,7 +11884,8 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
   }
 
   .portfolio-page .portfolio-experience-card-compact .portfolio-experience-scope {
-    padding-top: 12px;
+    margin-top: 10px;
+    padding-top: 0;
   }
 
   .portfolio-page .portfolio-experience-card-compact .portfolio-experience-scope > span {
