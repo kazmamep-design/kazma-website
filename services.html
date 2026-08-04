@@ -64,43 +64,35 @@
 </a>
 </div>
 </div>
-<aside aria-label="KAZMA MEP workflow" class="services-flow-card">
-<div class="services-flow-top">
-<span class="services-flow-kicker"><span class="ka">ერთი კოორდინირებული პროცესი</span><span class="en">One coordinated process</span></span>
-<span class="services-flow-mark">MEP</span>
+<aside aria-label="KAZMA MEP system map" class="services-system-map">
+<div class="services-system-map-head">
+<span><span class="ka">სისტემების რუკა</span><span class="en">System map</span></span>
+<span>MEP · 01</span>
 </div>
-<div class="services-flow-diagram">
-<div aria-hidden="true" class="services-flow-rail"></div>
-<div class="services-flow-stage">
-<div aria-hidden="true" class="services-flow-node"><span>01</span></div>
-<div class="services-flow-copy">
-<strong><span class="ka">პროექტირება</span><span class="en">Design</span></strong>
-<small><span class="ka">ტექნიკური გადაწყვეტა</span><span class="en">Technical solution</span></small>
+<div class="services-system-map-canvas">
+<div class="services-system-map-core">
+<span>KAZMA</span>
+<strong>MEP</strong>
+<small><span class="ka">კოორდინირებული ბირთვი</span><span class="en">Coordinated core</span></small>
 </div>
-</div>
-<div class="services-flow-stage">
-<div aria-hidden="true" class="services-flow-node"><span>02</span></div>
-<div class="services-flow-copy">
-<strong><span class="ka">კოორდინაცია</span><span class="en">Coordination</span></strong>
-<small><span class="ka">სისტემების შეთანხმება</span><span class="en">System alignment</span></small>
-</div>
-</div>
-<div class="services-flow-stage">
-<div aria-hidden="true" class="services-flow-node"><span>03</span></div>
-<div class="services-flow-copy">
-<strong><span class="ka">შესრულება</span><span class="en">Execution</span></strong>
-<small><span class="ka">ობიექტზე მხარდაჭერა</span><span class="en">On-site support</span></small>
+<div class="services-system-map-list">
+<div><span>M-01</span><strong>HVAC</strong><small><span class="ka">ჰაერი და კლიმატი</span><span class="en">Air and climate</span></small></div>
+<div><span>E-02</span><strong><span class="ka">ელექტრო</span><span class="en">Electrical</span></strong><small><span class="ka">ენერგია და განათება</span><span class="en">Power and lighting</span></small></div>
+<div><span>P-03</span><strong><span class="ka">წყალი</span><span class="en">Plumbing</span></strong><small><span class="ka">წყალი და დრენაჟი</span><span class="en">Water and drainage</span></small></div>
+<div><span>F-04</span><strong><span class="ka">სახანძრო</span><span class="en">Fire safety</span></strong><small><span class="ka">სპრინკლერები</span><span class="en">Sprinklers</span></small></div>
+<div><span>A-05</span><strong>BMS</strong><small><span class="ka">მართვა და ავტომატიზაცია</span><span class="en">Control and automation</span></small></div>
+<div><span>B-06</span><strong>BIM</strong><small><span class="ka">მოდელი და კოორდინაცია</span><span class="en">Model and coordination</span></small></div>
 </div>
 </div>
-</div>
-<div class="services-flow-caption">
-<span class="ka">დაგეგმილი · კოორდინირებული · შესრულებადი</span>
-<span class="en">Planned · Coordinated · Buildable</span>
+<div class="services-system-map-foot">
+<span><span class="ka">ერთ სივრცეში</span><span class="en">One shared space</span></span>
+<span><span class="ka">ერთი კოორდინაცია</span><span class="en">One coordination layer</span></span>
 </div>
 </aside>
 </div>
 </section>
 <section class="services-core-section" id="core-services">
+<span aria-hidden="true" class="services-core-watermark">MEP / SYSTEM INDEX</span>
 <div class="container">
 <div class="services-section-head" data-services-reveal="">
 <div>
@@ -115,8 +107,14 @@
 <span class="en">Each system has its own technical requirements, but inside a building they share the same space and construction process.</span>
 </p>
 </div>
+<div aria-hidden="true" class="services-system-legend">
+<span>SYS</span>
+<span><span class="ka">დისციპლინა</span><span class="en">Discipline</span></span>
+<span><span class="ka">კოორდინაციის მოკლე აღწერა</span><span class="en">Coordination brief</span></span>
+<span><span class="ka">დეტალი</span><span class="en">Detail</span></span>
+</div>
 <div class="services-accordion">
-<article class="service-panel is-open" data-service-panel="" data-services-reveal="" id="hvac" style="--services-delay: 0ms;">
+<article class="service-panel is-open" data-service-panel="" data-services-reveal="" data-system-code="M-01" id="hvac" style="--services-delay: 0ms;">
 <button aria-controls="service-hvac-details" aria-expanded="true" class="service-panel-toggle" data-service-toggle="" type="button">
 <span class="service-panel-number">01</span>
 <span class="service-panel-title">
@@ -144,7 +142,7 @@
 </div>
 </div>
 </article>
-<article class="service-panel" data-service-panel="" data-services-reveal="" id="fire-safety" style="--services-delay: 70ms;">
+<article class="service-panel" data-service-panel="" data-services-reveal="" data-system-code="F-02" id="fire-safety" style="--services-delay: 70ms;">
 <button aria-controls="service-fire-details" aria-expanded="false" class="service-panel-toggle" data-service-toggle="" type="button">
 <span class="service-panel-number">02</span>
 <span class="service-panel-title">
@@ -172,7 +170,7 @@
 </div>
 </div>
 </article>
-<article class="service-panel" data-service-panel="" data-services-reveal="" id="electrical-bms" style="--services-delay: 140ms;">
+<article class="service-panel" data-service-panel="" data-services-reveal="" data-system-code="E-03" id="electrical-bms" style="--services-delay: 140ms;">
 <button aria-controls="service-electrical-details" aria-expanded="false" class="service-panel-toggle" data-service-toggle="" type="button">
 <span class="service-panel-number">03</span>
 <span class="service-panel-title">
@@ -200,7 +198,7 @@
 </div>
 </div>
 </article>
-<article class="service-panel" data-service-panel="" data-services-reveal="" id="plumbing" style="--services-delay: 210ms;">
+<article class="service-panel" data-service-panel="" data-services-reveal="" data-system-code="P-04" id="plumbing" style="--services-delay: 210ms;">
 <button aria-controls="service-plumbing-details" aria-expanded="false" class="service-panel-toggle" data-service-toggle="" type="button">
 <span class="service-panel-number">04</span>
 <span class="service-panel-title">
@@ -228,7 +226,7 @@
 </div>
 </div>
 </article>
-<article class="service-panel" data-service-panel="" data-services-reveal="" id="bim-coordination" style="--services-delay: 280ms;">
+<article class="service-panel" data-service-panel="" data-services-reveal="" data-system-code="B-05" id="bim-coordination" style="--services-delay: 280ms;">
 <button aria-controls="service-bim-details" aria-expanded="false" class="service-panel-toggle" data-service-toggle="" type="button">
 <span class="service-panel-number">05</span>
 <span class="service-panel-title">
@@ -261,10 +259,42 @@
 </section>
 <section class="services-support-section">
 <div class="container">
-<div class="services-v11-support-compact" data-services-reveal="">
-<div><div class="eyebrow"><span class="ka">დამატებითი მხარდაჭერა</span><span class="en">Additional support</span></div><h2><span class="ka">როცა პროექტს მხოლოდ ერთი სისტემა არ ჰყოფნის</span><span class="en">When the project needs more than one system</span></h2></div>
-<div class="services-v11-support-tags"><span>BIM</span><span><span class="ka">ობიექტზე მხარდაჭერა</span><span class="en">Site support</span></span><span><span class="ka">პროექტის მართვა</span><span class="en">Project management</span></span><span><span class="ka">ენერგოეფექტურობა</span><span class="en">Energy efficiency</span></span></div>
+<div class="services-support-system" data-services-reveal="">
+<div class="services-support-system-head">
+<div class="eyebrow"><span class="ka">დამატებითი მხარდაჭერა</span><span class="en">Additional support</span></div>
+<h2><span class="ka">სისტემის მიღმა — პროექტის ტექნიკური მხარდაჭერა</span><span class="en">Beyond the system — technical project support</span></h2>
 </div>
+<div class="services-support-system-list">
+<article><span>06</span><strong><span class="ka">პროექტის მართვა და კონსულტაცია</span><span class="en">Project management and consulting</span></strong></article>
+<article><span>07</span><strong><span class="ka">ობიექტზე ტექნიკური მხარდაჭერა</span><span class="en">Technical site support</span></strong></article>
+<article><span>08</span><strong><span class="ka">ენერგოეფექტურობის კვლევები</span><span class="en">Energy efficiency studies</span></strong></article>
+</div>
+</div>
+</div>
+</section>
+<section aria-labelledby="services-process-title" class="services-process-section services-process-system">
+<div class="container">
+<div class="services-process-system-head" data-services-reveal="">
+<div>
+<div class="eyebrow"><span class="ka">ტექნიკური პროცესი</span><span class="en">Technical process</span></div>
+<h2 id="services-process-title"><span class="ka">გადაწყვეტილება, რომელიც პროექტს მიჰყვება</span><span class="en">A technical path that follows the project</span></h2>
+</div>
+<p><span class="ka">სამი მკაფიო ეტაპი — საწყისი მონაცემებიდან ობიექტზე ტექნიკურ მხარდაჭერამდე.</span><span class="en">Three clear stages, from project inputs to technical support on site.</span></p>
+</div>
+<ol class="services-process-track" data-services-reveal="">
+<li>
+<span class="services-process-index">01</span>
+<div><h3><span class="ka">ანალიზი</span><span class="en">Analysis</span></h3><p><span class="ka">მოთხოვნები, დატვირთვები და სივრცითი შეზღუდვები.</span><span class="en">Requirements, loads and spatial constraints.</span></p></div>
+</li>
+<li>
+<span class="services-process-index">02</span>
+<div><h3><span class="ka">კოორდინაცია</span><span class="en">Coordination</span></h3><p><span class="ka">MEP სისტემების შეთანხმება არქიტექტურასა და კონსტრუქციასთან.</span><span class="en">MEP alignment with architecture and structure.</span></p></div>
+</li>
+<li>
+<span class="services-process-index">03</span>
+<div><h3><span class="ka">შესრულების მხარდაჭერა</span><span class="en">Execution Support</span></h3><p><span class="ka">ტექნიკური გადაწყვეტილებების მხარდაჭერა ობიექტზე.</span><span class="en">Support for technical decisions on site.</span></p></div>
+</li>
+</ol>
 </div>
 </section>
 <section class="services-cta-section">
