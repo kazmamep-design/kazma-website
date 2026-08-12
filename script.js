@@ -113,79 +113,12 @@ document.querySelectorAll('[data-logo-img]').forEach((image) => {
 });
 
 
-// Homepage Sameo project slideshow.
-document.querySelectorAll('[data-project-slideshow]').forEach((slideshow) => {
-  const slides = Array.from(slideshow.querySelectorAll('.home-project-slide'));
-  const controls = Array.from(slideshow.querySelectorAll('.home-project-slide-controls button'));
-
-  if (slides.length < 2) return;
-
-  let currentIndex = 0;
-  let timer = null;
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  const showSlide = (nextIndex) => {
-    currentIndex = (nextIndex + slides.length) % slides.length;
-
-    slides.forEach((slide, index) => {
-      slide.classList.toggle('is-active', index === currentIndex);
-    });
-
-    controls.forEach((control, index) => {
-      const active = index === currentIndex;
-      control.classList.toggle('is-active', active);
-      if (active) {
-        control.setAttribute('aria-current', 'true');
-      } else {
-        control.removeAttribute('aria-current');
-      }
-    });
-  };
-
-  const stop = () => {
-    slideshow.classList.add('is-paused');
-    if (timer) {
-      window.clearInterval(timer);
-      timer = null;
-    }
-  };
-
-  const start = () => {
-    slideshow.classList.remove('is-paused');
-    if (reduceMotion || timer) return;
-    timer = window.setInterval(() => showSlide(currentIndex + 1), 4500);
-  };
-
-  controls.forEach((control, index) => {
-    control.addEventListener('click', () => {
-      showSlide(index);
-      stop();
-      start();
-    });
-  });
-
-  slideshow.addEventListener('mouseenter', stop);
-  slideshow.addEventListener('mouseleave', start);
-  slideshow.addEventListener('focusin', stop);
-  slideshow.addEventListener('focusout', start);
-
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) stop();
-    else start();
-  });
-
-  showSlide(0);
-  start();
-});
-
-
 // Homepage entrance and scroll reveal motion.
 if (document.body.classList.contains('home-page')) {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  window.requestAnimationFrame(() => {
-    window.requestAnimationFrame(() => document.body.classList.add('page-ready'));
-  });
+  document.body.classList.add('home-motion-ready');
+  window.requestAnimationFrame(() => document.body.classList.add('page-ready'));
 
   const revealItems = Array.from(document.querySelectorAll('[data-reveal]'));
   revealItems.forEach((item) => item.classList.add('reveal-on-scroll'));
@@ -193,6 +126,14 @@ if (document.body.classList.contains('home-page')) {
   if (reduceMotion || !('IntersectionObserver' in window)) {
     revealItems.forEach((item) => item.classList.add('is-visible'));
   } else {
+    const revealVisibleItems = () => {
+      revealItems.forEach((item) => {
+        if (item.getBoundingClientRect().top < window.innerHeight * 1.12) {
+          item.classList.add('is-visible');
+        }
+      });
+    };
+
     const revealObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
@@ -200,11 +141,17 @@ if (document.body.classList.contains('home-page')) {
         observer.unobserve(entry.target);
       });
     }, {
-      threshold: 0.12,
-      rootMargin: '0px 0px -8% 0px'
+      threshold: 0.01,
+      rootMargin: '0px 0px 14% 0px'
     });
 
     revealItems.forEach((item) => revealObserver.observe(item));
+    revealVisibleItems();
+
+    // Safety net: fast scrolling must never leave content waiting invisibly.
+    window.setTimeout(() => {
+      revealItems.forEach((item) => item.classList.add('is-visible'));
+    }, 900);
   }
 }
 
