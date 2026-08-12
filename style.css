@@ -11462,7 +11462,7 @@ body:not(.lang-en).services-page .services-process-system-head h2 {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding: 82px 0 86px;
+  padding: 72px 0 76px;
   border-top: 1px solid rgba(255, 106, 0, 0.34);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   background:
@@ -11500,9 +11500,9 @@ body:not(.lang-en).services-page .services-process-system-head h2 {
 .portfolio-page .portfolio-team-experience-head {
   display: grid;
   grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
-  gap: clamp(44px, 7vw, 96px);
+  gap: clamp(38px, 6vw, 78px);
   align-items: end;
-  margin-bottom: 44px;
+  margin-bottom: 36px;
 }
 
 .portfolio-page .portfolio-team-experience-head > *,
@@ -11546,42 +11546,42 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
 .portfolio-page .portfolio-team-experience-note {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
-  gap: 22px;
+  gap: 18px;
   align-items: center;
-  margin-bottom: 26px;
-  padding: 10px 14px;
-  border: 1px solid rgba(255, 106, 0, 0.22);
-  border-left: 2px solid rgba(255, 106, 0, 0.72);
-  background: rgba(255, 106, 0, 0.028);
+  margin-bottom: 20px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  border-left-color: rgba(255, 106, 0, 0.38);
+  background: rgba(255, 255, 255, 0.012);
 }
 
 .portfolio-page .portfolio-team-experience-note > span {
-  color: var(--orange);
-  font-size: 0.68rem;
-  font-weight: 900;
-  letter-spacing: 0.14em;
+  color: rgba(255, 106, 0, 0.78);
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
   white-space: nowrap;
 }
 
 .portfolio-page .portfolio-team-experience-note p {
   margin: 0;
-  color: #ededed;
-  font-size: 0.84rem;
-  font-weight: 700;
+  color: #b9b9b9;
+  font-size: 0.78rem;
+  font-weight: 600;
   line-height: 1.55;
 }
 
 .portfolio-page .portfolio-team-experience-featured {
   display: grid;
-  grid-template-columns: minmax(0, 1.25fr) repeat(2, minmax(0, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
 }
 
 .portfolio-page .portfolio-experience-card {
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.11);
-  border-radius: 18px;
+  border-radius: 16px;
   background: #0d0d0d;
 }
 
@@ -11613,12 +11613,12 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
 }
 
 .portfolio-page .portfolio-experience-card-featured .portfolio-experience-media {
-  height: 196px;
+  height: 178px;
   aspect-ratio: auto;
 }
 
 .portfolio-page .portfolio-team-experience-featured > article:first-child .portfolio-experience-media {
-  height: 210px;
+  height: 184px;
   aspect-ratio: auto;
 }
 
@@ -11673,11 +11673,11 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: 19px;
+  padding: 17px;
 }
 
 .portfolio-page .portfolio-experience-meta {
-  margin: 0 0 13px;
+  margin: 0 0 11px;
   color: var(--orange);
   font-size: 0.68rem;
   font-weight: 850;
@@ -11688,14 +11688,14 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
 
 .portfolio-page .portfolio-experience-content h3 {
   margin: 0;
-  font-size: clamp(1.24rem, 1.9vw, 1.78rem);
+  font-size: clamp(1.2rem, 1.65vw, 1.58rem);
   line-height: 1.18;
   letter-spacing: -0.025em;
 }
 
 .portfolio-page .portfolio-experience-scope {
   margin-top: auto;
-  padding-top: 24px;
+  padding-top: 19px;
 }
 
 .portfolio-page .portfolio-experience-scope > span {
@@ -11720,13 +11720,13 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
-  margin-top: 16px;
+  margin-top: 14px;
 }
 
 .portfolio-page .portfolio-experience-card-compact {
   display: grid;
-  grid-template-columns: 124px minmax(0, 1fr);
-  min-height: 160px;
+  grid-template-columns: 112px minmax(0, 1fr);
+  min-height: 144px;
 }
 
 .portfolio-page .portfolio-experience-card-compact .portfolio-experience-media {
@@ -11740,16 +11740,24 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
 
 .portfolio-page .portfolio-experience-card-compact .portfolio-experience-content {
   display: block;
-  padding: 16px 18px;
+  padding: 13px 15px;
 }
 
 .portfolio-page .portfolio-experience-card-compact .portfolio-experience-content h3 {
-  font-size: 1.08rem;
+  font-size: 1.02rem;
 }
 
 .portfolio-page .portfolio-experience-card-compact .portfolio-experience-scope {
-  margin-top: 13px;
+  margin-top: 9px;
   padding-top: 0;
+}
+
+.portfolio-page .portfolio-experience-card-compact .portfolio-experience-scope > span {
+  margin-bottom: 6px;
+}
+
+.portfolio-page .portfolio-experience-card-compact .portfolio-experience-scope p {
+  line-height: 1.55;
 }
 
 .portfolio-page .portfolio-cta-section {
@@ -11758,12 +11766,12 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
 
 @media (max-width: 1000px) {
   .portfolio-page .portfolio-team-experience {
-    padding: 72px 0 76px;
+    padding: 64px 0 68px;
   }
 
   .portfolio-page .portfolio-team-experience-head {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 24px;
   }
 
   .portfolio-page .portfolio-team-experience-copy {
@@ -11771,15 +11779,11 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
   }
 
   .portfolio-page .portfolio-team-experience-featured {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .portfolio-page .portfolio-team-experience-featured > article:first-child {
-    grid-column: 1 / -1;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .portfolio-page .portfolio-team-experience-featured > article:first-child .portfolio-experience-media {
-    height: 202px;
+    height: 180px;
     aspect-ratio: auto;
   }
 
@@ -11788,9 +11792,26 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
   }
 }
 
+@media (min-width: 1480px) {
+  .portfolio-page .portfolio-team-experience-featured {
+    grid-template-columns: minmax(0, 1.08fr) repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 820px) {
+  .portfolio-page .portfolio-team-experience-featured {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-page .portfolio-experience-card-featured .portfolio-experience-media,
+  .portfolio-page .portfolio-team-experience-featured > article:first-child .portfolio-experience-media {
+    height: 160px;
+  }
+}
+
 @media (max-width: 650px) {
   .portfolio-page .portfolio-team-experience {
-    padding: 52px 0 56px;
+    padding: 46px 0 50px;
     background:
       linear-gradient(90deg, rgba(255, 106, 0, 0.03) 1px, transparent 1px) 0 0 / 78px 100%,
       radial-gradient(circle at 100% 4%, rgba(255, 106, 0, 0.065), transparent 24%),
@@ -11802,7 +11823,7 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
   }
 
   .portfolio-page .portfolio-team-experience-head {
-    margin-bottom: 30px;
+    margin-bottom: 24px;
   }
 
   .portfolio-page .portfolio-team-experience-head h2,
@@ -11825,12 +11846,12 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
   .portfolio-page .portfolio-team-experience-note {
     grid-template-columns: 1fr;
     gap: 6px;
-    margin-bottom: 22px;
-    padding: 11px 13px;
+    margin-bottom: 18px;
+    padding: 9px 11px;
   }
 
   .portfolio-page .portfolio-team-experience-note p {
-    font-size: 0.78rem;
+    font-size: 0.74rem;
   }
 
   .portfolio-page .portfolio-team-experience-featured {
@@ -11844,12 +11865,12 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
 
   .portfolio-page .portfolio-experience-card-featured .portfolio-experience-media,
   .portfolio-page .portfolio-team-experience-featured > article:first-child .portfolio-experience-media {
-    height: 146px;
+    height: 136px;
     aspect-ratio: auto;
   }
 
   .portfolio-page .portfolio-experience-content {
-    padding: 17px;
+    padding: 15px;
   }
 
   .portfolio-page .portfolio-experience-content h3 {
@@ -11857,7 +11878,7 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
   }
 
   .portfolio-page .portfolio-experience-scope {
-    padding-top: 18px;
+    padding-top: 15px;
   }
 
   .portfolio-page .portfolio-team-experience-supporting {
@@ -11866,12 +11887,12 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
   }
 
   .portfolio-page .portfolio-experience-card-compact {
-    grid-template-columns: 82px minmax(0, 1fr);
-    min-height: 156px;
+    grid-template-columns: 74px minmax(0, 1fr);
+    min-height: 142px;
   }
 
   .portfolio-page .portfolio-experience-card-compact .portfolio-experience-content {
-    padding: 13px 14px;
+    padding: 11px 12px;
   }
 
   .portfolio-page .portfolio-experience-card-compact .portfolio-experience-content h3 {
