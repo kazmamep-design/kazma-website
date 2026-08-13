@@ -2785,6 +2785,17 @@ body:not(.lang-en) .portfolio-case-hero h1 {
   }
 }
 
+/* Sameo completed-space photography: intentional crops for the existing portfolio layout. */
+.portfolio-page .portfolio-cover-completed img { object-position: 32% 22%; }
+.portfolio-page .portfolio-gallery-completed-primary img { object-position: 26% 30%; }
+.portfolio-page .portfolio-gallery-completed-detail img { object-position: 50% 28%; }
+
+@media (max-width: 760px) {
+  .portfolio-page .portfolio-cover-completed img { object-position: 30% 23%; }
+  .portfolio-page .portfolio-gallery-completed-primary img { object-position: 30% 25%; }
+  .portfolio-page .portfolio-gallery-completed-detail img { object-position: 50% 24%; }
+}
+
 /* V5.3 — Final mobile navigation consistency and footer compaction. */
 
 @media (max-width: 760px) {

@@ -23,6 +23,10 @@ function setLanguage(language) {
     );
   });
 
+  document.querySelectorAll('[data-alt-ka][data-alt-en]').forEach((image) => {
+    image.alt = english ? image.dataset.altEn : image.dataset.altKa;
+  });
+
   const localizedTitle = english
     ? body.dataset.pageTitleEn
     : body.dataset.pageTitleKa;
