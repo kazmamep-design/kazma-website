@@ -307,10 +307,11 @@ body:not(.lang-en) .home-experience-head h2 {
 
 .home-why-layout {
   display: grid;
-  grid-template-columns: minmax(260px, 0.65fr) minmax(0, 1.35fr);
-  gap: clamp(48px, 8vw, 118px);
+  grid-template-columns: minmax(470px, 1.06fr) minmax(0, 0.94fr);
+  gap: clamp(44px, 5vw, 70px);
 }
 .home-why-heading { position: sticky; top: 110px; align-self: start; }
+.lang-en .home-why-heading h2 { max-width: 450px; }
 .home-why-sequence { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--home-line); }
 .home-why-sequence li {
   display: grid;
