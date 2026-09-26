@@ -10606,3 +10606,67 @@ body:not(.lang-en).portfolio-page .portfolio-team-experience-head h2 {
     transform: none !important;
   }
 }
+
+/* Polyphonia: retain the full photographs and keep captions off the images. */
+@media (min-width: 761px) {
+  #polyphonia-gallery .portfolio-gallery-hint { display: none; }
+}
+.portfolio-page .portfolio-polyphonia-cover {
+  height: auto;
+  min-height: 0;
+  max-height: none;
+}
+.portfolio-page .portfolio-polyphonia-cover img {
+  display: block;
+  height: auto;
+  max-height: 700px;
+  object-fit: contain;
+  transform: none;
+}
+.portfolio-polyphonia-cover::after,
+.portfolio-polyphonia-gallery .portfolio-gallery-item::after { display: none; }
+.portfolio-page .portfolio-polyphonia-cover .portfolio-cover-overlay {
+  position: relative;
+  padding: 22px;
+  background: #101010;
+}
+.portfolio-page .portfolio-polyphonia-gallery {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: auto;
+}
+.portfolio-polyphonia-gallery .portfolio-gallery-item {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+.portfolio-page .portfolio-polyphonia-gallery .portfolio-gallery-item img {
+  height: 360px;
+  object-fit: contain;
+  object-position: center;
+  transform: none;
+  flex-shrink: 0;
+}
+.portfolio-page .portfolio-polyphonia-gallery .portfolio-gallery-caption {
+  position: static;
+  padding: 16px;
+}
+.portfolio-polyphonia-gallery .portfolio-gallery-index {
+  padding: 3px 7px;
+  border-radius: 4px;
+  background: #101010;
+}
+@media (max-width: 760px) {
+  .portfolio-page .portfolio-polyphonia-gallery {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 88%;
+    overflow-x: auto;
+    padding-bottom: 14px;
+    scroll-snap-type: x mandatory;
+    scrollbar-color: var(--orange) #171717;
+    scrollbar-width: thin;
+  }
+  .portfolio-polyphonia-gallery .portfolio-gallery-item { scroll-snap-align: start; }
+  .portfolio-page .portfolio-polyphonia-gallery .portfolio-gallery-item img { height: 340px; }
+  .portfolio-page .portfolio-polyphonia-cover .portfolio-cover-overlay { padding: 18px; }
+}

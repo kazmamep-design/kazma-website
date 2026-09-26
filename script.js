@@ -249,7 +249,8 @@ if (document.body.classList.contains('portfolio-page')) {
     revealItems.forEach((item) => portfolioObserver.observe(item));
   }
 
-  const galleryItems = Array.from(document.querySelectorAll('[data-lightbox]'));
+  const allGalleryItems = Array.from(document.querySelectorAll('[data-lightbox]'));
+  let galleryItems = allGalleryItems;
   const modal = document.querySelector('[data-lightbox-modal]');
   const modalImage = modal?.querySelector('[data-lightbox-image]');
   const modalCaption = modal?.querySelector('[data-lightbox-caption]');
@@ -313,10 +314,11 @@ if (document.body.classList.contains('portfolio-page')) {
     renderLightbox();
   };
 
-  galleryItems.forEach((item, index) => {
+  allGalleryItems.forEach((item) => {
     item.addEventListener('click', (event) => {
       event.preventDefault();
-      openLightbox(index, item);
+      galleryItems = Array.from(item.closest('.portfolio-gallery').querySelectorAll('[data-lightbox]'));
+      openLightbox(galleryItems.indexOf(item), item);
     });
   });
 
