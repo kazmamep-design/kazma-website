@@ -226,6 +226,7 @@ body:not(.lang-en) .home-hero-copy .lead { line-height: 1.86; }
 .home-project-preview > a { display: block; height: 100%; text-decoration: none; }
 .home-project-image { aspect-ratio: 4 / 3; overflow: hidden; background: #181818; }
 .home-project-image img { width: 100%; height: 100%; object-fit: cover; }
+.home-project-image-polyphonia img { object-position: 50% 0; }
 .home-project-image-sameo img { object-position: 50% 24%; }
 .home-project-caption { padding: 18px 0 0; }
 .home-project-caption h3 {
@@ -281,8 +282,21 @@ body:not(.lang-en) .home-hero-copy .lead { line-height: 1.86; }
   .home-page .nav a::after { left: 15px; right: auto; bottom: 8px; width: 28px; }
 }
 
+@media (max-width: 760px) {
+  .home-page .site-footer .container .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 20px;
+    padding-bottom: 0;
+  }
+  .home-page .site-footer .container .footer-grid > div:first-child { grid-column: 1 / -1; }
+  .home-page .site-footer .footer-links { gap: 2px; }
+  .home-page .site-footer .footer-links a { min-height: 44px; font-size: 0.875rem; }
+  .home-page .site-footer .copyright { margin-top: 24px; }
+}
+
 @media (max-width: 680px) {
   .home-hero { padding: 30px 0 36px; }
+  .home-hero-media { width: 85%; max-width: 360px; }
   .home-hero-copy h1 { font-size: clamp(2.1rem, 8.5vw, 3rem); line-height: 1.12; }
   body:not(.lang-en) .home-hero-copy h1 { font-size: clamp(1.85rem, 7.5vw, 2.45rem); line-height: 1.25; }
   .home-hero-copy .lead,
