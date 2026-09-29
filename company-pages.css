@@ -1,6 +1,7 @@
 /* Portfolio and About: concise case studies and clearly attributed experience. */
 .company-page { --company-line: rgba(255,255,255,.13); --company-copy: #c4c4c4; background: #070707; }
 .company-page .site-header { background: rgba(7,7,7,.94); }
+.company-page .portfolio-lightbox { transition: opacity .18s ease; }
 .company-page main :is(h1,h2,h3) { overflow-wrap: normal; word-break: normal; }
 .company-page main h1 { margin: 0 0 20px; font-size: clamp(2.2rem,4vw,3.35rem); font-weight: 700; line-height: 1.15; letter-spacing: -.035em; }
 .company-page:not(.lang-en) main h1 { font-size: clamp(2rem,3.3vw,2.8rem); line-height: 1.25; letter-spacing: -.015em; }
@@ -50,7 +51,7 @@
 .company-roles h3 { margin: 0 0 8px; }
 .company-roles p { margin: 0; max-width: 48ch; color: var(--company-copy); font-size: .9375rem; line-height: 1.8; }
 .company-team-photo { margin: 0; min-width: 0; }
-.company-team-photo img { display: block; width: 100%; aspect-ratio: 4/5; max-height: 520px; object-fit: cover; object-position: 50% 0; }
+.company-team-photo img { display: block; width: 100%; height: auto; aspect-ratio: 4/5; max-height: 520px; object-fit: cover; object-position: 50% 0; }
 .company-team-photo figcaption { margin-top: 12px; color: #bfbfbf; font-size: .8125rem; line-height: 1.6; }
 .company-experience { padding: 52px 0; background: #101111; scroll-margin-top: 100px; }
 .company-experience h2 { max-width: 26ch; }
