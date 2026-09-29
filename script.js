@@ -293,7 +293,7 @@ if (document.body.classList.contains('portfolio-page')) {
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('lightbox-open');
-    modal.querySelector('[data-lightbox-close]')?.focus();
+    modal.querySelector('button[data-lightbox-close]')?.focus();
   };
 
   const closeLightbox = () => {
@@ -317,7 +317,8 @@ if (document.body.classList.contains('portfolio-page')) {
   allGalleryItems.forEach((item) => {
     item.addEventListener('click', (event) => {
       event.preventDefault();
-      galleryItems = Array.from(item.closest('.portfolio-gallery').querySelectorAll('[data-lightbox]'));
+      const gallery = item.closest('[data-project-gallery]') || item.closest('.portfolio-gallery');
+      galleryItems = gallery ? Array.from(gallery.querySelectorAll('[data-lightbox]')) : allGalleryItems;
       openLightbox(galleryItems.indexOf(item), item);
     });
   });
