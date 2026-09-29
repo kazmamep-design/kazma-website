@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KAZMA stage 1 responsive review</title>
+<style>body{margin:0;background:#303030;color:#fff;font:14px system-ui}header{padding:16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}button{font:inherit;padding:8px 12px}iframe{display:block;border:0;margin:0 auto 20px;width:375px;height:812px;background:#070707}button[aria-pressed=true]{background:#ff6a00}</style>
+<header><strong>Stage 1 responsive review</strong><button data-width="320">320 px</button><button data-width="375" aria-pressed="true">375 px</button><button data-width="768">768 px</button><button data-width="1024">1024 px</button><button id="fit">Show full page</button><button id="screen">Screen height</button><output id="size"></output></header>
+<iframe id="preview" title="KAZMA responsive homepage" src="/"></iframe>
+<script>
+const frame=document.querySelector('iframe');
+document.querySelectorAll('[data-width]').forEach(button=>button.addEventListener('click',()=>{
+ document.querySelectorAll('[data-width]').forEach(b=>b.setAttribute('aria-pressed',b===button?'true':'false'));
+ frame.style.width=button.dataset.width+'px';
+ frame.style.height='812px';
+ document.querySelector('output').textContent=button.dataset.width+' CSS pixels';
+}));
+document.querySelector('#fit').addEventListener('click',()=>{frame.style.height=(frame.contentDocument.documentElement.scrollHeight+2)+'px'});
+document.querySelector('#screen').addEventListener('click',()=>{frame.style.height='812px'});
+</script></html>
