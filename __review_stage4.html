@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Stage 4 responsive review</title><style>
+*{box-sizing:border-box}body{margin:0;background:#ddd;font:14px system-ui;color:#111}header{position:sticky;top:0;z-index:10;background:white;padding:12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}button{padding:10px 18px;cursor:pointer}section{margin:20px auto 40px;width:fit-content}h2{font-size:16px}iframe{display:block;width:375px;height:812px;border:0;background:#070707}
+</style></head><body><header><strong>Stage 4 review</strong><button data-width="320">320px</button><button data-width="375">375px</button><button data-width="768">768px</button><button data-width="1024">1024px</button><button id="full">Full page</button><button id="screen">Screen height</button><output>375px</output></header>
+<section><h2>Contact</h2><iframe title="Contact responsive preview" src="/contact"></iframe></section>
+<section><h2>Home</h2><iframe title="Home responsive preview" src="/"></iframe></section>
+<section><h2>Services</h2><iframe title="Services responsive preview" src="/services"></iframe></section>
+<section><h2>Portfolio</h2><iframe title="Portfolio responsive preview" src="/portfolio"></iframe></section>
+<section><h2>About</h2><iframe title="About responsive preview" src="/about"></iframe></section>
+<script>
+const frames=Array.from(document.querySelectorAll('iframe'));
+document.querySelectorAll('[data-width]').forEach(button=>button.addEventListener('click',()=>{frames.forEach(frame=>{frame.style.width=button.dataset.width+'px';frame.style.height='812px';});document.querySelector('output').textContent=button.dataset.width+'px';}));
+document.getElementById('full').addEventListener('click',()=>frames.forEach(frame=>{frame.style.height=frame.contentDocument.documentElement.scrollHeight+'px';}));
+document.getElementById('screen').addEventListener('click',()=>frames.forEach(frame=>{frame.style.height='812px';}));
+</script></body></html>
