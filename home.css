@@ -283,6 +283,7 @@ body:not(.lang-en) .home-hero-copy .lead { line-height: 1.86; }
 }
 
 @media (max-width: 720px) {
+  .home-page .nav { transition: opacity .22s ease, transform .22s cubic-bezier(.2,.7,.2,1); }
   .home-page .nav a { padding: 14px 15px; }
   .home-page .nav a::after { left: 15px; right: auto; bottom: 8px; width: 28px; }
 }
