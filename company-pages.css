@@ -1,4 +1,4 @@
-/* Portfolio and About: concise case studies and clearly attributed experience. */
+/* Shared company-page typography, case studies and clearly attributed experience. */
 .company-page { --company-line: rgba(255,255,255,.13); --company-copy: #c4c4c4; background: #070707; }
 .company-page .site-header { background: rgba(7,7,7,.94); }
 .company-page .portfolio-lightbox { transition: opacity .18s ease; }
@@ -69,6 +69,20 @@
 .company-page .footer-grid { gap: 40px; }
 .company-page .footer-grid > div:first-child p { line-height: 1.8; }
 .company-page .copyright { color: #a7a7a7; font-size: .84rem; }
+@media(max-width: 760px) {
+  .company-page .site-header { position: sticky; top: 0; box-shadow: none; }
+  .company-page .site-header .nav-wrap { min-height: 68px; }
+  .company-page .site-header .brand img,
+  .company-page .site-header .brand-fallback,
+  .company-page .site-header .menu-btn { width: 44px; height: 44px; border-radius: 12px; }
+  .company-page .site-header .lang-toggle { padding: 2px; }
+  .company-page .site-header .lang-toggle button { min-width: 44px; min-height: 44px; padding: 8px; font-size: .78rem; }
+}
+@media(max-width: 720px) {
+  .company-page .site-header .nav-wrap { min-height: 72px; }
+  .company-page .site-header .nav { top: 80px; max-height: calc(100dvh - 96px); }
+  body.company-page.menu-open::before { inset: 72px 0 0; }
+}
 @media(max-width: 920px) {
   .company-page .site-footer .container .footer-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px 20px; }
   .company-page .site-footer .container .footer-grid > div:first-child { grid-column: 1/-1; }

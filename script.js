@@ -70,6 +70,18 @@ if (menuButton && navigation) {
   menuButton.addEventListener('click', () => {
     const open = menuButton.getAttribute('aria-expanded') !== 'true';
     setMenuState(open);
+    if (open) {
+      window.requestAnimationFrame(() => {
+        if (navigation.classList.contains('open')) navigation.querySelector('a')?.focus();
+      });
+    }
+  });
+
+  const header = menuButton.closest('.site-header');
+  header?.addEventListener('focusout', (event) => {
+    if (navigation.classList.contains('open') && !header.contains(event.relatedTarget)) {
+      setMenuState(false);
+    }
   });
 
   document.addEventListener('click', (event) => {
@@ -357,33 +369,4 @@ if (document.body.classList.contains('about-page')) {
 
     revealItems.forEach((item) => aboutObserver.observe(item));
   }
-}
-
-// Contact page entrance, scroll reveal and copy-email interaction.
-if (document.body.classList.contains('contact-page')) {
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  window.requestAnimationFrame(() => {
-    window.requestAnimationFrame(() => document.body.classList.add('contact-ready'));
-  });
-
-  const revealItems = Array.from(document.querySelectorAll('[data-contact-reveal]'));
-
-  if (reduceMotion || !('IntersectionObserver' in window)) {
-    revealItems.forEach((item) => item.classList.add('is-visible'));
-  } else {
-    const contactObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      });
-    }, {
-      threshold: 0.07,
-      rootMargin: '0px 0px 8% 0px'
-    });
-
-    revealItems.forEach((item) => contactObserver.observe(item));
-  }
-
 }
