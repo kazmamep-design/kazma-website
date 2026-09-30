@@ -47,6 +47,9 @@
 .company-about-grid { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,.9fr); gap: 64px; align-items: center; }
 .company-roles { margin-top: 32px; border-top: 1px solid var(--company-line); }
 .company-roles article { padding: 20px 0; }
+.company-role { display: flex; align-items: flex-start; gap: 20px; }
+.company-role > div { flex: 1; min-width: 0; }
+.company-role-portrait { display: block; width: 72px; height: 88px; flex: 0 0 72px; object-fit: cover; }
 .company-roles article + article { border-top: 1px solid var(--company-line); }
 .company-roles h3 { margin: 0 0 8px; }
 .company-roles p { margin: 0; max-width: 48ch; color: var(--company-copy); font-size: .9375rem; line-height: 1.8; }
@@ -57,7 +60,8 @@
 .company-experience h2 { max-width: 26ch; }
 .company-experience-note { margin: 0 0 28px; padding-left: 18px; border-left: 2px solid var(--orange); max-width: 76ch; color: var(--company-copy); font-size: .9375rem; line-height: 1.85; }
 .company-experience-list { list-style: none; margin: 0; padding: 0; }
-.company-experience-list li { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,2.3fr); gap: 16px 40px; padding: 22px 0; border-top: 1px solid var(--company-line); }
+.company-experience-list li { display: grid; grid-template-columns: 96px minmax(0,1fr) minmax(0,2.3fr); align-items: center; gap: 16px 24px; padding: 18px 0; border-top: 1px solid var(--company-line); }
+.company-experience-thumbnail { display: block; width: 96px; height: 112px; object-fit: cover; }
 .company-experience-list h3,.company-experience-list p { margin: 0; }
 .company-experience-list p { color: var(--company-copy); font-size: .9375rem; line-height: 1.8; }
 .company-page :is(.case-photo > a,.project-jumps a,.company-text-link,summary):focus-visible { outline: 2px solid var(--orange); outline-offset: 5px; }
@@ -79,6 +83,10 @@
   .case-photos { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .company-team-photo { max-width: 640px; }
   .company-team-photo img { aspect-ratio: 4/3; max-height: 380px; }
+  .company-experience-list li { grid-template-columns: 96px minmax(0,1fr); gap: 8px 20px; }
+  .company-experience-thumbnail { grid-row: 1 / span 2; }
+  .company-experience-list h3 { align-self: end; }
+  .company-experience-list p { grid-column: 2; align-self: start; }
 }
 @media(max-width: 600px) {
   .company-intro { padding: 36px 0 28px; }
@@ -97,6 +105,7 @@
   .company-roles { margin-top: 24px; }
   .company-roles article { padding: 16px 0; }
   .company-experience { padding: 36px 0; }
-  .company-experience-list li { grid-template-columns: 1fr; gap: 8px; padding: 18px 0; }
+  .company-experience-list li { grid-template-columns: 80px minmax(0,1fr); gap: 8px 16px; padding: 18px 0; }
+  .company-experience-thumbnail { width: 80px; height: 96px; }
   .company-page .site-footer { padding-top: 36px; }
 }
