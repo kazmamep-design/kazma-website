@@ -1,0 +1,23 @@
+/* Direct contact channels and a short, optional project brief. */
+.contact-minimal-layout { display: grid; grid-template-columns: minmax(0,1.25fr) minmax(0,.75fr); gap: 80px; align-items: start; }
+.contact-minimal-details { padding-bottom: 64px; }
+.contact-channels { list-style: none; margin: 0; padding: 0; }
+.contact-channels li { border-top: 1px solid var(--company-line); }
+.contact-channels li:last-child { border-bottom: 1px solid var(--company-line); }
+.contact-channels a { display: grid; grid-template-columns: minmax(0,1fr) 24px; gap: 20px; align-items: center; min-height: 108px; padding: 22px 0; text-decoration: none; }
+.contact-channel-label { display: block; margin-bottom: 6px; color: var(--company-copy); font-size: .8125rem; line-height: 1.6; }
+.contact-channel-value { display: block; color: #eee; font-size: 1.25rem; font-weight: 600; line-height: 1.6; }
+.contact-channel-arrow { color: var(--orange); text-align: right; }
+.contact-channels a:hover .contact-channel-value { color: var(--orange); }
+.contact-brief { border-top: 1px solid var(--company-line); padding-top: 22px; }
+.company-page .contact-brief h2 { margin-bottom: 14px; font-size: 1.15rem; line-height: 1.6; }
+.contact-brief p { max-width: 40ch; margin: 0; color: var(--company-copy); font-size: .9375rem; line-height: 1.85; }
+.contact-brief p + p { margin-top: 14px; }
+@media(max-width: 700px) {
+  .contact-minimal-layout { grid-template-columns: 1fr; gap: 32px; }
+  .contact-brief p { max-width: 60ch; }
+}
+@media(max-width: 600px) {
+  .contact-minimal-details { padding-bottom: 40px; }
+  .contact-channel-value { font-size: 1.125rem; }
+}

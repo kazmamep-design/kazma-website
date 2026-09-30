@@ -1,0 +1,37 @@
+/* Service scopes extend the shared company-page typography and footer. */
+.services-minimal-page .services-minimal-core { padding: 12px 0 48px; scroll-margin-top: 100px; }
+.services-minimal-page .services-minimal-core h2,
+.services-minimal-page .services-minimal-support h2 { font-size: clamp(1.4rem,2.3vw,1.8rem); margin-bottom: 28px; }
+.service-scopes { border-top: 1px solid var(--company-line); }
+.service-scope { border-bottom: 1px solid var(--company-line); scroll-margin-top: 100px; }
+.service-scope summary { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,1.6fr) 24px; gap: 28px; align-items: center; min-height: 88px; padding: 22px 0; cursor: pointer; list-style: none; }
+.service-scope summary::-webkit-details-marker { display: none; }
+.service-scope-title { color: #eee; font-size: 1.05rem; font-weight: 650; line-height: 1.6; }
+.service-scope-description { color: var(--company-copy); font-size: .9375rem; line-height: 1.8; }
+.service-scope-marker { align-self: center; text-align: right; color: var(--orange); font-size: 1.6rem; font-weight: 400; line-height: 1; }
+.service-scope-marker::after { content: "+"; }
+.service-scope[open] .service-scope-marker::after { content: "−"; }
+.service-scope summary:hover .service-scope-title,
+.service-scope[open] .service-scope-title { color: var(--orange); }
+.service-scope summary:focus-visible { outline: 2px solid var(--orange); outline-offset: 5px; }
+.service-scope-body { padding: 0 52px 24px 0; max-width: 76ch; scroll-margin-top: 100px; }
+.service-scope-body ul { margin: 0; padding-left: 22px; display: grid; gap: 10px; color: var(--company-copy); font-size: .9375rem; line-height: 1.8; }
+.service-scope-body li::marker { color: var(--orange); }
+.services-minimal-support { padding: 44px 0 48px; background: #101111; }
+.service-support-list article { position: relative; display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,1.6fr); gap: 28px 52px; align-items: start; padding: 22px 0; border-top: 1px solid var(--company-line); scroll-margin-top: 100px; }
+.service-support-list h3,.service-support-list p { margin: 0; }
+.service-support-list p { color: var(--company-copy); font-size: .9375rem; line-height: 1.8; }
+.service-anchor { position: absolute; top: 0; scroll-margin-top: 100px; }
+@media(max-width: 700px) {
+  .service-scope summary { grid-template-columns: minmax(0,1fr) 24px; gap: 6px 16px; padding: 20px 0; }
+  .service-scope-description { grid-column: 1; grid-row: 2; }
+  .service-scope-marker { grid-column: 2; grid-row: 1 / span 2; }
+  .service-scope-body { padding-right: 24px; }
+  .service-support-list article { grid-template-columns: 1fr; gap: 8px; padding: 20px 0; }
+}
+@media(max-width: 600px) {
+  .services-minimal-page .services-minimal-core { padding: 12px 0 32px; }
+  .services-minimal-page .services-minimal-core h2,
+  .services-minimal-page .services-minimal-support h2 { margin-bottom: 20px; }
+  .services-minimal-support { padding: 32px 0; }
+}

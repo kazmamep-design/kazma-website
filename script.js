@@ -70,6 +70,14 @@ if (menuButton && navigation) {
   menuButton.addEventListener('click', () => {
     const open = menuButton.getAttribute('aria-expanded') !== 'true';
     setMenuState(open);
+    if (open) navigation.querySelector('a')?.focus();
+  });
+
+  const header = menuButton.closest('.site-header');
+  header?.addEventListener('focusout', (event) => {
+    if (navigation.classList.contains('open') && !header.contains(event.relatedTarget)) {
+      setMenuState(false);
+    }
   });
 
   document.addEventListener('click', (event) => {
@@ -159,65 +167,24 @@ if (document.body.classList.contains('home-page')) {
   }
 }
 
-// Services page accordion, entrance motion and scroll reveal.
+// Open a service scope when visitors follow an existing section link.
 if (document.body.classList.contains('services-page')) {
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const panels = Array.from(document.querySelectorAll('[data-service-panel]'));
-
-  const setPanelState = (panel, open) => {
-    const toggle = panel.querySelector('[data-service-toggle]');
-    const content = panel.querySelector('[data-service-content]');
-    panel.classList.toggle('is-open', open);
-    toggle?.setAttribute('aria-expanded', open ? 'true' : 'false');
-    content?.setAttribute('aria-hidden', open ? 'false' : 'true');
+  const openLinkedService = () => {
+    let id;
+    try {
+      id = decodeURIComponent(window.location.hash.slice(1));
+    } catch {
+      return;
+    }
+    if (!id) return;
+    const target = document.getElementById(id);
+    if (!target) return;
+    const scope = target.closest('details.service-scope');
+    if (scope) scope.open = true;
+    target.scrollIntoView({ block: 'start' });
   };
-
-  const openPanel = (selectedPanel) => {
-    panels.forEach((panel) => setPanelState(panel, panel === selectedPanel));
-  };
-
-  panels.forEach((panel) => {
-    const toggle = panel.querySelector('[data-service-toggle]');
-    toggle?.addEventListener('click', () => {
-      const currentlyOpen = panel.classList.contains('is-open');
-      if (currentlyOpen) {
-        setPanelState(panel, false);
-      } else {
-        openPanel(panel);
-      }
-    });
-  });
-
-  const hashTarget = window.location.hash
-    ? document.querySelector(window.location.hash)
-    : null;
-
-  if (hashTarget?.matches('[data-service-panel]')) {
-    openPanel(hashTarget);
-  }
-
-  window.requestAnimationFrame(() => {
-    window.requestAnimationFrame(() => document.body.classList.add('services-ready'));
-  });
-
-  const revealItems = Array.from(document.querySelectorAll('[data-services-reveal]'));
-
-  if (reduceMotion || !('IntersectionObserver' in window)) {
-    revealItems.forEach((item) => item.classList.add('is-visible'));
-  } else {
-    const servicesObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      });
-    }, {
-      threshold: 0.06,
-      rootMargin: '0px 0px 10% 0px'
-    });
-
-    revealItems.forEach((item) => servicesObserver.observe(item));
-  }
+  window.requestAnimationFrame(openLinkedService);
+  window.addEventListener('hashchange', openLinkedService);
 }
 
 // Portfolio page entrance, gallery reveal and lightbox.
@@ -293,7 +260,7 @@ if (document.body.classList.contains('portfolio-page')) {
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('lightbox-open');
-    modal.querySelector('[data-lightbox-close]')?.focus();
+    modal.querySelector('button[data-lightbox-close]')?.focus();
   };
 
   const closeLightbox = () => {
@@ -317,7 +284,8 @@ if (document.body.classList.contains('portfolio-page')) {
   allGalleryItems.forEach((item) => {
     item.addEventListener('click', (event) => {
       event.preventDefault();
-      galleryItems = Array.from(item.closest('.portfolio-gallery').querySelectorAll('[data-lightbox]'));
+      const gallery = item.closest('[data-project-gallery]') || item.closest('.portfolio-gallery');
+      galleryItems = gallery ? Array.from(gallery.querySelectorAll('[data-lightbox]')) : allGalleryItems;
       openLightbox(galleryItems.indexOf(item), item);
     });
   });
@@ -397,33 +365,4 @@ if (document.body.classList.contains('about-page')) {
 
     revealItems.forEach((item) => aboutObserver.observe(item));
   }
-}
-
-// Contact page entrance, scroll reveal and copy-email interaction.
-if (document.body.classList.contains('contact-page')) {
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  window.requestAnimationFrame(() => {
-    window.requestAnimationFrame(() => document.body.classList.add('contact-ready'));
-  });
-
-  const revealItems = Array.from(document.querySelectorAll('[data-contact-reveal]'));
-
-  if (reduceMotion || !('IntersectionObserver' in window)) {
-    revealItems.forEach((item) => item.classList.add('is-visible'));
-  } else {
-    const contactObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      });
-    }, {
-      threshold: 0.07,
-      rootMargin: '0px 0px 8% 0px'
-    });
-
-    revealItems.forEach((item) => contactObserver.observe(item));
-  }
-
 }
