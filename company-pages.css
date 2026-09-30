@@ -85,7 +85,7 @@
 }
 @media(max-width: 720px) {
   .company-page .site-header .nav-wrap { min-height: 72px; }
-  .company-page .site-header .nav { top: 80px; max-height: calc(100dvh - 96px); }
+  .company-page .site-header .nav { top: 80px; max-height: calc(100dvh - 96px); transition: opacity .22s ease, transform .22s cubic-bezier(.2,.7,.2,1); }
   body.company-page.menu-open::before { inset: 72px 0 0; }
 }
 @media(max-width: 920px) {

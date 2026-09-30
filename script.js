@@ -70,13 +70,7 @@ if (menuButton && navigation) {
   menuButton.addEventListener('click', () => {
     const open = menuButton.getAttribute('aria-expanded') !== 'true';
     setMenuState(open);
-    if (open) {
-      window.requestAnimationFrame(() => {
-        window.requestAnimationFrame(() => {
-          if (navigation.classList.contains('open')) navigation.querySelector('a')?.focus();
-        });
-      });
-    }
+    if (open) navigation.querySelector('a')?.focus();
   });
 
   const header = menuButton.closest('.site-header');
