@@ -69,6 +69,11 @@
 .company-page .footer-grid { gap: 40px; }
 .company-page .footer-grid > div:first-child p { line-height: 1.8; }
 .company-page .copyright { color: #a7a7a7; font-size: .84rem; }
+@media(min-width: 721px) and (max-width: 900px) {
+  .company-page .site-header .nav-wrap { gap: 14px; }
+  .company-page .site-header .nav { gap: 14px; font-size: .875rem; }
+  .company-page .site-header .nav a { white-space: nowrap; min-height: 44px; display: flex; align-items: center; }
+}
 @media(max-width: 760px) {
   .company-page .site-header { position: sticky; top: 0; box-shadow: none; }
   .company-page .site-header .nav-wrap { min-height: 68px; }

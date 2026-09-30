@@ -7,7 +7,7 @@
 
 .home-page .site-header { background: rgba(7, 7, 7, 0.9); }
 
-.home-page .nav a { position: relative; padding: 23px 0 21px; }
+.home-page .nav a { position: relative; padding: 22px 0 19px; }
 .home-page .nav a::after {
   content: "";
   position: absolute;
@@ -270,6 +270,11 @@ body:not(.lang-en) .home-hero-copy .lead { line-height: 1.86; }
   .home-contact-actions { justify-content: flex-start; max-width: none; }
 }
 
+@media (min-width: 721px) and (max-width: 900px) {
+  .home-page .site-header .nav-wrap { gap: 14px; }
+  .home-page .site-header .nav { gap: 14px; font-size: .875rem; }
+  .home-page .site-header .nav a { white-space: nowrap; min-height: 44px; display: flex; align-items: center; }
+}
 @media (max-width: 900px) {
   .home-hero { padding: 40px 0; }
   .home-hero-grid { grid-template-columns: 1fr; gap: 32px; }

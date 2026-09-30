@@ -72,7 +72,9 @@ if (menuButton && navigation) {
     setMenuState(open);
     if (open) {
       window.requestAnimationFrame(() => {
-        if (navigation.classList.contains('open')) navigation.querySelector('a')?.focus();
+        window.requestAnimationFrame(() => {
+          if (navigation.classList.contains('open')) navigation.querySelector('a')?.focus();
+        });
       });
     }
   });
