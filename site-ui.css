@@ -1,0 +1,211 @@
+/* Shared visual rules for the five public pages. Loaded after page styles. */
+:root {
+  --max: 1120px;
+  --page-gutter: 20px;
+  --section-space: clamp(40px, 5vw, 64px);
+  --layout-gap: clamp(24px, 4vw, 48px);
+  --control-radius: 12px;
+  --photo-radius: 8px;
+  --surface: #101111;
+  --copy: #c4c4c4;
+}
+
+body { font-size: 1rem; }
+button { font-family: inherit; }
+.container,
+.home-hero .container {
+  width: min(var(--max), calc(100% - var(--page-gutter) * 2));
+}
+
+/* One header, active marker and touch target across all routes. */
+body:is(.home-page, .company-page) .site-header { background: rgba(7, 7, 7, .94); }
+body:is(.home-page, .company-page) .site-header .nav-wrap { min-height: 76px; gap: 24px; }
+body:is(.home-page, .company-page) .site-header .nav { gap: 24px; font-size: .9375rem; font-weight: 600; }
+body:is(.home-page, .company-page) .site-header .nav a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 52px;
+  padding: 16px 0;
+  white-space: nowrap;
+  color: #b9b9b9;
+  transition: color .16s ease;
+}
+body:is(.home-page, .company-page) .site-header .nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 9px;
+  width: auto;
+  height: 2px;
+  background: var(--orange);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .16s ease;
+}
+body:is(.home-page, .company-page) .site-header .nav a:is(:hover, :focus-visible, .active) { color: #f6f6f6; }
+body:is(.home-page, .company-page) .site-header .nav a:is(:hover, :focus-visible, .active)::after { transform: scaleX(1); }
+body:is(.home-page, .company-page) .site-header .lang-toggle { border-radius: var(--control-radius); padding: 2px; }
+body:is(.home-page, .company-page) .site-header .lang-toggle button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px;
+  border-radius: 8px;
+  font-size: .875rem;
+  font-weight: 600;
+  transition: background-color .16s ease, color .16s ease;
+}
+body:is(.home-page, .company-page) .site-header .brand img,
+body:is(.home-page, .company-page) .site-header .menu-btn { width: 44px; height: 44px; border-radius: var(--control-radius); }
+
+/* A restrained type hierarchy that keeps Georgian and English readable. */
+.home-page .home-hero-copy h1,
+.company-page main h1 {
+  margin-bottom: 24px;
+  font-size: clamp(2.25rem, 3.8vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.14;
+  letter-spacing: -.035em;
+}
+body:not(.lang-en) .home-hero-copy h1,
+.company-page:not(.lang-en) main h1 {
+  font-size: clamp(2rem, 3.2vw, 2.875rem);
+  line-height: 1.28;
+  letter-spacing: -.015em;
+}
+.home-page main h2,
+.company-page main h2,
+.services-minimal-page .services-minimal-core h2,
+.services-minimal-page .services-minimal-support h2 {
+  font-size: clamp(1.5rem, 2.3vw, 2.125rem);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -.02em;
+}
+body .company-contact h2 { margin-bottom: 0; }
+body .contact-brief h2 { font-size: 1.125rem; line-height: 1.6; }
+.home-page .eyebrow { font-size: .8125rem; font-weight: 600; letter-spacing: .045em; }
+body:not(.lang-en) .eyebrow { letter-spacing: .015em; }
+.home-page .home-hero-copy .lead,
+.company-lead { font-size: 1.0625rem; line-height: 1.8; color: var(--copy); }
+.home-services-list p,
+.home-services-support,
+.home-project-caption p,
+.company-roles p,
+.company-experience-note,
+.company-experience-list p,
+.service-scope-description,
+.service-scope-body ul,
+.service-support-list p,
+.contact-brief p { font-size: 1rem; line-height: 1.8; }
+.company-kicker,
+.case-facts dt,
+.contact-channel-label,
+.case-photo figcaption,
+.company-team-photo figcaption { font-size: .875rem; }
+
+body:is(.home-page, .company-page) .btn {
+  min-height: 50px;
+  padding: 12px 20px;
+  border-radius: var(--control-radius);
+  font-size: .9375rem;
+  font-weight: 700;
+  line-height: 1.5;
+  transition: background-color .16s ease, border-color .16s ease, color .16s ease;
+}
+body:is(.home-page, .company-page) .btn:hover { transform: none; }
+body:is(.home-page, .company-page) .btn-primary:hover { background: #ff7a1a; }
+body:is(.home-page, .company-page) .btn-secondary:hover { background: #1b1b1b; border-color: #777; }
+body .site-footer .footer-links a:hover { transform: none; }
+body .site-footer .footer-links a { transition: color .16s ease; }
+
+/* The same vertical rhythm and image treatment from introduction to footer. */
+.home-hero,
+.home-services-section,
+.home-projects-section,
+.home-contact-section,
+.company-about-intro,
+.company-experience,
+.case-study,
+.services-minimal-support { padding: var(--section-space) 0; }
+.company-intro { padding: var(--section-space) 0 40px; }
+.company-contact { padding: 40px 0 var(--section-space); }
+.home-hero-grid,
+.case-overview,
+.company-about-grid,
+.contact-minimal-layout { gap: var(--layout-gap); }
+.home-section-heading { margin-bottom: 24px; }
+.home-contact-layout,
+.company-contact-inner { padding-top: 32px; }
+.home-hero-media {
+  background: var(--surface);
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: var(--control-radius);
+}
+.home-project-image,
+.case-photo > a,
+.company-team-photo img,
+.company-experience-thumbnail { border-radius: var(--photo-radius); }
+.home-project-image img,
+.case-photo img { transition: opacity .16s ease; }
+.home-project-preview > a:hover img,
+.case-photo > a:hover img { opacity: .9; }
+.case-photo figcaption { gap: 16px; padding-top: 12px; }
+body .site-footer { padding-top: var(--section-space); }
+body .site-footer .footer-grid { gap: 40px; padding-bottom: 32px; }
+body .site-footer .copyright { font-size: .875rem; color: #a7a7a7; }
+
+@media (min-width: 721px) and (max-width: 900px) {
+  body:is(.home-page, .company-page) .site-header .nav-wrap { gap: 12px; }
+  body:is(.home-page, .company-page) .site-header .nav { gap: 14px; font-size: .875rem; }
+}
+
+@media (max-width: 920px) {
+  body .site-footer .container .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  body .site-footer .container .footer-grid > div:first-child { grid-column: 1 / -1; }
+  body .site-footer .footer-links a { display: flex; align-items: center; min-height: 44px; font-size: .875rem; }
+}
+
+@media (max-width: 720px) {
+  body:is(.home-page, .company-page) .site-header .nav-wrap { min-height: 72px; }
+  body:is(.home-page, .company-page) .site-header .nav {
+    top: 80px;
+    left: var(--page-gutter);
+    right: var(--page-gutter);
+    padding: 8px;
+    gap: 4px;
+    border-radius: var(--control-radius);
+    transition: opacity .16s ease, visibility .16s ease, transform .16s ease;
+  }
+  body:is(.home-page, .company-page) .site-header .nav a { min-height: 50px; padding: 14px 16px; border-radius: 8px; }
+  body:is(.home-page, .company-page) .site-header .nav a.active { background: rgba(255, 106, 0, .08); }
+  body:is(.home-page, .company-page) .site-header .nav a::after { left: 16px; right: auto; bottom: 8px; width: 28px; }
+  body:is(.home-page, .company-page) .site-header .nav a:hover { background: rgba(255, 255, 255, .04); }
+}
+
+@media (max-width: 680px) {
+  .home-hero { padding: 32px 0 40px; }
+  .home-hero-grid { gap: 28px; }
+  .home-page .home-hero-copy h1 { font-size: clamp(2rem, 8vw, 2.75rem); }
+  body:not(.lang-en) .home-hero-copy h1 { font-size: clamp(1.875rem, 7.5vw, 2.5rem); }
+  .home-page .home-hero-copy .lead,
+  .company-lead { font-size: 1rem; }
+  .company-intro { padding-bottom: 28px; }
+  .company-contact { padding-top: 32px; }
+  .home-contact-layout,
+  .company-contact-inner { padding-top: 24px; }
+  .home-page .home-hero-copy .btn { font-size: .875rem; padding: 12px 10px; }
+  body .site-footer .footer-grid { padding-bottom: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  body:is(.home-page, .company-page) .btn,
+  body:is(.home-page, .company-page) .site-header .nav,
+  body:is(.home-page, .company-page) .site-header .nav a,
+  body:is(.home-page, .company-page) .site-header .nav a::after,
+  body:is(.home-page, .company-page) .site-header .lang-toggle button,
+  .home-project-image img,
+  .case-photo img { transition: none; }
+}

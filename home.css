@@ -24,7 +24,7 @@
 .home-page .nav a.active::after { transform: scaleX(1); }
 
 .home-hero { overflow: hidden; padding: 56px 0; }
-.home-hero .container { width: min(1200px, calc(100% - 40px)); }
+.home-hero .container { width: min(var(--max), calc(100% - 40px)); }
 .home-hero-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -104,7 +104,6 @@ body:not(.lang-en) .home-hero-copy .lead { line-height: 1.86; }
   stroke-width: 1.25;
   stroke-dasharray: 4 7;
   stroke-linecap: round;
-  animation: home-schematic-signal 8s linear infinite;
 }
 .home-system-icon {
   stroke: rgba(238, 238, 238, 0.78);
@@ -122,8 +121,8 @@ body:not(.lang-en) .home-hero-copy .lead { line-height: 1.86; }
   fill: var(--orange);
   transform-box: fill-box;
   transform-origin: center;
-  animation: home-schematic-packet 2.6s ease-in-out infinite;
-  animation-delay: var(--packet-delay);
+  opacity: .75;
+  animation: home-schematic-packet 2.4s ease-out both;
 }
 .home-schematic-core {
   position: absolute;
@@ -176,9 +175,11 @@ body:not(.lang-en) .home-hero-copy .lead { line-height: 1.86; }
 @keyframes home-schematic-route { to { stroke-dashoffset: 0; } }
 @keyframes home-schematic-signal { to { stroke-dashoffset: -110; } }
 @keyframes home-schematic-packet {
-  0%, 100% { opacity: 0.25; transform: scale(0.65); }
-  50% { opacity: 1; transform: scale(1.15); }
+  0% { opacity: 0; transform: scale(.65); }
+  65% { opacity: 1; transform: scale(1.1); }
+  100% { opacity: .75; transform: scale(1); }
 }
+.home-schematic-mobile { display: none; }
 /* Compact content stays visible without scroll-triggered animation. */
 .home-page .eyebrow { font-size: 0.75rem; letter-spacing: 0.1em; }
 .home-page main :is(h1, h2, h3) { overflow-wrap: normal; word-break: normal; }
@@ -302,7 +303,19 @@ body:not(.lang-en) .home-hero-copy .lead { line-height: 1.86; }
 
 @media (max-width: 680px) {
   .home-hero { padding: 30px 0 36px; }
-  .home-hero-media { width: 85%; max-width: 360px; }
+  .home-hero-media { width: 100%; max-width: 460px; height: 196px; aspect-ratio: auto; }
+  .home-schematic-svg { display: none; }
+  .home-schematic-mobile { display: block; }
+  .home-schematic-mobile .home-route { stroke: var(--orange); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .home-schematic-core { left: 50%; top: 50%; width: 68px; }
+  .home-schematic-core span { font-size: .75rem; }
+  .home-schematic-core strong { font-size: 1rem; }
+  .home-schematic-label { font-size: .875rem; font-weight: 600; letter-spacing: 0; line-height: 1.4; }
+  .home-label-hvac { left: 16px; top: 14px; }
+  .home-label-fire { right: 16px; top: 14px; }
+  .home-label-power { right: 16px; top: 72px; }
+  .home-label-water { left: 16px; top: auto; bottom: 14px; }
+  .home-label-bms { right: 16px; bottom: 14px; }
   .home-hero-copy h1 { font-size: clamp(2.1rem, 8.5vw, 3rem); line-height: 1.12; }
   body:not(.lang-en) .home-hero-copy h1 { font-size: clamp(1.85rem, 7.5vw, 2.45rem); line-height: 1.25; }
   .home-hero-copy .lead,
