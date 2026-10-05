@@ -104,6 +104,7 @@ body:not(.lang-en) .home-hero-copy .lead { line-height: 1.86; }
   stroke-width: 1.25;
   stroke-dasharray: 4 7;
   stroke-linecap: round;
+  animation: home-schematic-signal 8s linear infinite;
 }
 .home-system-icon {
   stroke: rgba(238, 238, 238, 0.78);
