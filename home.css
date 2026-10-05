@@ -101,15 +101,15 @@ body:not(.lang-en) .home-hero-copy .lead { line-height: 1.86; }
   animation-delay: var(--route-delay);
 }
 .home-route-signal {
-  stroke: rgba(235, 235, 235, 0.56);
+  stroke: rgba(235, 235, 235, 0.62);
   stroke-width: 1.25;
   stroke-dasharray: 4 7;
   stroke-linecap: round;
   animation: home-schematic-signal 8s linear infinite;
 }
 .home-system-icon {
-  stroke: #dedede;
-  stroke-width: 1.45;
+  stroke: rgba(238, 238, 238, 0.78);
+  stroke-width: 1.35;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
