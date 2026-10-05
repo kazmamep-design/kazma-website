@@ -6,6 +6,8 @@
 .wrangler/**
 node_modules
 node_modules/**
+tests
+tests/**
 .env
 .env.*
 .dev.vars*

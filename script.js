@@ -67,15 +67,17 @@ function setMenuState(open, returnFocus = false) {
 if (menuButton && navigation) {
   updateMenuLabel();
 
-  menuButton.addEventListener('click', () => {
+  menuButton.addEventListener('click', (event) => {
     const open = menuButton.getAttribute('aria-expanded') !== 'true';
     setMenuState(open);
-    if (open) navigation.querySelector('a')?.focus();
+    if (open && event.detail === 0) navigation.querySelector('a')?.focus();
   });
 
   const header = menuButton.closest('.site-header');
   header?.addEventListener('focusout', (event) => {
-    if (navigation.classList.contains('open') && !header.contains(event.relatedTarget)) {
+    // Safari can report no next focus target while a visitor taps a link.
+    // Let that click finish; outside clicks and Escape already close the menu.
+    if (navigation.classList.contains('open') && event.relatedTarget && !header.contains(event.relatedTarget)) {
       setMenuState(false);
     }
   });
@@ -167,8 +169,58 @@ if (document.body.classList.contains('home-page')) {
   }
 }
 
-// Open a service scope when visitors follow an existing section link.
+// Animate native service disclosures without hiding content before a close finishes.
 if (document.body.classList.contains('services-page')) {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const serviceControllers = new Map();
+
+  document.querySelectorAll('details.service-scope').forEach((scope) => {
+    const summary = scope.querySelector('summary');
+    if (!summary) return;
+    let animation = null;
+    let expanded = scope.open;
+
+    const setExpanded = (open, animate = true) => {
+      const startHeight = scope.getBoundingClientRect().height;
+      animation?.cancel();
+      animation = null;
+      expanded = open;
+
+      if (!animate || reduceMotion.matches || typeof scope.animate !== 'function') {
+        scope.open = open;
+        scope.style.removeProperty('overflow');
+        return;
+      }
+
+      // Keep details open while measuring or animating, including on Safari.
+      scope.open = true;
+      const expandedHeight = scope.getBoundingClientRect().height;
+      const styles = window.getComputedStyle(scope);
+      const borders = parseFloat(styles.borderTopWidth) + parseFloat(styles.borderBottomWidth);
+      const collapsedHeight = summary.getBoundingClientRect().height + borders;
+      scope.style.overflow = 'hidden';
+
+      const currentAnimation = scope.animate([
+        { height: `${startHeight}px` },
+        { height: `${open ? expandedHeight : collapsedHeight}px` }
+      ], { duration: 280, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'both' });
+      animation = currentAnimation;
+      currentAnimation.onfinish = () => {
+        if (animation !== currentAnimation) return;
+        scope.open = expanded;
+        scope.style.removeProperty('overflow');
+        animation = null;
+        currentAnimation.cancel();
+      };
+    };
+
+    summary.addEventListener('click', (event) => {
+      event.preventDefault();
+      setExpanded(!(animation ? expanded : scope.open));
+    });
+    serviceControllers.set(scope, setExpanded);
+  });
+
   const openLinkedService = () => {
     let id;
     try {
@@ -180,7 +232,11 @@ if (document.body.classList.contains('services-page')) {
     const target = document.getElementById(id);
     if (!target) return;
     const scope = target.closest('details.service-scope');
-    if (scope) scope.open = true;
+    if (scope) {
+      const setExpanded = serviceControllers.get(scope);
+      if (setExpanded) setExpanded(true, false);
+      else scope.open = true;
+    }
     target.scrollIntoView({ block: 'start' });
   };
   window.requestAnimationFrame(openLinkedService);
