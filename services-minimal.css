@@ -1,39 +1,106 @@
-/* Service scopes extend the shared company-page typography and footer. */
-.services-minimal-page .services-minimal-core { padding: 12px 0 48px; scroll-margin-top: 100px; }
+/* Services: familiar KAZMA symbols, warm accents and photographic detail. */
+.services-minimal-page { background: #0b0d0e; --service-line: #3b4246; --service-surface: #191d1f; --service-accent: #ff8a38; }
+.services-minimal-page .services-minimal-intro { padding-bottom: 44px; }
+.services-eyebrow { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 0 0 14px; color: #ff8a38; font-size: .8125rem; line-height: 1.7; font-weight: 600; }
+.services-eyebrow > span[aria-hidden] { color: #7a858b; }
+.services-minimal-page .company-lead { max-width: 58ch; }
+.services-minimal-page .services-minimal-core { padding: 8px 0 64px; scroll-margin-top: 100px; }
 .services-minimal-page .services-minimal-core h2,
-.services-minimal-page .services-minimal-support h2 { font-size: clamp(1.4rem,2.3vw,1.8rem); margin-bottom: 28px; }
-.service-scopes { border-top: 1px solid var(--company-line); }
-.service-scope { border-bottom: 1px solid var(--company-line); scroll-margin-top: 100px; }
-.service-scope summary { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,1.6fr) 24px; gap: 28px; align-items: center; min-height: 88px; padding: 22px 0; cursor: pointer; list-style: none; }
+.services-minimal-page .services-minimal-support h2 { font-size: clamp(1.35rem,2.3vw,1.75rem); margin-bottom: 26px; }
+.service-scopes { display: grid; gap: 14px; }
+.service-scope { position: relative; min-width: 0; border: 1px solid var(--service-line); border-radius: 12px; background: var(--service-surface); scroll-margin-top: 100px; transition: background-color .18s ease, border-color .18s ease; }
+.service-scope[open] { border-color: #a36a41; background: #24201c; }
+.service-scope::before { content: ""; position: absolute; left: -1px; top: 31px; width: 3px; height: 42px; border-radius: 0 3px 3px 0; background: var(--orange); opacity: 0; transition: opacity .18s ease; }
+.service-scope[open]::before { opacity: 1; }
+.service-scope summary { display: grid; grid-template-columns: 52px minmax(0,1fr) 40px; align-items: center; gap: 24px; min-height: 108px; padding: 24px 28px; cursor: pointer; list-style: none; border-radius: 11px; }
 .service-scope summary::-webkit-details-marker { display: none; }
-.service-scope-title { color: #eee; font-size: 1.05rem; font-weight: 650; line-height: 1.6; transition: color .18s ease; }
-.service-scope-description { color: var(--company-copy); font-size: .9375rem; line-height: 1.8; }
-.service-scope-marker { align-self: center; text-align: right; color: var(--orange); font-size: 1.6rem; font-weight: 400; line-height: 1; }
-.service-scope-marker::after { content: "+"; }
-.service-scope[open] .service-scope-marker::after { content: "−"; }
-.service-scope[open] .service-scope-title { color: var(--orange); }
-.service-scope summary:focus-visible { outline: 2px solid var(--orange); outline-offset: 5px; }
-.service-scope-body { padding: 0 52px 24px 0; max-width: 76ch; scroll-margin-top: 100px; }
-.service-scope-body ul { margin: 0; padding-left: 22px; display: grid; gap: 10px; color: var(--company-copy); font-size: .9375rem; line-height: 1.8; }
-.service-scope-body li::marker { color: var(--orange); }
-.services-minimal-support { padding: 44px 0 48px; background: #101111; }
-.service-support-list article { position: relative; display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,1.6fr); gap: 28px 52px; align-items: start; padding: 22px 0; border-top: 1px solid var(--company-line); scroll-margin-top: 100px; }
-.service-support-list h3,.service-support-list p { margin: 0; }
-.service-support-list p { color: var(--company-copy); font-size: .9375rem; line-height: 1.8; }
+.service-scope summary::marker { content: ""; }
+.service-scope-heading { display: grid; gap: 6px; min-width: 0; }
+.service-scope-title { color: #f6f6f6; font-size: 1.125rem; font-weight: 650; line-height: 1.55; transition: color .18s ease; }
+.service-scope-description { color: #c5cbce; font-size: .9375rem; line-height: 1.75; }
+.service-scope-icon { display: grid; place-items: center; width: 52px; height: 52px; border: 1px solid #495156; border-radius: 10px; color: #dce2e5; background: #202629; transition: color .18s ease, border-color .18s ease, background-color .18s ease; }
+.service-scope-icon svg { display: block; width: 38px; height: 38px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.service-scope[open] .service-scope-icon { color: var(--service-accent); border-color: #9d633b; background: #33271e; }
+.service-scope-marker { position: relative; display: block; width: 40px; height: 40px; border: 1px solid #586269; border-radius: 8px; color: #f0f3f4; transition: color .18s ease, border-color .18s ease, background-color .18s ease; }
+.service-scope-marker::before,
+.service-scope-marker::after { content: ""; position: absolute; top: 18px; left: 12px; width: 14px; height: 2px; border-radius: 1px; background: currentColor; }
+.service-scope-marker::after { transform: rotate(90deg); transition: transform .18s ease, opacity .18s ease; }
+.service-scope[open] .service-scope-marker { color: var(--service-accent); border-color: #a36a41; background: #33271e; }
+.service-scope[open] .service-scope-marker::after { opacity: 0; transform: rotate(0); }
+.service-scope[open] .service-scope-title { color: var(--service-accent); }
+.service-scope summary:focus-visible { outline: 2px solid var(--orange); outline-offset: 4px; }
+.service-scope-body { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.05fr); gap: 36px; align-items: start; padding: 0 28px 28px 104px; scroll-margin-top: 100px; }
+.service-scope-copy { padding-top: 8px; min-width: 0; }
+.service-detail-label { margin: 0 0 14px; color: #e1c4ae; font-size: .8125rem; font-weight: 600; line-height: 1.7; }
+.service-scope-body ul { margin: 0; padding-left: 20px; display: grid; gap: 12px; color: #ded8d3; font-size: .9375rem; line-height: 1.85; }
+.service-scope-body li::marker { color: var(--service-accent); }
+.service-photo { margin: 0; min-width: 0; border-radius: 8px; overflow: hidden; background: #2b3033; }
+.service-photo img { display: block; width: 100%; height: auto; aspect-ratio: 8/5; object-fit: cover; }
+#fire-safety .service-photo img { object-position: 50% 43%; }
+#electrical-bms .service-photo img { object-position: 35% 50%; }
+#bms .service-photo img { object-position: 50% 55%; }
+.services-minimal-page .services-minimal-support { padding: 56px 0 64px; background: #121618; border-top: 1px solid #30383c; border-bottom: 1px solid #30383c; }
+.service-support-list { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 22px; }
+.service-support-list article { position: relative; min-width: 0; border: 1px solid var(--service-line); border-radius: 12px; overflow: hidden; background: var(--service-surface); scroll-margin-top: 100px; }
+.service-support-list .service-photo { border-radius: 0; border-bottom: 1px solid var(--service-line); }
+.service-support-list .service-photo img { aspect-ratio: 8/5; }
+.service-support-list .service-photo-thermal { background: #070b24; }
+.service-support-list .service-photo-thermal img { object-fit: contain; }
+.service-support-copy { padding: 24px; }
+.services-minimal-page .service-support-list h3 { margin: 0 0 12px; font-size: 1rem; line-height: 1.6; }
+.service-support-list p { margin: 0; color: #c5cbce; font-size: .9375rem; line-height: 1.85; }
 .service-anchor { position: absolute; top: 0; scroll-margin-top: 100px; }
-@media(max-width: 700px) {
-  .service-scope summary { grid-template-columns: minmax(0,1fr) 24px; gap: 6px 16px; padding: 20px 0; }
-  .service-scope-description { grid-column: 1; grid-row: 2; }
-  .service-scope-marker { grid-column: 2; grid-row: 1 / span 2; }
-  .service-scope-body { padding-right: 24px; }
-  .service-support-list article { grid-template-columns: 1fr; gap: 8px; padding: 20px 0; }
+.services-minimal-page .services-contact { padding: 64px 0 28px; }
+.services-minimal-page .services-contact .company-contact-inner { padding: 36px; border: 1px solid #e8e3dc; border-radius: 12px; background: #e9e5df; color: #171b1e; gap: 28px; }
+.services-contact-copy { flex: 1 1 360px; }
+.services-contact .services-eyebrow { color: #8d3a05; margin-bottom: 10px; }
+.services-minimal-page .services-contact h2 { color: #171b1e; font-size: clamp(1.35rem,2.4vw,1.85rem); max-width: 28ch; line-height: 1.5; }
+.services-contact .company-contact-actions { gap: 12px 24px; }
+.services-contact .company-text-link { color: #272e32; }
+.services-contact .company-text-link span[aria-hidden] { color: #9b4000; }
+.service-photo-credits { padding-bottom: 36px; color: #aeb8bd; font-size: .8125rem; line-height: 1.85; }
+.service-photo-credits summary { padding: 12px 0; min-height: 44px; width: fit-content; max-width: 100%; cursor: pointer; }
+.service-photo-credits p { max-width: 90ch; margin: 4px 0 14px; }
+.service-photo-credits ul { margin: 0; padding-left: 18px; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px 28px; }
+.service-photo-credits a { color: #cbd3d7; text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+@media (hover: hover) and (pointer: fine) {
+  .service-scope:not([open]):hover { border-color: #6b787f; background: #202629; }
 }
-@media(max-width: 600px) {
-  .services-minimal-page .services-minimal-core { padding: 12px 0 32px; }
-  .services-minimal-page .services-minimal-core h2,
-  .services-minimal-page .services-minimal-support h2 { margin-bottom: 20px; }
-  .services-minimal-support { padding: 32px 0; }
+@media (max-width: 900px) {
+  .service-scope summary { gap: 18px; padding: 22px; }
+  .service-scope-body { padding: 0 22px 24px; gap: 28px; }
+  .service-support-list { gap: 16px; }
+  .service-support-copy { padding: 20px; }
 }
-@media(prefers-reduced-motion: reduce) {
-  .service-scope-title { transition: none; }
+@media (max-width: 700px) {
+  .services-minimal-page .services-minimal-intro { padding-bottom: 32px; }
+  .services-minimal-page .services-minimal-core { padding-bottom: 40px; }
+  .service-scope summary { grid-template-columns: 44px minmax(0,1fr) 32px; min-height: 100px; gap: 14px; padding: 20px 18px; }
+  .service-scope-icon { width: 44px; height: 44px; border-radius: 8px; }
+  .service-scope-icon svg { width: 34px; height: 34px; }
+  .service-scope-title { font-size: 1rem; }
+  .service-scope-description { font-size: .875rem; }
+  .service-scope-marker { width: 32px; height: 32px; border-radius: 7px; }
+  .service-scope-marker::before,.service-scope-marker::after { top: 14px; left: 8px; }
+  .service-scope-body { grid-template-columns: 1fr; padding: 0 18px 20px; gap: 24px; }
+  .service-scope-copy { padding-top: 0; }
+  .service-scope-body ul { font-size: .9375rem; }
+  .services-minimal-page .services-minimal-support { padding: 36px 0 40px; }
+  .service-support-list { grid-template-columns: 1fr; gap: 20px; }
+  .service-support-list .service-photo img { max-height: 290px; }
+  .services-minimal-page .services-contact { padding-top: 40px; }
+  .services-minimal-page .services-contact .company-contact-inner { padding: 26px 22px; gap: 22px; }
+  .services-contact-copy { flex-basis: 100%; }
+  .service-photo-credits ul { grid-template-columns: 1fr; }
+}
+@media (max-width: 380px) {
+  .service-scope summary { grid-template-columns: 36px minmax(0,1fr) 28px; gap: 10px; padding: 18px 12px; }
+  .service-scope-icon { width: 36px; height: 36px; }
+  .service-scope-icon svg { width: 30px; height: 30px; }
+  .service-scope-marker { width: 28px; height: 28px; }
+  .service-scope-marker::before,.service-scope-marker::after { top: 12px; left: 6px; }
+  .service-scope-body { padding-left: 14px; padding-right: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .service-scope,.service-scope::before,.service-scope-title,.service-scope-icon,.service-scope-marker,.service-scope-marker::after { transition: none; }
 }

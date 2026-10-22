@@ -1,0 +1,196 @@
+[
+  {
+    "key": "hvac",
+    "author": "Pawel Czerwinski",
+    "source": "https://unsplash.com/photos/gray-tube-type-lamp-EIFClexGhzg",
+    "license": "Unsplash License",
+    "license_url": "https://unsplash.com/license",
+    "alt_ka": "ლითონის სავენტილაციო არხი შენობის ფასადზე",
+    "alt_en": "Metal ventilation duct on a building facade",
+    "verified_on": "2026-10-22",
+    "modifications": "Resized and converted to WebP. Responsive display crop except for the uncropped thermogram.",
+    "variants": [
+      {
+        "path": "assets/services/service-hvac-480.webp",
+        "width": 480,
+        "height": 320,
+        "bytes": 12114
+      },
+      {
+        "path": "assets/services/service-hvac-960.webp",
+        "width": 960,
+        "height": 640,
+        "bytes": 30978
+      }
+    ]
+  },
+  {
+    "key": "fire",
+    "author": "Brandon Leon",
+    "source": "https://commons.wikimedia.org/wiki/File:Fire_sprinkler_roof_mount_side_view.jpg",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "alt_ka": "ჭერზე დამონტაჟებული სახანძრო სპრინკლერის თავი",
+    "alt_en": "Ceiling-mounted fire sprinkler head",
+    "verified_on": "2026-10-22",
+    "modifications": "Resized and converted to WebP. Responsive display crop except for the uncropped thermogram.",
+    "variants": [
+      {
+        "path": "assets/services/service-fire-480.webp",
+        "width": 480,
+        "height": 318,
+        "bytes": 12274
+      },
+      {
+        "path": "assets/services/service-fire-960.webp",
+        "width": 960,
+        "height": 637,
+        "bytes": 36212
+      }
+    ]
+  },
+  {
+    "key": "electrical",
+    "author": "Aleksandr Lyaptsev",
+    "source": "https://unsplash.com/photos/electrical-panel-with-wires-and-components-q0Jo_J5YxHY",
+    "license": "Unsplash License",
+    "license_url": "https://unsplash.com/license",
+    "alt_ka": "ელექტრო პანელის კაბელები და ტერმინალები",
+    "alt_en": "Cables and terminals inside an electrical panel",
+    "verified_on": "2026-10-22",
+    "modifications": "Resized and converted to WebP. Responsive display crop except for the uncropped thermogram.",
+    "variants": [
+      {
+        "path": "assets/services/service-electrical-480.webp",
+        "width": 480,
+        "height": 321,
+        "bytes": 23182
+      },
+      {
+        "path": "assets/services/service-electrical-960.webp",
+        "width": 960,
+        "height": 641,
+        "bytes": 53892
+      }
+    ]
+  },
+  {
+    "key": "plumbing",
+    "author": "Jahhid Fitrah Alamsyah",
+    "source": "https://unsplash.com/photos/a-close-up-of-pipes-and-valves-in-a-factory-M-9y7WUdH4k",
+    "license": "Unsplash License",
+    "license_url": "https://unsplash.com/license",
+    "alt_ka": "წყლის მილები და ჩამკეტი სარქველები",
+    "alt_en": "Water pipework and shut-off valves",
+    "verified_on": "2026-10-22",
+    "modifications": "Resized and converted to WebP. Responsive display crop except for the uncropped thermogram.",
+    "variants": [
+      {
+        "path": "assets/services/service-plumbing-480.webp",
+        "width": 480,
+        "height": 320,
+        "bytes": 18750
+      },
+      {
+        "path": "assets/services/service-plumbing-960.webp",
+        "width": 960,
+        "height": 640,
+        "bytes": 42640
+      }
+    ]
+  },
+  {
+    "key": "bms",
+    "author": "Raymond Sime",
+    "source": "https://unsplash.com/photos/industrial-control-panel-with-electronic-modules-and-colorful-wiring-UEx6fTODHzI",
+    "license": "Unsplash License",
+    "license_url": "https://unsplash.com/license",
+    "alt_ka": "ავტომატიკის მართვის მოდულები და მათი საკაბელო კავშირები",
+    "alt_en": "Automation control modules and their cable connections",
+    "verified_on": "2026-10-22",
+    "modifications": "Resized and converted to WebP. Responsive display crop except for the uncropped thermogram.",
+    "variants": [
+      {
+        "path": "assets/services/service-bms-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 41012
+      },
+      {
+        "path": "assets/services/service-bms-960.webp",
+        "width": 960,
+        "height": 1440,
+        "bytes": 95244
+      }
+    ]
+  },
+  {
+    "key": "bim",
+    "author": "Daniel McCullough",
+    "source": "https://unsplash.com/photos/an-architect-working-on-a-draft-with-a-pencil-and-ruler-HtBlQdxfG9k",
+    "license": "Unsplash License",
+    "license_url": "https://unsplash.com/license",
+    "alt_ka": "ტექნიკურ ნახაზზე მუშაობა სახაზავითა და ფანქრით",
+    "alt_en": "Preparing a technical drawing with a ruler and pencil",
+    "verified_on": "2026-10-22",
+    "modifications": "Resized and converted to WebP. Responsive display crop except for the uncropped thermogram.",
+    "variants": [
+      {
+        "path": "assets/services/service-bim-480.webp",
+        "width": 480,
+        "height": 270,
+        "bytes": 14384
+      },
+      {
+        "path": "assets/services/service-bim-960.webp",
+        "width": 960,
+        "height": 540,
+        "bytes": 35528
+      }
+    ]
+  },
+  {
+    "key": "supervision",
+    "author": "Scott Blake",
+    "source": "https://unsplash.com/photos/seven-construction-workers-standing-on-white-field-x-ghf9LjrVg",
+    "license": "Unsplash License",
+    "license_url": "https://unsplash.com/license",
+    "alt_ka": "სამშენებლო ობიექტზე შეკრებილი სპეციალისტები",
+    "alt_en": "Construction professionals on an active building site",
+    "verified_on": "2026-10-22",
+    "modifications": "Resized and converted to WebP. Responsive display crop except for the uncropped thermogram.",
+    "variants": [
+      {
+        "path": "assets/services/service-supervision-480.webp",
+        "width": 480,
+        "height": 320,
+        "bytes": 46960
+      },
+      {
+        "path": "assets/services/service-supervision-960.webp",
+        "width": 960,
+        "height": 640,
+        "bytes": 160410
+      }
+    ]
+  },
+  {
+    "key": "energy",
+    "author": "Passivhaus Institut",
+    "source": "https://commons.wikimedia.org/wiki/File:Passivhaus_thermogram_gedaemmt_ungedaemmt.png",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "alt_ka": "შენობების თერმოგრამა ზედაპირების ტემპერატურის განსხვავებით",
+    "alt_en": "Building thermogram showing differences in surface temperature",
+    "verified_on": "2026-10-22",
+    "modifications": "Resized and converted to WebP. Responsive display crop except for the uncropped thermogram.",
+    "variants": [
+      {
+        "path": "assets/services/service-energy-460.webp",
+        "width": 460,
+        "height": 290,
+        "bytes": 25992
+      }
+    ]
+  }
+]
