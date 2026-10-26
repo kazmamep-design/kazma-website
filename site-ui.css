@@ -59,6 +59,14 @@ body:is(.home-page, .company-page) .site-header .lang-toggle button {
 body:is(.home-page, .company-page) .site-header .brand img,
 body:is(.home-page, .company-page) .site-header .menu-btn { width: 44px; height: 44px; border-radius: var(--control-radius); }
 
+/* Dark focus rings stay visible on the pale contact panels despite legacy outlines. */
+.home-page .home-contact-layout :focus-visible,
+.about-page .about-contact-panel :focus-visible,
+.services-minimal-page .services-contact .company-contact-inner :focus-visible,
+.portfolio-page .company-contact-inner :focus-visible {
+  outline-color: #8d3a05 !important;
+}
+
 /* A restrained type hierarchy that keeps Georgian and English readable. */
 .home-page .home-hero-copy h1,
 .company-page main h1 {
