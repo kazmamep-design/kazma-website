@@ -11,6 +11,7 @@ class Element {
     this.classes = new Set(classes);
     this.classList = {
       add: (...names) => names.forEach((name) => this.classes.add(name)),
+      remove: (...names) => names.forEach((name) => this.classes.delete(name)),
       contains: (name) => this.classes.has(name),
       toggle: (name, enabled = !this.classes.has(name)) => {
         enabled ? this.classes.add(name) : this.classes.delete(name);
@@ -30,7 +31,7 @@ class Element {
     this.listeners.set(type, handlers);
   }
   fire(type, data = {}) {
-    const event = { target: this, defaultPrevented: false, ...data };
+    const event = { target: this, button: 0, defaultPrevented: false, ...data };
     event.preventDefault = () => { event.defaultPrevented = true; };
     (this.listeners.get(type) || []).forEach((handler) => handler(event));
     return event;
@@ -40,6 +41,7 @@ class Element {
   contains(element) { return this === element || this.children.some((child) => child.contains(element)); }
   focus() { this.focusCount += 1; }
   querySelector(selector) { return this.queries?.[selector] || null; }
+  querySelectorAll(selector) { return this.queryLists?.[selector] || []; }
   closest(selector) { return this.closestElements?.[selector] || null; }
   scrollIntoView() { this.scrolled = true; }
 }
@@ -74,10 +76,19 @@ function createScope(id, animate = true) {
   return { scope, summary };
 }
 
-function loadPage({ services = false, reducedMotion = false, animate = true, hash = '' } = {}) {
+function loadPage({ services = false, portfolio = false, reducedMotion = false, animate = true, hash = '', language = 'ka', storageFailure } = {}) {
   const document = new Element();
   document.documentElement = new Element();
   document.body = new Element(services ? ['services-page'] : []);
+  if (portfolio) document.body.classList.add('portfolio-page');
+  document.body.dataset = { pageTitleKa: 'ქართულად', pageTitleEn: 'English' };
+  const languages = ['ka', 'en'].map((lang) => {
+    const button = new Element();
+    button.dataset.lang = lang;
+    return button;
+  });
+  const localizedImage = new Element();
+  localizedImage.dataset = { altKa: 'ქართული ფოტო', altEn: 'English photo' };
   const header = new Element();
   const menu = new Element();
   const nav = new Element();
@@ -89,8 +100,30 @@ function loadPage({ services = false, reducedMotion = false, animate = true, has
   nav.queries = { a: link };
   header.children = [menu, nav];
   const scopes = ['hvac', 'fire-safety'].map((id) => createScope(id, animate));
-  document.querySelector = (selector) => ({ '.menu-btn': menu, '.nav': nav })[selector] || null;
+  const modal = new Element();
+  const modalImage = new Element();
+  const caption = new Element();
+  const counter = new Element();
+  const close = new Element();
+  const previous = new Element();
+  const next = new Element();
+  modal.queries = { '[data-lightbox-image]': modalImage, '[data-lightbox-caption]': caption, '[data-lightbox-counter]': counter, '[data-lightbox-prev]': previous, '[data-lightbox-next]': next, 'button[data-lightbox-close]': close };
+  modal.queryLists = { '[data-lightbox-close]': [close] };
+  const gallery = new Element();
+  const photos = Array.from({ length: 3 }, (_, index) => {
+    const photo = new Element();
+    photo.setAttribute('href', `photo-${index}.webp`);
+    photo.dataset = { captionKa: `ფოტო ${index}`, captionEn: `Photo ${index}` };
+    photo.queries = { img: { alt: `Photo ${index}` } };
+    photo.closestElements = { '[data-project-gallery]': gallery };
+    return photo;
+  });
+  gallery.queryLists = { '[data-lightbox]': photos };
+  document.querySelector = (selector) => ({ '.menu-btn': menu, '.nav': nav, '[data-lightbox-modal]': modal })[selector] || null;
   document.querySelectorAll = (selector) => {
+    if (selector === '[data-lang]') return languages;
+    if (selector === '[data-alt-ka][data-alt-en]') return [localizedImage];
+    if (selector === '[data-lightbox]' && portfolio) return photos;
     if (selector === '.nav a') return [link];
     if (selector === 'details.service-scope' && services) return scopes.map(({ scope }) => scope);
     return [];
@@ -102,9 +135,17 @@ function loadPage({ services = false, reducedMotion = false, animate = true, has
   window.matchMedia = () => ({ matches: reducedMotion });
   window.requestAnimationFrame = (handler) => handler();
   window.getComputedStyle = () => ({ borderTopWidth: '0px', borderBottomWidth: '1px' });
-  const localStorage = { getItem: () => 'ka', setItem() {} };
-  vm.runInNewContext(source, { document, window, localStorage, console, Map, Date });
-  return { document, window, header, menu, nav, link, scopes };
+  const localStorage = {
+    value: language,
+    getItem() { if (storageFailure === 'read') throw new Error('Storage blocked'); return this.value; },
+    setItem(key, value) { if (storageFailure === 'write') throw new Error('Storage full'); this.value = value; }
+  };
+  const context = { document, window, console, Map, Date };
+  Object.defineProperty(context, 'localStorage', {
+    get() { if (storageFailure === 'access') throw new Error('Storage unavailable'); return localStorage; }
+  });
+  vm.runInNewContext(source, context);
+  return { document, window, header, menu, nav, link, scopes, languages, localizedImage, localStorage, modal, modalImage, caption, counter, photos, close, previous, next };
 }
 
 test('touch opening does not force focus; null focusout leaves a tapped link available', () => {
@@ -224,4 +265,101 @@ test('deep links open immediately and cancel an in-progress close', () => {
   closing.finish();
   assert.equal(scope.open, true);
   assert.equal(scope.style.overflow, undefined);
+});
+
+for (const storageFailure of ['read', 'write', 'access']) {
+  test(`storage ${storageFailure} failure preserves language controls, navigation and disclosures`, () => {
+    const page = loadPage({ services: true, language: 'en', storageFailure });
+    assert.equal(page.document.documentElement.getAttribute('lang'), storageFailure === 'write' ? 'en' : 'ka');
+    for (const button of page.languages) {
+      button.fire('click');
+      const english = button.dataset.lang === 'en';
+      assert.equal(page.document.documentElement.getAttribute('lang'), button.dataset.lang);
+      assert.equal(page.document.title, english ? 'English' : 'ქართულად');
+      assert.equal(page.localizedImage.alt, english ? 'English photo' : 'ქართული ფოტო');
+      assert.equal(button.getAttribute('aria-pressed'), 'true');
+    }
+    page.menu.fire('click', { detail: 1 });
+    assert.equal(page.menu.getAttribute('aria-expanded'), 'true');
+    assert.equal(page.link.fire('click').defaultPrevented, false);
+    assert.equal(page.menu.getAttribute('aria-expanded'), 'false');
+    const { scope, summary } = page.scopes[0];
+    summary.fire('click');
+    scope.currentAnimation.finish();
+    assert.equal(scope.open, true);
+  });
+}
+
+test('available storage restores and remembers the selected language', () => {
+  const page = loadPage({ language: 'en' });
+  assert.equal(page.document.documentElement.getAttribute('lang'), 'en');
+  page.languages[0].fire('click');
+  assert.equal(page.localStorage.value, 'ka');
+});
+
+for (const click of [{ ctrlKey: true }, { metaKey: true }, { shiftKey: true }, { altKey: true }, { button: 1 }, { button: 2 }, { defaultPrevented: true }]) {
+  test(`gallery leaves modified and non-primary clicks to the browser: ${JSON.stringify(click)}`, () => {
+    const page = loadPage({ portfolio: true });
+    const event = page.photos[0].fire('click', click);
+    assert.equal(event.defaultPrevented, !!click.defaultPrevented);
+    assert.equal(page.modal.classList.contains('is-open'), false);
+  });
+}
+
+for (const detail of [0, 1]) {
+  test(`ordinary gallery activation still opens the selected photo: detail ${detail}`, () => {
+    const page = loadPage({ portfolio: true });
+    assert.equal(page.photos[1].fire('click', { detail }).defaultPrevented, true);
+    assert.equal(page.modal.classList.contains('is-open'), true);
+    assert.equal(page.modalImage.src, 'photo-1.webp');
+    assert.equal(page.counter.textContent, '02 / 03');
+    assert.equal(page.close.focusCount, 1);
+    page.document.fire('keydown', { key: 'Escape' });
+    assert.equal(page.modal.getAttribute('aria-hidden'), 'true');
+    assert.equal(page.photos[1].focusCount, 1);
+  });
+}
+
+const touch = (x, y, identifier = 1) => ({ screenX: x, screenY: y, identifier });
+function swipe(modal, start, end) {
+  modal.fire('touchstart', { touches: [start], changedTouches: [start] });
+  modal.fire('touchend', { touches: [], changedTouches: [end] });
+}
+
+test('horizontal swipes move one photo in either direction and wrap at the ends', () => {
+  const page = loadPage({ portfolio: true });
+  page.photos[0].fire('click');
+  swipe(page.modal, touch(200, 200), touch(100, 220));
+  assert.equal(page.modalImage.src, 'photo-1.webp');
+  swipe(page.modal, touch(100, 220), touch(200, 200));
+  assert.equal(page.modalImage.src, 'photo-0.webp');
+  swipe(page.modal, touch(100, 220), touch(200, 200));
+  assert.equal(page.modalImage.src, 'photo-2.webp');
+});
+
+for (const end of [touch(140, 500), touch(260, -300), touch(140, 160), touch(170, 100), touch(200, 500)]) {
+  test(`vertical, diagonal and short gestures keep the current photo: ${JSON.stringify(end)}`, () => {
+    const page = loadPage({ portfolio: true });
+    page.photos[0].fire('click');
+    swipe(page.modal, touch(200, 100), end);
+    assert.equal(page.modalImage.src, 'photo-0.webp');
+  });
+}
+
+test('cancelled, multi-touch and unmatched gestures do not navigate or leak into later swipes', () => {
+  const page = loadPage({ portfolio: true });
+  page.photos[0].fire('click');
+  const start = touch(200, 100);
+  const end = touch(50, 100);
+  page.modal.fire('touchend', { changedTouches: [end] });
+  page.modal.fire('touchstart', { touches: [start], changedTouches: [start] });
+  page.modal.fire('touchcancel');
+  page.modal.fire('touchend', { changedTouches: [end] });
+  page.modal.fire('touchstart', { touches: [start], changedTouches: [start] });
+  page.modal.fire('touchstart', { touches: [start, touch(300, 100, 2)], changedTouches: [touch(300, 100, 2)] });
+  page.modal.fire('touchend', { changedTouches: [end] });
+  swipe(page.modal, start, touch(50, 100, 2));
+  assert.equal(page.modalImage.src, 'photo-0.webp');
+  swipe(page.modal, start, end);
+  assert.equal(page.modalImage.src, 'photo-1.webp');
 });

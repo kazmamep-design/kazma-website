@@ -67,6 +67,9 @@
 .portfolio-page .case-more-photos[open] .case-disclosure-icon::after { transform: rotate(0); }
 .portfolio-page .case-more-photos[open] > .case-photos { margin-top: 24px; }
 
+.portfolio-page .portfolio-lightbox [data-lightbox-caption] { min-width: 0; overflow-wrap: anywhere; }
+.portfolio-page .portfolio-lightbox [data-lightbox-counter] { flex-shrink: 0; white-space: nowrap; align-self: flex-start; font-variant-numeric: tabular-nums; }
+
 .portfolio-page .company-experience-link { padding-top: 32px; padding-bottom: 0; }
 .portfolio-page .company-experience-link .company-text-link { color: #bec8ce; font-size: .875rem; line-height: 1.8; }
 .portfolio-page .company-contact { padding: 32px 0 64px; }

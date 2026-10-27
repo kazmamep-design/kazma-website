@@ -1,5 +1,10 @@
 document.documentElement.classList.add('js-enabled');
-const savedLanguage = localStorage.getItem('kazmaLanguage') || 'ka';
+let savedLanguage = 'ka';
+try {
+  savedLanguage = localStorage.getItem('kazmaLanguage') || 'ka';
+} catch {
+  // Storage can be unavailable; language controls and navigation must still work.
+}
 const body = document.body;
 
 function setLanguage(language) {
@@ -7,7 +12,11 @@ function setLanguage(language) {
 
   body.classList.toggle('lang-en', english);
   document.documentElement.setAttribute('lang', english ? 'en' : 'ka');
-  localStorage.setItem('kazmaLanguage', english ? 'en' : 'ka');
+  try {
+    localStorage.setItem('kazmaLanguage', english ? 'en' : 'ka');
+  } catch {
+    // Keep the selected language for this page even when it cannot be remembered.
+  }
 
   document.querySelectorAll('[data-lang]').forEach((button) => {
     button.setAttribute(
@@ -284,8 +293,7 @@ if (document.body.classList.contains('portfolio-page')) {
 
   let currentIndex = 0;
   let lastFocusedElement = null;
-  let touchStartX = 0;
-  let touchEndX = 0;
+  let touchStart = null;
 
   const isEnglish = () => document.body.classList.contains('lang-en');
 
@@ -321,6 +329,7 @@ if (document.body.classList.contains('portfolio-page')) {
 
   const closeLightbox = () => {
     if (!modal) return;
+    touchStart = null;
     modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('lightbox-open');
@@ -339,6 +348,7 @@ if (document.body.classList.contains('portfolio-page')) {
 
   allGalleryItems.forEach((item) => {
     item.addEventListener('click', (event) => {
+      if (event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
       event.preventDefault();
       const gallery = item.closest('[data-project-gallery]') || item.closest('.portfolio-gallery');
       galleryItems = gallery ? Array.from(gallery.querySelectorAll('[data-lightbox]')) : allGalleryItems;
@@ -377,16 +387,26 @@ if (document.body.classList.contains('portfolio-page')) {
   });
 
   modal?.addEventListener('touchstart', (event) => {
-    touchStartX = event.changedTouches[0]?.screenX || 0;
+    const touch = event.changedTouches[0];
+    touchStart = event.touches.length === 1 && touch
+      ? { id: touch.identifier, x: touch.screenX, y: touch.screenY }
+      : null;
   }, { passive: true });
 
   modal?.addEventListener('touchend', (event) => {
-    touchEndX = event.changedTouches[0]?.screenX || 0;
-    const delta = touchEndX - touchStartX;
-    if (Math.abs(delta) < 45) return;
-    if (delta > 0) showPrevious();
+    const start = touchStart;
+    touchStart = null;
+    if (!start) return;
+    const touch = Array.from(event.changedTouches).find((point) => point.identifier === start.id);
+    if (!touch) return;
+    const deltaX = touch.screenX - start.x;
+    const deltaY = touch.screenY - start.y;
+    if (Math.abs(deltaX) < 45 || Math.abs(deltaX) <= Math.abs(deltaY)) return;
+    if (deltaX > 0) showPrevious();
     else showNext();
   }, { passive: true });
+
+  modal?.addEventListener('touchcancel', () => { touchStart = null; }, { passive: true });
 
   document.querySelectorAll('[data-lang]').forEach((button) => {
     button.addEventListener('click', () => {
