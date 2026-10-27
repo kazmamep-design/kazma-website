@@ -1,0 +1,46 @@
+name: Safari regression QA
+
+on:
+  push:
+    branches: [agent/safari-validation-20261027]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  safari:
+    name: Safari (${{ matrix.platform }})
+    runs-on: macos-15
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [macos, ios]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Prepare native Safari
+        env:
+          QA_PLATFORM: ${{ matrix.platform }}
+        run: |
+          mkdir -p safari-results
+          sw_vers | tee safari-results/macos.txt
+          /usr/bin/safaridriver --version | tee safari-results/safaridriver-version.txt
+          sudo /usr/bin/safaridriver --enable
+          python3 tests/prepare-safari.py
+      - name: Test production site
+        env:
+          QA_PLATFORM: ${{ matrix.platform }}
+          QA_BASE_URL: https://kazma.ge
+        run: |
+          /usr/bin/safaridriver --port 4444 > safari-results/driver.log 2>&1 &
+          python3 tests/safari-qa.py
+      - name: Upload results and screenshots
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: safari-${{ matrix.platform }}
+          path: safari-results/
+          retention-days: 14
