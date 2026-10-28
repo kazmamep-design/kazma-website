@@ -53,7 +53,7 @@ class Safari:
         req = urllib.request.Request("http://127.0.0.1:4444" + prefix + path, data=data, method=method,
                                      headers={"Content-Type": "application/json"})
         try:
-            with urllib.request.urlopen(req, timeout=100) as response:
+            with urllib.request.urlopen(req, timeout=100 if path in ["/session", "/url"] else 45) as response:
                 result = json.load(response)
         except urllib.error.HTTPError as exc:
             raise RuntimeError(exc.read().decode()) from exc
@@ -88,8 +88,14 @@ class Safari:
         if self.click_mode == "element":
             self.request("POST", f"/element/{element}/click", {})
         else:
-            self.request("POST", "/actions", {"actions": [{"type": "pointer", "id": "tap", "parameters": {"pointerType": self.click_mode}, "actions": [
-                {"type": "pointerMove", "origin": {ELEMENT: element}, "x": 0, "y": 0, "duration": 0},
+            pointer_type = self.click_mode.split("-")[0]
+            move = {"type": "pointerMove", "origin": {ELEMENT: element}, "x": 0, "y": 0, "duration": 0}
+            if self.click_mode.endswith("-viewport"):
+                time.sleep(0.2)
+                rect = self.js("const r=arguments[0].getBoundingClientRect();return {x:r.left+r.width/2,y:r.top+r.height/2};", {ELEMENT: element})
+                move.update({"origin": "viewport", "x": round(rect["x"]), "y": round(rect["y"])})
+            self.request("POST", "/actions", {"actions": [{"type": "pointer", "id": "tap", "parameters": {"pointerType": pointer_type}, "actions": [
+                move,
                 {"type": "pointerDown", "button": 0},
                 {"type": "pause", "duration": 50},
                 {"type": "pointerUp", "button": 0}]}]})
@@ -102,6 +108,8 @@ class Safari:
         self.request("POST", "/url", {"url": BASE + path})
         wait_for(lambda: self.js("return document.readyState === 'complete' && !!document.querySelector('.site-header');"))
         wait_for(lambda: self.js("return !document.fonts || document.fonts.status === 'loaded';"))
+        if PLATFORM == "ios":
+            self.js("window.__qaInput=[];for(const type of ['touchstart','touchend','click'])document.addEventListener(type,e=>window.__qaInput.push({type:e.type,trusted:e.isTrusted,target:e.target.tagName,lang:e.target.dataset.lang,classes:e.target.className,time:e.timeStamp}),true);")
 
     def language(self, language):
         self.click(f'[data-lang="{language}"]')
@@ -132,7 +140,7 @@ def calibrate_native_input():
       document.addEventListener(type,e=>events.push({type:e.type,trusted:e.isTrusted,target:e.target.id,time:e.timeStamp}),true);
       document.querySelector('button').onclick=()=>document.querySelector('output').textContent=Number(document.querySelector('output').textContent)+1;</script>'''
     outcomes = []
-    for mode in ["element", "mouse", "touch"]:
+    for mode in ["touch-viewport", "mouse-viewport", "element"]:
         browser.request("POST", "/url", {"url": "data:text/html;charset=utf-8," + urllib.parse.quote(html)})
         browser.click_mode = mode
         result = {"mode": mode}
@@ -140,19 +148,26 @@ def calibrate_native_input():
             browser.click("#probe")
             time.sleep(0.3)
             result.update(browser.js("return {count:Number(document.querySelector('#result').textContent),events:window.events};"))
+            require(result["count"] == 1 and any(e["type"] == "click" and e["trusted"] for e in result["events"]), result)
+            browser.visit("/")
+            browser.language("en")
+            browser.language("ka")
+            result["productionLanguageSwitch"] = True
         except Exception as exc:
             result["error"] = str(exc)
+            try:
+                result["productionInput"] = browser.js("return window.__qaInput || null;")
+            except Exception:
+                pass
         outcomes.append(result)
+        report["inputProbe"] = outcomes
+        (OUT / "report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2))
         print("NATIVE_INPUT_PROBE", json.dumps(result), flush=True)
-    report["inputProbe"] = outcomes
-    working = [item["mode"] for item in outcomes if item.get("count") == 1 and any(e["type"] == "click" and e["trusted"] for e in item.get("events", []))]
-    require(working, {"nativeInputUnavailable": outcomes})
-    browser.click_mode = "touch" if "touch" in working else "mouse" if "mouse" in working else "element"
-    report["nativeClickMode"] = browser.click_mode
-    browser.visit("/")
-    browser.language("en")
-    browser.language("ka")
-    print("NATIVE_INPUT_VERIFIED", browser.click_mode, flush=True)
+        if result.get("productionLanguageSwitch"):
+            report["nativeClickMode"] = browser.click_mode
+            print("NATIVE_INPUT_VERIFIED", browser.click_mode, flush=True)
+            return
+    raise AssertionError(json.dumps({"nativeInputUnavailable": outcomes}))
 
 
 def case(name, action):
@@ -163,6 +178,8 @@ def case(name, action):
     except Exception as exc:
         result.update({"status": "failed", "error": str(exc), "traceback": traceback.format_exc()})
         try:
+            if PLATFORM == "ios":
+                result["inputTrace"] = browser.js("return window.__qaInput || null;")
             browser.screenshot("FAILED-" + name)
         except Exception:
             pass
@@ -313,7 +330,8 @@ def gestures():
     x, y = int(size["width"] * 0.7), int(size["height"] * 0.45)
 
     def drag(dx, dy):
-        browser.request("POST", "/actions", {"actions": [{"type": "pointer", "id": "finger", "parameters": {"pointerType": "mouse"}, "actions": [
+        pointer_type = browser.click_mode.split("-")[0] if browser.click_mode != "element" else "mouse"
+        browser.request("POST", "/actions", {"actions": [{"type": "pointer", "id": "finger", "parameters": {"pointerType": pointer_type}, "actions": [
             {"type": "pointerMove", "x": x, "y": y, "duration": 0, "origin": "viewport"},
             {"type": "pointerDown", "button": 0},
             {"type": "pause", "duration": 100},
