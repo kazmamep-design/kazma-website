@@ -173,6 +173,7 @@ def menu(language):
         if mobile:
             browser.click(".menu-btn")
             wait_for(lambda: browser.js("return document.querySelector('.menu-btn').getAttribute('aria-expanded')==='true';"))
+            wait_for(lambda: browser.js("const s=getComputedStyle(document.querySelector('#primary-navigation')); return s.visibility==='visible' && Number(s.opacity)===1 && s.pointerEvents==='auto';"))
         browser.click(f'#primary-navigation a[href="{path}"]')
         wait_for(lambda: browser.js("return location.pathname;").rstrip("/") == path.rstrip("/"))
         wait_for(lambda: browser.js("return document.documentElement.lang;") == language)
@@ -244,9 +245,11 @@ def about(language):
     selector = "[data-about-disclosure]"
     browser.click(selector + " > summary")
     wait_for(lambda: browser.js("const d=document.querySelector(arguments[0]); return d.open && d.getAnimations().length===0;", selector))
+    browser.js("const images=document.querySelectorAll(arguments[0]+' img'); images[images.length-1]?.scrollIntoView({block:'center',behavior:'instant'});", selector)
+    wait_for(lambda: browser.js("return [...document.querySelectorAll(arguments[0]+' img')].every(i=>i.complete&&i.naturalWidth>0);", selector))
     browser.click(selector + " > summary")
     wait_for(lambda: browser.js("return !document.querySelector(arguments[0]).open;", selector))
-    return {"openedAndClosed": True}
+    return {"openedAndClosed": True, "additionalExperienceImagesLoaded": True}
 
 
 def schematic():
