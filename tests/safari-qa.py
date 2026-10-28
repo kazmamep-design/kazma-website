@@ -94,7 +94,7 @@ class Safari:
                 time.sleep(0.2)
                 rect = self.js("const r=arguments[0].getBoundingClientRect();return {x:r.left+r.width/2,y:r.top+r.height/2};", {ELEMENT: element})
                 move.update({"origin": "viewport", "x": round(rect["x"]), "y": round(rect["y"])})
-            self.request("POST", "/actions", {"actions": [{"type": "pointer", "id": "tap", "parameters": {"pointerType": pointer_type}, "actions": [
+            self.request("POST", "/actions", {"actions": [{"type": "pointer", "id": "tap-" + self.click_mode, "parameters": {"pointerType": pointer_type}, "actions": [
                 move,
                 {"type": "pointerDown", "button": 0},
                 {"type": "pause", "duration": 50},
