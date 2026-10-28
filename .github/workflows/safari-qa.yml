@@ -11,12 +11,16 @@ permissions:
 jobs:
   safari:
     name: Safari (${{ matrix.platform }})
-    runs-on: macos-15
+    runs-on: ${{ matrix.runner }}
     timeout-minutes: 25
     strategy:
       fail-fast: false
       matrix:
-        platform: [macos, ios]
+        include:
+          - platform: macos
+            runner: macos-15
+          - platform: ios
+            runner: macos-15-intel
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
@@ -29,6 +33,10 @@ jobs:
           sw_vers | tee safari-results/macos.txt
           /usr/bin/safaridriver --version | tee safari-results/safaridriver-version.txt
           sudo /usr/bin/safaridriver --enable
+          defaults read com.apple.universalaccess reduceMotion || true
+          defaults read com.apple.Accessibility ReduceMotionEnabled || true
+          defaults write com.apple.universalaccess reduceMotion -bool false
+          defaults write com.apple.Accessibility ReduceMotionEnabled -bool false
           python3 tests/prepare-safari.py
       - name: Test production site
         env:

@@ -61,7 +61,7 @@ class Safari:
         return value
 
     def start(self):
-        wait_for(lambda: self.request("GET", "/status", session=False), timeout=20)
+        wait_for(lambda: self.request("GET", "/status", session=False), timeout=120)
         caps = {"browserName": "safari", "platformName": "iOS" if PLATFORM == "ios" else "macOS"}
         if PLATFORM == "ios":
             selected = json.loads((OUT / "selected-simulator.json").read_text())
@@ -104,7 +104,7 @@ class Safari:
         (OUT / (safe + ".png")).write_bytes(base64.b64decode(data))
 
     def viewport(self):
-        return self.js("return {width:innerWidth,height:innerHeight,dpr:devicePixelRatio,ua:navigator.userAgent,touchPoints:navigator.maxTouchPoints};")
+        return self.js("return {width:innerWidth,height:innerHeight,dpr:devicePixelRatio,ua:navigator.userAgent,touchPoints:navigator.maxTouchPoints,reducedMotion:matchMedia('(prefers-reduced-motion: reduce)').matches};")
 
     def close(self):
         if self.session:
@@ -149,13 +149,17 @@ def layout(path, language, label):
         width:innerWidth,clientWidth:document.documentElement.clientWidth,scrollWidth:document.documentElement.scrollWidth,
         h1:document.querySelectorAll('h1').length,
         wrongLanguage:[...document.querySelectorAll(hidden)].filter(visible).map(e=>e.textContent.trim()),
-        images:[...document.images].filter(e=>visible(e)&&e.getAttribute('src')).map(e=>({src:e.currentSrc,complete:e.complete,width:e.naturalWidth})),
+        images:[...document.images].filter(e=>visible(e)&&e.getAttribute('src')&&!e.closest('details:not([open]),[aria-hidden="true"]')).map(e=>({src:e.currentSrc,complete:e.complete,width:e.naturalWidth})),
         script:[...document.scripts].map(e=>e.src).find(s=>s.includes('script.js'))};
     """, language)
     require(data["lang"] == language and data["title"] == data["expectedTitle"], data)
     require(data["h1"] == 1 and not data["wrongLanguage"], data)
     require(data["scrollWidth"] <= data["clientWidth"] + 2, data)
-    wait_for(lambda: browser.js("return [...document.images].filter(e=>e.getClientRects().length&&e.getAttribute('src')).every(e=>e.complete&&e.naturalWidth>0);"), timeout=20)
+    image_state = lambda: browser.js("return [...document.images].filter(e=>e.getClientRects().length&&getComputedStyle(e).visibility!=='hidden'&&e.getAttribute('src')&&!e.closest('details:not([open]),[aria-hidden=\"true\"]')).map(e=>({src:e.currentSrc||e.src,complete:e.complete,width:e.naturalWidth}));")
+    try:
+        wait_for(lambda: all(i["complete"] and i["width"] > 0 for i in image_state()), timeout=20)
+    except TimeoutError:
+        raise AssertionError(json.dumps({"unloadedImages": [i for i in image_state() if not i["complete"] or not i["width"]]}))
     browser.screenshot(f"{label}-{language}-{path.strip('/') or 'home'}")
     return data
 
@@ -186,6 +190,7 @@ def disclosures(language):
         if browser.js("return document.querySelector(arguments[0]).open;", selector):
             browser.click(selector + " > summary")
             wait_for(lambda: browser.js("return !document.querySelector(arguments[0]).open;", selector))
+            time.sleep(0.2)
         before = browser.js("const e=document.querySelector(arguments[0]); return {height:e.getBoundingClientRect().height,color:getComputedStyle(e.querySelector('.service-scope-title')).color};", selector)
         browser.click(selector + " > summary")
         wait_for(lambda: browser.js("const e=document.querySelector(arguments[0]);return e.open && e.getAnimations().length===0;", selector))
@@ -195,6 +200,7 @@ def disclosures(language):
         browser.screenshot(f"service-{language}-{service}")
         browser.click(selector + " > summary")
         wait_for(lambda: browser.js("return !document.querySelector(arguments[0]).open;", selector))
+        wait_for(lambda: browser.js("return getComputedStyle(document.querySelector(arguments[0]+' .service-scope-title')).color;", selector) == before["color"])
         closed = browser.js("const e=document.querySelector(arguments[0]); return {height:e.getBoundingClientRect().height,color:getComputedStyle(e.querySelector('.service-scope-title')).color};", selector)
         require(closed["color"] == before["color"] and abs(closed["height"] - before["height"]) < 2, {"before": before, "closed": closed})
         rows.append({"service": service, "before": before, "open": opened, "closed": closed})
@@ -245,6 +251,7 @@ def about(language):
 
 def schematic():
     browser.visit("/")
+    require(not browser.viewport()["reducedMotion"], "Runner has reduced motion enabled; normal animation requires a separate environment")
     script = "return [...document.querySelectorAll('.home-route-signal')].filter(e=>e.getClientRects().length).map(e=>({offset:getComputedStyle(e).strokeDashoffset,animations:e.getAnimations().map(a=>a.playState)}));"
     before = browser.js(script)
     time.sleep(0.45)

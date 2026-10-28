@@ -26,7 +26,7 @@ if os.environ.get("QA_PLATFORM") == "ios":
         version = tuple(map(int, re.findall(r"\d+", runtime.split(".iOS-")[1])))
         for device in entries:
             if device.get("isAvailable") and device["name"].startswith("iPhone"):
-                choices.append((version, "Pro Max" not in device["name"], device["name"], runtime, device))
+                choices.append((version, device["name"] == "iPhone 16", device["name"], runtime, device))
     if not choices:
         raise RuntimeError("No installed iPhone simulator is available")
     _, _, _, runtime, device = max(choices, key=lambda item: item[:3])
