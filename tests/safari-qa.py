@@ -12,6 +12,7 @@ import sys
 import time
 import traceback
 import urllib.error
+import urllib.parse
 import urllib.request
 
 OUT = pathlib.Path("safari-results")
@@ -44,6 +45,7 @@ def wait_for(fn, timeout=15):
 
 class Safari:
     session = None
+    click_mode = "element"
 
     def request(self, method, path, payload=None, session=True):
         prefix = f"/session/{self.session}" if session else ""
@@ -83,7 +85,14 @@ class Safari:
         element = self.element(selector)
         # Center before a native click so sticky headers cannot obscure lower controls.
         self.js("arguments[0].scrollIntoView({block:'center',inline:'nearest',behavior:'instant'});", {ELEMENT: element})
-        self.request("POST", f"/element/{element}/click", {})
+        if self.click_mode == "element":
+            self.request("POST", f"/element/{element}/click", {})
+        else:
+            self.request("POST", "/actions", {"actions": [{"type": "pointer", "id": "tap", "parameters": {"pointerType": self.click_mode}, "actions": [
+                {"type": "pointerMove", "origin": {ELEMENT: element}, "x": 0, "y": 0, "duration": 0},
+                {"type": "pointerDown", "button": 0},
+                {"type": "pause", "duration": 50},
+                {"type": "pointerUp", "button": 0}]}]})
 
     def key(self, value):
         self.request("POST", "/actions", {"actions": [{"type": "key", "id": "keyboard", "actions": [
@@ -112,6 +121,38 @@ class Safari:
 
 
 browser = Safari()
+
+
+def calibrate_native_input():
+    """Verify native input on an isolated control before judging production UI."""
+    html = '''<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1">
+      <style>body{margin:20px}button{margin-top:100px;width:200px;height:70px;font-size:24px}</style>
+      <button id="probe">Native tap probe</button><output id="result">0</output>
+      <script>window.events=[]; for(const type of ['pointerdown','pointerup','touchstart','touchend','click'])
+      document.addEventListener(type,e=>events.push({type:e.type,trusted:e.isTrusted,target:e.target.id,time:e.timeStamp}),true);
+      document.querySelector('button').onclick=()=>document.querySelector('output').textContent=Number(document.querySelector('output').textContent)+1;</script>'''
+    outcomes = []
+    for mode in ["element", "mouse", "touch"]:
+        browser.request("POST", "/url", {"url": "data:text/html;charset=utf-8," + urllib.parse.quote(html)})
+        browser.click_mode = mode
+        result = {"mode": mode}
+        try:
+            browser.click("#probe")
+            time.sleep(0.3)
+            result.update(browser.js("return {count:Number(document.querySelector('#result').textContent),events:window.events};"))
+        except Exception as exc:
+            result["error"] = str(exc)
+        outcomes.append(result)
+        print("NATIVE_INPUT_PROBE", json.dumps(result), flush=True)
+    report["inputProbe"] = outcomes
+    working = [item["mode"] for item in outcomes if item.get("count") == 1 and any(e["type"] == "click" and e["trusted"] for e in item.get("events", []))]
+    require(working, {"nativeInputUnavailable": outcomes})
+    browser.click_mode = "touch" if "touch" in working else "mouse" if "mouse" in working else "element"
+    report["nativeClickMode"] = browser.click_mode
+    browser.visit("/")
+    browser.language("en")
+    browser.language("ka")
+    print("NATIVE_INPUT_VERIFIED", browser.click_mode, flush=True)
 
 
 def case(name, action):
@@ -293,6 +334,8 @@ def gestures():
 
 try:
     browser.start()
+    if PLATFORM == "ios":
+        calibrate_native_input()
     if PLATFORM == "macos":
         browser.request("POST", "/window/rect", {"width": 1440, "height": 1000})
     browser.visit("/")
